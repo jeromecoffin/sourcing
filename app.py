@@ -2,6 +2,9 @@ import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
 import datetime
+from io import BytesIO
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
 # Vérifiez si Firebase n'est pas déjà initialisé
 if not firebase_admin._apps:
@@ -76,6 +79,26 @@ def get_rfqs():
         rfqs.append(data)
     return rfqs
 
+# Générer un PDF pour RFI ou RFQ
+def generate_pdf(doc_type, doc_data):
+    buffer = BytesIO()
+    p = canvas.Canvas(buffer, pagesize=letter)
+    width, height = letter
+
+    p.drawString(100, height - 50, f"{doc_type} Document")
+    p.drawString(100, height - 70, f"Title: {doc_data['title']}")
+    p.drawString(100, height - 90, f"Content: {doc_data['content']}")
+    p.drawString(100, height - 110, f"Due Date: {doc_data['due_date']}")
+    p.drawString(100, height - 130, f"User ID: {doc_data['user_id']}")
+    p.drawString(100, height - 150, f"Creation Date: {doc_data['creation_date']}")
+    if doc_type == "RFQ":
+        p.drawString(100, height - 170, f"Budget: {doc_data['budget']}")
+
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return buffer
+
 # Tableau de bord (KPI)
 def calculate_kpis():
     suppliers = get_suppliers()
@@ -143,6 +166,8 @@ def main():
             st.subheader("Liste des RFIs")
             for rfi in rfis:
                 st.write(rfi)
+                pdf = generate_pdf("RFI", rfi)
+                st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFI_{rfi['title']}.pdf")
 
         elif doc_type == "RFQ":
             with st.form("add_rfq_form"):
@@ -161,6 +186,8 @@ def main():
             st.subheader("Liste des RFQs")
             for rfq in rfqs:
                 st.write(rfq)
+                pdf = generate_pdf("RFQ", rfq)
+                st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFQ_{rfq['title']}.pdf")
 
     elif choice == "Tableau de Bord":
         st.header("Tableau de Bord - KPI")

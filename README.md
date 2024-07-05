@@ -84,7 +84,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## Auteurs
 
-- **Votre Nom** - *Développeur Principal* - [Votre Profil](https://github.com/votre-utilisateur)
+- Jérôme COFFIN -
 
 ## Remerciements
 
