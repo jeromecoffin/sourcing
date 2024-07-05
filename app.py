@@ -31,7 +31,7 @@ def add_rfi(title, content, due_date, user_id):
     doc_ref.set({
         "title": title,
         "content": content,
-        "due_date": due_date,
+        "due_date": datetime.datetime.combine(due_date, datetime.datetime.min.time()),
         "user_id": user_id,
         "creation_date": datetime.datetime.now(),
         "status": "Open"
@@ -42,22 +42,39 @@ def add_rfq(title, content, due_date, budget, user_id):
     doc_ref.set({
         "title": title,
         "content": content,
-        "due_date": due_date,
+        "due_date": datetime.datetime.combine(due_date, datetime.datetime.min.time()),
         "budget": budget,
         "user_id": user_id,
         "creation_date": datetime.datetime.now(),
         "status": "Open"
     })
 
+def format_firestore_timestamp(timestamp):
+    if isinstance(timestamp, datetime.datetime):
+        return timestamp.strftime("%Y-%m-%d %H:%M:%S")
+    return timestamp
+
 def get_rfis():
     rfis_ref = db.collection("rfis")
     docs = rfis_ref.stream()
-    return [doc.to_dict() for doc in docs]
+    rfis = []
+    for doc in docs:
+        data = doc.to_dict()
+        data['due_date'] = format_firestore_timestamp(data['due_date'])
+        data['creation_date'] = format_firestore_timestamp(data['creation_date'])
+        rfis.append(data)
+    return rfis
 
 def get_rfqs():
     rfqs_ref = db.collection("rfqs")
     docs = rfqs_ref.stream()
-    return [doc.to_dict() for doc in docs]
+    rfqs = []
+    for doc in docs:
+        data = doc.to_dict()
+        data['due_date'] = format_firestore_timestamp(data['due_date'])
+        data['creation_date'] = format_firestore_timestamp(data['creation_date'])
+        rfqs.append(data)
+    return rfqs
 
 # Tableau de bord (KPI)
 def calculate_kpis():
@@ -76,78 +93,82 @@ def calculate_kpis():
     return kpis
 
 # Interface Streamlit
-st.title("Plateforme SaaS pour les Agents de Sourcing")
+def main():
+    st.title("Plateforme SaaS pour les Agents de Sourcing")
 
-st.sidebar.title("Navigation")
-choice = st.sidebar.selectbox("Menu", ["Accueil", "Gestion des Contacts", "Documents RFI/RFQ", "Tableau de Bord"])
+    st.sidebar.title("Navigation")
+    choice = st.sidebar.selectbox("Menu", ["Accueil", "Gestion des Contacts", "Documents RFI/RFQ", "Tableau de Bord"])
 
-if choice == "Accueil":
-    st.header("Bienvenue sur la Plateforme SaaS pour les Agents de Sourcing")
-    st.write("Cette plateforme permet de gérer les contacts fournisseurs, les documents RFI/RFQ, et de suivre les KPI clés.")
+    if choice == "Accueil":
+        st.header("Bienvenue sur la Plateforme SaaS pour les Agents de Sourcing")
+        st.write("Cette plateforme permet de gérer les contacts fournisseurs, les documents RFI/RFQ, et de suivre les KPI clés.")
 
-elif choice == "Gestion des Contacts":
-    st.header("Gestion des Contacts Fournisseurs")
+    elif choice == "Gestion des Contacts":
+        st.header("Gestion des Contacts Fournisseurs")
 
-    with st.form("add_supplier_form"):
-        name = st.text_input("Nom du Fournisseur")
-        email = st.text_input("Email du Fournisseur")
-        phone = st.text_input("Téléphone du Fournisseur")
-        address = st.text_input("Adresse du Fournisseur")
-        submit = st.form_submit_button("Ajouter Fournisseur")
-
-    if submit:
-        add_supplier(name, email, phone, address)
-        st.success("Fournisseur ajouté avec succès!")
-
-    suppliers = get_suppliers()
-    st.subheader("Liste des Fournisseurs")
-    for supplier in suppliers:
-        st.write(supplier)
-
-elif choice == "Documents RFI/RFQ":
-    st.header("Gestion des Documents RFI/RFQ")
-
-    doc_type = st.radio("Type de Document", ["RFI", "RFQ"])
-
-    if doc_type == "RFI":
-        with st.form("add_rfi_form"):
-            title = st.text_input("Titre du RFI")
-            content = st.text_area("Contenu du RFI")
-            due_date = st.date_input("Date Limite de Réponse")
-            user_id = st.text_input("ID Utilisateur")
-            submit = st.form_submit_button("Ajouter RFI")
+        with st.form("add_supplier_form"):
+            name = st.text_input("Nom du Fournisseur")
+            email = st.text_input("Email du Fournisseur")
+            phone = st.text_input("Téléphone du Fournisseur")
+            address = st.text_input("Adresse du Fournisseur")
+            submit = st.form_submit_button("Ajouter Fournisseur")
 
         if submit:
-            add_rfi(title, content, due_date, user_id)
-            st.success("RFI ajouté avec succès!")
+            add_supplier(name, email, phone, address)
+            st.success("Fournisseur ajouté avec succès!")
 
-        rfis = get_rfis()
-        st.subheader("Liste des RFIs")
-        for rfi in rfis:
-            st.write(rfi)
+        suppliers = get_suppliers()
+        st.subheader("Liste des Fournisseurs")
+        for supplier in suppliers:
+            st.write(supplier)
 
-    elif doc_type == "RFQ":
-        with st.form("add_rfq_form"):
-            title = st.text_input("Titre du RFQ")
-            content = st.text_area("Contenu du RFQ")
-            due_date = st.date_input("Date Limite de Réponse")
-            budget = st.number_input("Budget Estimé")
-            user_id = st.text_input("ID Utilisateur")
-            submit = st.form_submit_button("Ajouter RFQ")
+    elif choice == "Documents RFI/RFQ":
+        st.header("Gestion des Documents RFI/RFQ")
 
-        if submit:
-            add_rfq(title, content, due_date, budget, user_id)
-            st.success("RFQ ajouté avec succès!")
+        doc_type = st.radio("Type de Document", ["RFI", "RFQ"])
 
-        rfqs = get_rfqs()
-        st.subheader("Liste des RFQs")
-        for rfq in rfqs:
-            st.write(rfq)
+        if doc_type == "RFI":
+            with st.form("add_rfi_form"):
+                title = st.text_input("Titre du RFI")
+                content = st.text_area("Contenu du RFI")
+                due_date = st.date_input("Date Limite de Réponse")
+                user_id = st.text_input("ID Utilisateur")
+                submit = st.form_submit_button("Ajouter RFI")
 
-elif choice == "Tableau de Bord":
-    st.header("Tableau de Bord - KPI")
+            if submit:
+                add_rfi(title, content, due_date, user_id)
+                st.success("RFI ajouté avec succès!")
 
-    kpis = calculate_kpis()
-    st.subheader("Indicateurs Clés de Performance")
-    for kpi, value in kpis.items():
-        st.metric(label=kpi, value=value)
+            rfis = get_rfis()
+            st.subheader("Liste des RFIs")
+            for rfi in rfis:
+                st.write(rfi)
+
+        elif doc_type == "RFQ":
+            with st.form("add_rfq_form"):
+                title = st.text_input("Titre du RFQ")
+                content = st.text_area("Contenu du RFQ")
+                due_date = st.date_input("Date Limite de Réponse")
+                budget = st.number_input("Budget Estimé")
+                user_id = st.text_input("ID Utilisateur")
+                submit = st.form_submit_button("Ajouter RFQ")
+
+            if submit:
+                add_rfq(title, content, due_date, budget, user_id)
+                st.success("RFQ ajouté avec succès!")
+
+            rfqs = get_rfqs()
+            st.subheader("Liste des RFQs")
+            for rfq in rfqs:
+                st.write(rfq)
+
+    elif choice == "Tableau de Bord":
+        st.header("Tableau de Bord - KPI")
+
+        kpis = calculate_kpis()
+        st.subheader("Indicateurs Clés de Performance")
+        for kpi, value in kpis.items():
+            st.metric(label=kpi, value=value)
+
+if __name__ == "__main__":
+    main()
