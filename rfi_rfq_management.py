@@ -1,7 +1,8 @@
 import streamlit as st
 import datetime
 from firebase_admin import firestore
-from utils import generate_pdf
+import utils
+
 
 def manage_rfi_rfq():
     st.sidebar.title("RFI/RFQ Management")
@@ -10,6 +11,10 @@ def manage_rfi_rfq():
     if doc_type == "RFI":
         with st.form("add_rfi_form"):
             title = st.text_input("Titre du RFI")
+            clients = utils.get_clients()
+            selected_client = st.selectbox("Choisissez le client:", clients)
+            companies = utils.get_suppliers()
+            selected_company = st.selectbox("Choisissez l'entreprise:", companies)
             description = st.text_area("Description")
             due_date = st.date_input("Date Limite de Réponse")
             specifications = st.text_area("Spécifications Techniques")
@@ -31,7 +36,9 @@ def manage_rfi_rfq():
             if submit:
                 rfi_data = {
                     "title": title,
+                    "client": selected_client,
                     "description": description,
+                    "company": selected_company,
                     "due_date": datetime.datetime.combine(due_date, datetime.datetime.min.time()),
                     "specifications": specifications,
                     "quality_standards": quality_standards,
@@ -56,12 +63,14 @@ def manage_rfi_rfq():
         st.subheader("Liste des RFIs")
         for rfi in rfis:
             st.write(rfi)
-            pdf = generate_pdf("RFI", rfi)
+            pdf = utils.generate_pdf("RFI", rfi)
             st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFI_{rfi['title']}.pdf")
 
     elif doc_type == "RFQ":
         with st.form("add_rfq_form"):
             title = st.text_input("Titre du RFQ")
+            rfis = utils.get_rfis()
+            selected_rfis = st.selectbox("Choisissez une RFI:", rfis)
             description = st.text_area("Description")
             due_date = st.date_input("Date Limite de Réponse")
             quantity = st.number_input("Quantité", min_value=1)
@@ -85,6 +94,7 @@ def manage_rfi_rfq():
             if submit:
                 rfq_data = {
                     "title": title,
+                    "rfi": selected_rfis,
                     "description": description,
                     "due_date": datetime.datetime.combine(due_date, datetime.datetime.min.time()),
                     "quantity": quantity,
@@ -112,7 +122,7 @@ def manage_rfi_rfq():
         st.subheader("Liste des RFQs")
         for rfq in rfqs:
             st.write(rfq)
-            pdf = generate_pdf("RFQ", rfq)
+            pdf = utils.generate_pdf("RFQ", rfq)
             st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFQ_{rfq['title']}.pdf")
 
 def get_rfis():

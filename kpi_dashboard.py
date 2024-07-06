@@ -6,6 +6,7 @@ def show_dashboard():
     kpis = calculate_kpis()
 
     st.metric(label="Nombre Total de Fournisseurs", value=kpis["total_suppliers"])
+    st.metric(label="Nombre Total de Clients", value=kpis["total_clients"])
     st.metric(label="Nombre Total de RFIs", value=kpis["total_rfis"])
     st.metric(label="Nombre Total de RFQs", value=kpis["total_rfqs"])
     st.metric(label="Temps de Réponse Moyen des RFIs (jours)", value=kpis["average_response_time_rfis"])

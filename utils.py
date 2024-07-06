@@ -16,6 +16,7 @@ def calculate_kpis():
     db = firestore.client()
 
     total_suppliers = db.collection("suppliers").get()
+    total_clients = db.collection("clients").get()
     total_rfis = db.collection("rfis").get()
     total_rfqs = db.collection("rfqs").get()
 
@@ -42,6 +43,7 @@ def calculate_kpis():
 
     return {
         "total_suppliers": len(total_suppliers),
+        "total_clients": len(total_clients),
         "total_rfis": len(total_rfis),
         "total_rfqs": len(total_rfqs),
         "average_response_time_rfis": average_response_time_rfis,
@@ -71,3 +73,21 @@ def generate_pdf(doc_type, doc_data):
     p.save()
     buffer.seek(0)
     return buffer
+
+def get_suppliers():
+    db = firestore.client()
+    suppliers_ref = db.collection("suppliers")
+    suppliers = suppliers_ref.get()
+    return [supplier.to_dict()["name"] for supplier in suppliers]
+
+def get_rfis():
+    db = firestore.client()
+    rfis_ref = db.collection("rfis")
+    rfis = rfis_ref.get()
+    return [rfi.to_dict()["title"] for rfi in rfis]
+
+def get_clients():
+    db = firestore.client()
+    clients_ref = db.collection("clients")
+    clients = clients_ref.get()
+    return [client.to_dict()["name"] for client in clients]
