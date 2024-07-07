@@ -6,6 +6,7 @@ import account
 import supplier_management
 import rfi_rfq_management
 import kpi_dashboard
+import project_management
 from utils import initialize_firebase
 
 # Initialize Firebase
@@ -13,11 +14,11 @@ initialize_firebase()
 
 def main():
     st.sidebar.title("Menu")
-    menu = ["Accueil", "Profil", "Onboarding", "Gestion des Fournisseurs", "RFI/RFQ", "Tableau de Bord"]
+    menu = ["Tableau de Bord", "Onboarding", "Gestion des Projets", "Gestion des Fournisseurs", "Profil", "RFI/RFQ"]
     choice = st.sidebar.selectbox("Choisissez une option", menu)
 
-    if choice == "Accueil":
-        st.title("Bienvenue sur la plateforme de sourcing")
+    if choice == "Tableau de Bord":
+        kpi_dashboard.show_dashboard()
     elif choice == "Profil":
         account.show_profile()
     elif choice == "Onboarding":
@@ -26,8 +27,8 @@ def main():
         supplier_management.manage_suppliers()
     elif choice == "RFI/RFQ":
         rfi_rfq_management.manage_rfi_rfq()
-    elif choice == "Tableau de Bord":
-        kpi_dashboard.show_dashboard()
+    elif choice == "Gestion des Projets":
+        project_management.manage_projects()        
 
 if __name__ == "__main__":
     main()

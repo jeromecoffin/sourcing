@@ -5,6 +5,7 @@ def show_dashboard():
     st.header("Tableau de Bord - KPIs")
     kpis = calculate_kpis()
 
+    st.metric(label="Nombre Total de Projets", value=kpis["total_projects"])
     st.metric(label="Nombre Total de Fournisseurs", value=kpis["total_suppliers"])
     st.metric(label="Nombre Total de Clients", value=kpis["total_clients"])
     st.metric(label="Nombre Total de RFIs", value=kpis["total_rfis"])

@@ -1,8 +1,5 @@
 from datetime import datetime, timezone
 from firebase_admin import credentials, firestore, initialize_app, _apps
-import streamlit as st
-import io
-from fpdf import FPDF
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from io import BytesIO
@@ -15,6 +12,7 @@ def initialize_firebase():
 def calculate_kpis():
     db = firestore.client()
 
+    total_projects = db.collection("projects").get()
     total_suppliers = db.collection("suppliers").get()
     total_clients = db.collection("clients").get()
     total_rfis = db.collection("rfis").get()
@@ -42,6 +40,7 @@ def calculate_kpis():
     samples_required = len([rfi for rfi in total_rfis if rfi.to_dict().get("samples_required", False)])
 
     return {
+        "total_projects": len(total_projects),
         "total_suppliers": len(total_suppliers),
         "total_clients": len(total_clients),
         "total_rfis": len(total_rfis),
@@ -85,6 +84,12 @@ def get_rfis():
     rfis_ref = db.collection("rfis")
     rfis = rfis_ref.get()
     return [rfi.to_dict()["title"] for rfi in rfis]
+
+def get_rfqs():
+    db = firestore.client()
+    rfqs_ref = db.collection("rfqs")
+    rfqs = rfqs_ref.get()
+    return [rfq.to_dict()["title"] for rfq in rfqs]
 
 def get_clients():
     db = firestore.client()
