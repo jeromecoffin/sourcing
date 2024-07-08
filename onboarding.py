@@ -8,7 +8,7 @@ def show_onboarding():
         name = st.text_input("Nom")
         email = st.text_input("Email")
         company = st.text_input("Entreprise")
-        preferences = st.text_area("Préférences de sourcing")
+        notes = st.text_area("Notes")
         submit = st.form_submit_button("Enregistrer")
 
         if submit:
@@ -16,7 +16,7 @@ def show_onboarding():
                 "name": name,
                 "email": email,
                 "company": company,
-                "preferences": preferences
+                "notes": notes
             }
             db = firestore.client()
             db.collection("clients").add(client_data)
