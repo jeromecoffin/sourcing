@@ -15,7 +15,7 @@ initialize_firebase()
 
 def main():
     st.sidebar.title("Menu")
-    menu = ["Tableau de Bord", "Onboarding", "Gestion des Projets", "Nouveau Projet", "Gestion des Fournisseurs", "Profil", "RFI/RFQ"]
+    menu = ["Tableau de Bord", "Onboarding", "Gestion des Projets", "Gestion des Fournisseurs", "Profil", "RFI/RFQ"]
     choice = st.sidebar.selectbox("Choisissez une option", menu)
 
     if choice == "Tableau de Bord":
@@ -25,9 +25,7 @@ def main():
     elif choice == "Onboarding":
         onboarding.show_onboarding()
     elif choice == "Gestion des Projets":
-        project_management.manage_projects()
-    elif choice == "Nouveau Projet":
-        new_project.new_projects()   
+        project_management.manage_projects() 
     elif choice == "Gestion des Fournisseurs":
         supplier_management.manage_suppliers()
     elif choice == "RFI/RFQ":

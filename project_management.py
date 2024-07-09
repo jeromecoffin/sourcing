@@ -3,6 +3,7 @@ import utils
 from datetime import datetime
 import firebase_admin
 from firebase_admin import firestore
+import new_project
 
 def get_projects():
     db = firestore.client()
@@ -75,17 +76,23 @@ def show_project_details(project):
 
 def manage_projects():
     utils.initialize_firebase()
-    
-    st.header("Gestion des Projets")
-    
-    st.header("Projets Existants")
-    projects = get_projects()
-    
-    if projects:
-        project_names = [project['title'] for project in projects]
-        selected_project_name = st.selectbox("Sélectionnez un Projet:", project_names)
-        selected_project = next(project for project in projects if project['title'] == selected_project_name)
+
+    st.sidebar.title("Project Management")
+    doc_type = st.sidebar.radio("Choisissez un type de document", ("Projets", "Nouveau Projet"), label_visibility="hidden")
+
+    if doc_type == "Projets":
+        st.header("Gestion des Projets")
         
-        show_project_details(selected_project)
-    else:
-        st.write("Aucun projet disponible.")
+        st.header("Projets Existants")
+        projects = get_projects()
+        
+        if projects:
+            project_names = [project['title'] for project in projects]
+            selected_project_name = st.selectbox("Sélectionnez un Projet:", project_names)
+            selected_project = next(project for project in projects if project['title'] == selected_project_name)
+            
+            show_project_details(selected_project)
+        else:
+            st.write("Aucun projet disponible.")
+    elif doc_type == "Nouveau Projet":
+        new_project.new_projects()

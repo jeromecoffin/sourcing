@@ -44,7 +44,7 @@ def new_projects():
         rfi = st.selectbox("Sélectionnez un RFI:", rfi_options)
         rfq = st.selectbox("Sélectionnez un RFQ:", rfq_options)
         details = st.multiselect("Préférences de Sourcing", sourcingTypes)
-        fournisseur = st.selectbox("Sélectionnez les Fournisseurs:", fournisseurs)
+        fournisseur = st.multiselect("Sélectionnez les Fournisseurs:", fournisseurs)
         
         submit_button = st.form_submit_button(label='Créer le Projet')
     
