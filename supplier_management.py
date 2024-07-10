@@ -5,31 +5,40 @@ from datetime import datetime
 import random
 
 def manage_suppliers():
+
     st.sidebar.title("Gestion des Fournisseurs")
     doc_type = st.sidebar.radio("Choisissez un type de document", ("Liste", "Ajouter un Fournisseur"), label_visibility="hidden")
+    
     if doc_type == "Liste":
+
         # Display list of suppliers
         suppliers = get_suppliers()
         st.subheader("Liste des Fournisseurs")
+
         df = pd.DataFrame(
         {
             ".": [[random.randint(0, 5000) for _ in range(30)] for _ in range(1)]
         }
         )
+
         for supplier in suppliers:
             col1, col2, col3, col4, col5, col6, col7 = st.columns([2, 1, 2, 3, 3, 2, 2])
+            
             with col1:
                 try:
                     st.write(supplier['name'])
                 except KeyError:
                     st.write("Non Renseigné")
+            
             with col2:
                 st.metric(label="", value="5", delta="3")
+            
             with col3:
                 try:
                     st.write(supplier['product_offerings'])
                 except KeyError:
                     st.write("Garments, Furnitures")
+            
             with col4:
                 st.dataframe(
                     df,
@@ -40,16 +49,20 @@ def manage_suppliers():
                     },
                     hide_index=True,
                 )
+            
             with col5:
                 st.selectbox("contact", ("Contacts", "Jimmy W.", "Théo FL"), key=random.randint(0, 10000), label_visibility="hidden")
+            
             with col6:
                 if st.button(f"Modif", key=f"update_{supplier['id']}"):
                     st.session_state['supplier_to_update'] = supplier['id']
                     st.rerun()
+            
             with col7:
                 if st.button(f"Supp", key=f"delete_{supplier['id']}"):
                     delete_supplier(supplier['id'])
                     st.rerun()
+
             st.markdown("---")
         
         # Import and export functionality
@@ -62,6 +75,7 @@ def manage_suppliers():
             st.success("Fournisseurs importés avec succès!")
 
     elif doc_type == "Ajouter un Fournisseur":
+
         # Form to add a new supplier
         with st.form("add_supplier_form"):
             name = st.text_input("Nom du fournisseur")
@@ -80,8 +94,10 @@ def manage_suppliers():
                     "past_performance": past_performance,
                     "created_at": datetime.now()
                 }
+
                 db = firestore.client()
                 db.collection("suppliers").add(supplier_data)
+
                 st.success("Fournisseur ajouté avec succès!")
 
 def get_suppliers():
@@ -96,7 +112,9 @@ def get_suppliers():
 
 
 def update_supplier(supplier_id):
+
     st.header(f"Modifier le Fournisseur: {supplier_id}")
+
     db = firestore.client()
     supplier_ref = db.collection("suppliers").document(supplier_id)
     supplier = supplier_ref.get().to_dict()
@@ -132,7 +150,9 @@ def update_supplier(supplier_id):
                 "certifications": certifications,
                 "past_performance": past_performance
             }
+            
             supplier_ref.update(supplier_data)
+
             st.success("Fournisseur mis à jour avec succès!")
 
 def delete_supplier(supplier_id):

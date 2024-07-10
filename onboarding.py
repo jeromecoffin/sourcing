@@ -2,6 +2,7 @@ import streamlit as st
 from firebase_admin import firestore
 
 def show_onboarding():
+    
     st.header("Onboarding Client")
 
     with st.form("onboarding_form"):

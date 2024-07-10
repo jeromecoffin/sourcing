@@ -1,0 +1,20 @@
+credentials:
+  usernames:
+    jcoffin:
+      email: jcoffin@gmail.com
+      name: Jerome Coffin
+      password: "abc"
+    tfleury:
+      email: tfleury@gmail.com
+      name: Theo Fleury
+      password: "hashed_password_here"
+
+cookie:
+  expiry_days: 30
+  key: some_random_key
+  name: some_random_name
+
+preauthorized:
+  emails:
+    - user1@example.com
+    - user2@example.com

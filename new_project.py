@@ -4,8 +4,11 @@ from datetime import datetime
 from firebase_admin import firestore
 
 def create_project(title, client, details, fournisseur, rfi, rfq):
+
     db = firestore.client()
+
     project_id = f"project_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+
     project_data = {
         "title": title,
         "client": client,
@@ -21,10 +24,13 @@ def create_project(title, client, details, fournisseur, rfi, rfq):
             "late_deliveries": 0
         }
     }
+
     db.collection("projects").document(project_id).set(project_data)
+
     return project_data
 
 def new_projects():
+    
     utils.initialize_firebase()
     
     st.header("Créer un Nouveau Projet")

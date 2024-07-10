@@ -30,15 +30,20 @@ def get_clients_details(client_name):
     return client[0].to_dict() if client else {}
 
 def show_project_details(project):
+
     st.divider()
+
     st.write("Titre :", project['title'])
+
     st.write("Client :", project['client'])
     client_details = get_clients_details(project['client'])
     if client_details:
         with st.expander("Informations Client"):
             for key, value in client_details.items():
                 st.code(f"{key}: {value}")
+
     st.divider()
+
     st.write("KPIs :")
     col1, col2, col3 = st.columns(3)
     i=1
@@ -52,7 +57,9 @@ def show_project_details(project):
         elif i == 3:
             col3.metric(label=kpi, value=value)
             i = 1
+
     st.divider()
+
     st.write("RFI :", project['rfi'])
     rfi_details = get_rfi_details(project['rfi'])
     if rfi_details:
@@ -61,7 +68,9 @@ def show_project_details(project):
                 st.code(f"{key}: {value}")
     else:
         st.write("Aucun détail RFI disponible.")
+
     st.divider()
+
     st.write("RFQ :", project['rfq'])
     rfq_details = get_rfq_details(project['rfq'])
     if rfq_details:
@@ -70,11 +79,15 @@ def show_project_details(project):
                 st.code(f"{key}: {value}")
     else:
         st.write("Aucun détail RFQ disponible.")
+
     st.divider()
+
     st.write("Fournisseur Final :", project['fournisseur'])
+
     st.divider()
 
 def manage_projects():
+
     utils.initialize_firebase()
 
     st.sidebar.title("Project Management")
@@ -94,5 +107,6 @@ def manage_projects():
             show_project_details(selected_project)
         else:
             st.write("Aucun projet disponible.")
+            
     elif doc_type == "Nouveau Projet":
         new_project.new_projects()

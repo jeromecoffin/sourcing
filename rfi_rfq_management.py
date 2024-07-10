@@ -5,10 +5,12 @@ import utils
 
 
 def manage_rfi_rfq():
+
     st.sidebar.title("RFI/RFQ Management")
     doc_type = st.sidebar.radio("Choisissez un type de document", ("RFI", "RFQ"))
 
     if doc_type == "RFI":
+
         with st.form("add_rfi_form"):
             title = st.text_input("Titre du RFI")
             clients = utils.get_clients()
@@ -55,18 +57,22 @@ def manage_rfi_rfq():
                     "main_contact": main_contact,
                     "comments": comments
                 }
+
                 db = firestore.client()
                 db.collection("rfis").add(rfi_data)
+
                 st.success("RFI ajouté avec succès!")
 
-        rfis = get_rfis()
         st.subheader("Liste des RFIs")
+
+        rfis = get_rfis()
         for rfi in rfis:
             st.write(rfi)
             pdf = utils.generate_pdf("RFI", rfi)
             st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFI_{rfi['title']}.pdf")
 
     elif doc_type == "RFQ":
+
         with st.form("add_rfq_form"):
             title = st.text_input("Titre du RFQ")
             rfis = utils.get_rfis()
@@ -116,12 +122,14 @@ def manage_rfi_rfq():
                     "main_contact": main_contact,
                     "comments": comments
                 }
+
                 db = firestore.client()
                 db.collection("rfqs").add(rfq_data)
+
                 st.success("RFQ ajouté avec succès!")
 
-        rfqs = get_rfqs()
         st.subheader("Liste des RFQs")
+        rfqs = get_rfqs()
         for rfq in rfqs:
             st.write(rfq)
             pdf = utils.generate_pdf("RFQ", rfq)

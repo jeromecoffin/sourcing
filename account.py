@@ -2,6 +2,7 @@ import streamlit as st
 from firebase_admin import firestore
 
 def show_profile():
+
     st.header("Profil de l'Agent")
 
     with st.form("profile_form"):
@@ -18,6 +19,8 @@ def show_profile():
                 "company": company,
                 "preferences": preferences
             }
+
             db = firestore.client()
             db.collection("agents").add(agent_data)
+            
             st.success("Agent inscrit avec succès!")
