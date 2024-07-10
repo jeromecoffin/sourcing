@@ -12,6 +12,10 @@ import kpi_dashboard
 import project_management
 from utils import initialize_firebase
 
+import logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(filename='python.log', encoding='utf-8', level=logging.INFO)
+
 # Initialize Firebase
 initialize_firebase()
 
@@ -30,29 +34,36 @@ authenticator = stauth.Authenticate(
 user, authentication_status, username = authenticator.login('main', fields = {'Form name': 'login'})
 
 if authentication_status:
+
     authenticator.logout('Logout', 'sidebar')
     st.sidebar.title(f"Welcome {user}")
 
     def main():
+
         st.sidebar.title("Menu")
-        menu = ["Tableau de Bord", "Onboarding", "Gestion des Projets", "Gestion des Fournisseurs", "Profil", "RFI/RFQ"]
+
+        menu = ["Tableau de Bord", "Onboarding Client", "Gestion des Projets", "Gestion des Fournisseurs", "RFI/RFQ"]
         choice = st.sidebar.selectbox("Choisissez une option", menu)
 
         if choice == "Tableau de Bord":
+            logging.info('clic Dashboard')
             kpi_dashboard.show_dashboard()
-        elif choice == "Profil":
-            account.show_profile()
-        elif choice == "Onboarding":
+        elif choice == "Onboarding Client":
+            logging.info('clic onboarding')
             onboarding.show_onboarding()
         elif choice == "Gestion des Projets":
+            logging.info('clic project')
             project_management.manage_projects() 
         elif choice == "Gestion des Fournisseurs":
+            logging.info('clic supplier')
             supplier_management.manage_suppliers()
         elif choice == "RFI/RFQ":
+            logging.info('clic rfi rfq')
             rfi_rfq_management.manage_rfi_rfq()
 
     if __name__ == "__main__":
         main()
+
 elif authentication_status == False:
     st.error('Username/password is incorrect')
 elif authentication_status == None:
