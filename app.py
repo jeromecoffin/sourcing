@@ -14,7 +14,7 @@ from utils import initialize_firebase
 
 import logging
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename='python.log', encoding='utf-8', level=logging.INFO)
+logging.basicConfig(filename='python.log', encoding='utf-8', level=logging.INFO, format='%(asctime)s %(message)s')
 
 # Initialize Firebase
 initialize_firebase()

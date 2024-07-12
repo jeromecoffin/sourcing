@@ -2,96 +2,69 @@ import streamlit as st
 from firebase_admin import firestore, initialize_app
 import pandas as pd
 from datetime import datetime
-import random
+from io import StringIO
 
 def manage_suppliers():
-
     st.sidebar.title("Gestion des Fournisseurs")
     doc_type = st.sidebar.radio("Choisissez un type de document", ("Liste", "Ajouter un Fournisseur"), label_visibility="hidden")
-    
-    if doc_type == "Liste":
+    selected_categories = st.sidebar.multiselect("Filtrer par catégories de produit", options=get_distinct_values("category"))
+    selected_fields = st.sidebar.multiselect("Filtrer par domaines d'activité", options=get_distinct_values("fields"))
 
+    if doc_type == "Liste":
         # Display list of suppliers
-        suppliers = get_suppliers()
+        suppliers = get_suppliers(selected_categories, selected_fields)
         st.subheader("Liste des Fournisseurs")
 
-        df = pd.DataFrame(
-        {
-            ".": [[random.randint(0, 5000) for _ in range(30)] for _ in range(1)]
-        }
-        )
+        if suppliers:
+            suppliers_df = pd.DataFrame(suppliers)
+            suppliers_df = suppliers_df.sort_values(by=['company', 'name'])
 
-        for supplier in suppliers:
-            col1, col2, col3, col4, col5, col6, col7 = st.columns([2, 1, 2, 3, 3, 2, 2])
-            
-            with col1:
-                try:
-                    st.write(supplier['name'])
-                except KeyError:
-                    st.write("Non Renseigné")
-            
-            with col2:
-                st.metric(label="", value="5", delta="3")
-            
-            with col3:
-                try:
-                    st.write(supplier['product_offerings'])
-                except KeyError:
-                    st.write("Garments, Furnitures")
-            
-            with col4:
-                st.dataframe(
-                    df,
-                    column_config={
-                        ".": st.column_config.LineChartColumn(
-                            y_min=0, y_max=5000
-                        )
-                    },
-                    hide_index=True,
-                )
-            
-            with col5:
-                st.selectbox("contact", ("Contacts", "Jimmy W.", "Théo FL"), key=random.randint(0, 10000), label_visibility="hidden")
-            
-            with col6:
-                if st.button(f"Modif", key=f"update_{supplier['id']}"):
-                    st.session_state['supplier_to_update'] = supplier['id']
-                    st.rerun()
-            
-            with col7:
-                if st.button(f"Supp", key=f"delete_{supplier['id']}"):
-                    delete_supplier(supplier['id'])
-                    st.rerun()
+            columns_order = ['company', 'name', 'email', 'address', 'category', 'fields', 'rate', 'id']
+            suppliers_df = suppliers_df[columns_order]
 
-            st.markdown("---")
+            edited_df = st.data_editor(suppliers_df, hide_index=True)
+
+            if st.button("Enregistrer les modifications"):
+                for index, row in edited_df.iterrows():
+                    supplier_id = row['id']
+                    updated_data = row.to_dict()
+                    del updated_data['id']  # Remove 'id' before updating
+                    update_supplier(supplier_id, updated_data)
+                st.success("Modifications enregistrées avec succès!")
         
-        # Import and export functionality
-        st.subheader("Import/Export des Fournisseurs")
+        # Export functionality
         if st.button("Exporter les Fournisseurs"):
             export_suppliers_to_csv(suppliers)
-        uploaded_file = st.file_uploader("Importer les Fournisseurs", type=["csv"])
-        if uploaded_file:
-            import_suppliers_from_csv(uploaded_file)
-            st.success("Fournisseurs importés avec succès!")
 
     elif doc_type == "Ajouter un Fournisseur":
-
         # Form to add a new supplier
         with st.form("add_supplier_form"):
+            company = st.text_input("Nom de l'entreprise")
             name = st.text_input("Nom du fournisseur")
-            contact = st.text_input("Contact")
-            product_offerings = st.text_area("Produits offerts")
-            certifications = st.text_area("Certifications")
-            past_performance = st.text_area("Historique des performances")
+            email = st.text_input("Email")
+            address = st.text_input("Adresse")
+            categories = st.multiselect("Categories", options=get_distinct_values("category"))
+            new_category = st.text_input("Ajouter une nouvelle catégorie")
+            if new_category:
+                categories.append(new_category)
+
+            fields = st.multiselect("Domaines d'activité", options=get_distinct_values("fields"))
+            new_field = st.text_input("Ajouter un nouveau domaine d'activité")
+            if new_field:
+                fields.append(new_field)
+
+            rate = st.slider("Évaluation", 0, 10, 5)
             submit = st.form_submit_button("Ajouter Fournisseur")
 
             if submit:
                 supplier_data = {
+                    "company": company,
                     "name": name,
-                    "contact": contact,
-                    "product_offerings": product_offerings,
-                    "certifications": certifications,
-                    "past_performance": past_performance,
+                    "email": email,
+                    "address": address,
+                    "category": categories,
+                    "fields": fields,
+                    "rate": rate,
                     "created_at": datetime.now()
                 }
 
@@ -100,85 +73,38 @@ def manage_suppliers():
 
                 st.success("Fournisseur ajouté avec succès!")
 
-def get_suppliers():
+def update_supplier(supplier_id, supplier_data):
+    db = firestore.client()
+    supplier_ref = db.collection("suppliers").document(supplier_id)
+    supplier_ref.update(supplier_data)
+
+def get_suppliers(selected_categories, selected_fields):
     db = firestore.client()
     suppliers_ref = db.collection("suppliers")
     suppliers = []
     for doc in suppliers_ref.stream():
         supplier = doc.to_dict()
         supplier['id'] = doc.id  # Ajout de l'ID du document
-        suppliers.append(supplier)
+        if (not selected_categories or set(supplier.get('category', [])).intersection(set(selected_categories))) and \
+           (not selected_fields or set(supplier.get('fields', [])).intersection(set(selected_fields))):
+            suppliers.append(supplier)
     return suppliers
-
-
-def update_supplier(supplier_id):
-
-    st.header(f"Modifier le Fournisseur: {supplier_id}")
-
-    db = firestore.client()
-    supplier_ref = db.collection("suppliers").document(supplier_id)
-    supplier = supplier_ref.get().to_dict()
-    
-    with st.form("update_supplier_form"):
-        try:
-            name = st.text_input("Nom du fournisseur", supplier['name'])
-        except:
-            name = st.text_input("Nom du fournisseur")
-        try:
-            email = st.text_input("Email", supplier['email'])
-        except:
-            email = st.text_input("Email")
-        try:
-            product_offerings = st.text_area("Produits offerts", supplier['product_offerings'])
-        except:
-            product_offerings = st.text_area("Produits offerts")
-        try:
-            certifications = st.text_area("Certifications", supplier['certifications'])
-        except:
-            certifications = st.text_area("Certifications")
-        try:
-            past_performance = st.text_area("Historique des performances", supplier['past_performance'])
-        except:
-            past_performance = st.text_area("Historique des performances")
-        submit = st.form_submit_button("Mettre à jour Fournisseur")
-
-        if submit:
-            supplier_data = {
-                "name": name,
-                "email": email,
-                "product_offerings": product_offerings,
-                "certifications": certifications,
-                "past_performance": past_performance
-            }
-            
-            supplier_ref.update(supplier_data)
-
-            st.success("Fournisseur mis à jour avec succès!")
-
-def delete_supplier(supplier_id):
-    db = firestore.client()
-    supplier_ref = db.collection("suppliers").document(supplier_id)
-    supplier_ref.delete()
-    st.success("Fournisseur supprimé avec succès!")
 
 def export_suppliers_to_csv(suppliers):
     df = pd.DataFrame(suppliers)
-    df.to_csv("suppliers_export.csv", index=False)
-    st.download_button("Télécharger CSV", "suppliers_export.csv")
+    csv = df.to_csv(index=False)
+    st.download_button(label="Télécharger CSV", data=csv, file_name="suppliers_export.csv", mime="text/csv")
 
-def import_suppliers_from_csv(file):
-    df = pd.read_csv(file)
+def get_distinct_values(field_name):
     db = firestore.client()
-    for index, row in df.iterrows():
-        supplier_data = {
-            "name": row["name"],
-            "contact": row["contact"],
-            "product_offerings": row["product_offerings"],
-            "certifications": row["certifications"],
-            "past_performance": row["past_performance"],
-            "created_at": datetime.now()
-        }
-        db.collection("suppliers").add(supplier_data)
+    suppliers_ref = db.collection("suppliers")
+    values = set()
+    for doc in suppliers_ref.stream():
+        supplier = doc.to_dict()
+        if field_name in supplier:
+            for value in supplier[field_name]:
+                values.add(value)
+    return list(values)
 
 if __name__ == "__main__":
     manage_suppliers()

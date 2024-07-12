@@ -12,49 +12,48 @@ def manage_rfi_rfq():
     if doc_type == "RFI":
 
         with st.form("add_rfi_form"):
+
             title = st.text_input("Titre du RFI")
+            reference = st.text_input("Ref")
+            location = st.text_input("Location")
+
+            st.divider()
+            st.write("Partie Requérante")
+            rp_name = st.text_input("Nom")
+            rp_company = st.text_input("Entreprise")
+            rp_position = st.text_input("Rôle")
+            rp_mail = st.text_input("email")
+            rp_phone = st.text_input("Téléphone")
+            st.divider()
+
+            requestDate = st.text_input("Date de la demande")
+            requestDueDate = st.text_input("Date d'échéance")
+            information = st.text_area("Informations de la Demande")
+
             clients = utils.get_clients()
             selected_client = st.selectbox("Choisissez le client:", clients)
-            companies = utils.get_suppliers()
-            selected_company = st.multiselect("Choisissez les entreprises:", companies)
-            description = st.text_area("Description")
-            due_date = st.date_input("Date Limite de Réponse")
-            specifications = st.text_area("Spécifications Techniques")
-            quality_standards = st.text_input("Normes de Qualité")
-            production_capacity = st.text_input("Capacité de Production")
-            delivery_timeframes = st.text_input("Délais de Livraison")
-            estimated_costs = st.text_input("Coûts Estimés")
-            payment_terms = st.text_input("Conditions de Paiement")
-            required_documentation = st.text_area("Documentation Requise")
-            certifications = st.text_input("Certifications Requises")
-            delivery_terms = st.text_input("Conditions de Livraison")
-            delivery_address = st.text_input("Adresse de Livraison")
-            samples_required = st.checkbox("Échantillons Requis")
-            user_id = st.text_input("ID Utilisateur")
-            main_contact = st.text_input("Contact Principal")
+            
+            suppliers = utils.get_suppliers()
+            selected_suppliers = st.multiselect("Choisissez les Fournisseurs:", suppliers)
+            
             comments = st.text_area("Commentaires Supplémentaires")
             submit = st.form_submit_button("Ajouter RFI")
 
             if submit:
                 rfi_data = {
                     "title": title,
+                    "reference": reference,
+                    "location": location,
+                    "rp_name": rp_name,
+                    "rp_company": rp_company,
+                    "rp_position": rp_position,
+                    "rp_mail": rp_mail,
+                    "rp_phone": rp_phone,
+                    "requestDate": requestDate,
+                    "requestDueDate": requestDueDate,
+                    "information": information,
                     "client": selected_client,
-                    "description": description,
-                    "company": selected_company,
-                    "due_date": datetime.datetime.combine(due_date, datetime.datetime.min.time()),
-                    "specifications": specifications,
-                    "quality_standards": quality_standards,
-                    "production_capacity": production_capacity,
-                    "delivery_timeframes": delivery_timeframes,
-                    "estimated_costs": estimated_costs,
-                    "payment_terms": payment_terms,
-                    "required_documentation": required_documentation,
-                    "certifications": certifications,
-                    "delivery_terms": delivery_terms,
-                    "delivery_address": delivery_address,
-                    "samples_required": samples_required,
-                    "user_id": user_id,
-                    "main_contact": main_contact,
+                    "suppliers": selected_suppliers,
                     "comments": comments
                 }
 
@@ -74,28 +73,36 @@ def manage_rfi_rfq():
     elif doc_type == "RFQ":
 
         with st.form("add_rfq_form"):
+
             title = st.text_input("Titre du RFQ")
+            reference = st.text_input("Ref")
+            location = st.text_input("Location")
+
             rfis = utils.get_rfis()
             selected_rfis = st.selectbox("Choisissez une RFI:", rfis)
+
             companies = utils.get_suppliers()
             selected_company = st.multiselect("Choisissez les entreprises:", companies)
-            description = st.text_area("Description")
-            due_date = st.date_input("Date Limite de Réponse")
-            quantity = st.number_input("Quantité", min_value=1)
-            sizes = st.text_input("Tailles")
-            colors = st.text_input("Couleurs")
-            materials = st.text_input("Matériaux")
-            technical_drawings = st.text_area("Dessin Technique / Spécifications")
-            samples_required = st.checkbox("Échantillons Requis")
-            quality_standards = st.text_input("Normes de Qualité")
-            delivery_terms = st.text_input("Conditions de Livraison")
-            delivery_address = st.text_input("Adresse de Livraison")
-            budget = st.number_input("Budget Estimé", min_value=0.0, step=0.01)
-            payment_terms = st.text_input("Conditions de Paiement")
-            delivery_date = st.date_input("Date de Livraison Souhaitée")
-            documentation = st.text_area("Documentation Requise")
-            user_id = st.text_input("ID Utilisateur")
-            main_contact = st.text_input("Contact Principal")
+            
+            st.divider()
+            st.write("Partie Requérante")
+            rp_name = st.text_input("Nom")
+            rp_company = st.text_input("Entreprise")
+            rp_position = st.text_input("Rôle")
+            rp_mail = st.text_input("email")
+            rp_phone = st.text_input("Téléphone")
+            st.divider()
+
+            requestDate = st.text_input("Date de la demande")
+            requestDueDate = st.text_input("Date d'échéance")
+            quotationContent = st.text_area("Contenu du Devis")
+
+            clients = utils.get_clients()
+            selected_client = st.selectbox("Choisissez le client:", clients)
+            
+            suppliers = utils.get_suppliers()
+            selected_suppliers = st.multiselect("Choisissez les Fournisseurs:", suppliers)
+            
             comments = st.text_area("Commentaires Supplémentaires")
             submit = st.form_submit_button("Ajouter RFQ")
 
@@ -103,23 +110,18 @@ def manage_rfi_rfq():
                 rfq_data = {
                     "title": title,
                     "rfi": selected_rfis,
-                    "description": description,
-                    "due_date": datetime.datetime.combine(due_date, datetime.datetime.min.time()),
-                    "quantity": quantity,
-                    "sizes": sizes,
-                    "colors": colors,
-                    "materials": materials,
-                    "technical_drawings": technical_drawings,
-                    "samples_required": samples_required,
-                    "quality_standards": quality_standards,
-                    "delivery_terms": delivery_terms,
-                    "delivery_address": delivery_address,
-                    "budget": budget,
-                    "payment_terms": payment_terms,
-                    "delivery_date": datetime.datetime.combine(delivery_date, datetime.datetime.min.time()),
-                    "documentation": documentation,
-                    "user_id": user_id,
-                    "main_contact": main_contact,
+                    "reference": reference,
+                    "location": location,
+                    "rp_name": rp_name,
+                    "rp_company": rp_company,
+                    "rp_position": rp_position,
+                    "rp_mail": rp_mail,
+                    "rp_phone": rp_phone,
+                    "requestDate": requestDate,
+                    "requestDueDate": requestDueDate,
+                    "quotationContent": quotationContent,
+                    "client": selected_client,
+                    "suppliers": selected_suppliers,
                     "comments": comments
                 }
 
