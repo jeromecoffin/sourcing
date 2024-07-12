@@ -2,6 +2,11 @@ from datetime import datetime, timezone
 from firebase_admin import credentials, firestore, initialize_app, _apps
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.units import inch
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from io import BytesIO
 
 def initialize_firebase():
@@ -56,20 +61,99 @@ def calculate_kpis():
 
 def generate_pdf(doc_type, doc_data):
     buffer = BytesIO()
-    p = canvas.Canvas(buffer, pagesize=letter)
-    width, height = letter
+    doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
+    elements = []
 
-    p.drawString(100, height - 50, f"{doc_type} Document")
-    p.drawString(100, height - 70, f"Title: {doc_data['title']}")
-    #p.drawString(100, height - 90, f"Content: {doc_data['content']}")
-    p.drawString(100, height - 110, f"Due Date: {doc_data['due_date']}")
-    p.drawString(100, height - 130, f"User ID: {doc_data['user_id']}")
-    #p.drawString(100, height - 150, f"Creation Date: {doc_data['creation_date']}")
-    if doc_type == "RFQ":
-        p.drawString(100, height - 170, f"Budget: {doc_data['budget']}")
+    styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(name='Justify', alignment=2))
+    
+    title = Paragraph(f"<b>{doc_type} Document</b>", styles['Title'])
+    elements.append(title)
+    elements.append(Spacer(1, 12))
 
-    p.showPage()
-    p.save()
+    headerData = [
+        ["Title:", Paragraph(doc_data['title'], styles['Normal'])],
+        ["Reference:", Paragraph(doc_data['reference'], styles['Normal'])],
+        ["Location:", Paragraph(doc_data['location'], styles['Normal'])],
+    ]
+
+    headerTable = Table(headerData, colWidths=[2.5 * inch, 4 * inch])
+    headerTable.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (0, -1), colors.lightgrey),
+        ('TEXTCOLOR', (0, 0), (0, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('FONTNAME', (0, 0), (-1, -1), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+        ('BACKGROUND', (1, 0), (-1, -1), colors.whitesmoke),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ]))
+
+    elements.append(headerTable)
+    elements.append(Spacer(1, 6))
+
+    requestingData = [
+        ["Requesting Party Name:", Paragraph(doc_data['rp_name'], styles['Normal'])],
+        ["Requesting Party Company:", Paragraph(doc_data['rp_company'], styles['Normal'])],
+        ["Requesting Party Position:", Paragraph(doc_data['rp_position'], styles['Normal'])],
+        ["Requesting Party Email:", Paragraph(doc_data['rp_mail'], styles['Normal'])],
+        ["Requesting Party Phone:", Paragraph(doc_data['rp_phone'], styles['Normal'])],
+    ]
+
+    requestingTable = Table(requestingData, colWidths=[2.5 * inch, 4 * inch])
+    requestingTable.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (0, -1), colors.lightgrey),
+        ('TEXTCOLOR', (0, 0), (0, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('FONTNAME', (0, 0), (-1, -1), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+        ('BACKGROUND', (1, 0), (-1, -1), colors.whitesmoke),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ]))
+
+    elements.append(requestingTable)
+    elements.append(Spacer(1, 6))
+
+    timelineData = [
+        ["Request Date:", Paragraph(doc_data['requestDate'], styles['Normal'])],
+        ["Request Due Date:", Paragraph(doc_data['requestDueDate'], styles['Normal'])],
+    ]
+
+    timelineTable = Table(timelineData, colWidths=[2.5 * inch, 4 * inch])
+    timelineTable.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (0, -1), colors.lightgrey),
+        ('TEXTCOLOR', (0, 0), (0, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('FONTNAME', (0, 0), (-1, -1), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+        ('BACKGROUND', (1, 0), (-1, -1), colors.whitesmoke),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ]))
+
+    elements.append(timelineTable)
+    elements.append(Spacer(1, 6))
+
+    otherData = [
+        #["Client:", Paragraph(doc_data['client'], styles['Normal'])],
+        #["Suppliers:", Paragraph("\n".join(doc_data['suppliers']), styles['Normal'])],  # Convert list to string
+        #["Comments:", Paragraph(doc_data['comments'], styles['Normal'])],
+    ]
+
+    if doc_type == "RFI":
+        information = Paragraph(f"<b>Information:</b><br/>{doc_data['information']}", styles['Normal'])
+        elements.append(information)
+    elif doc_type == "RFQ":
+        quotationContent = Paragraph(f"<b>Quotation:</b><br/>{doc_data['quotationContent']}", styles['Normal'])
+        elements.append(quotationContent)
+        
+    elements.append(Spacer(1, 6))
+
+    comment = Paragraph(f"<b>Comment:</b><br/>{doc_data['comments']}", styles['Normal'])
+    elements.append(comment)
+
+    doc.build(elements)
     buffer.seek(0)
     return buffer
 

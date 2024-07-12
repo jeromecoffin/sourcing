@@ -16,6 +16,8 @@ def manage_rfi_rfq():
             title = st.text_input("Titre du RFI")
             reference = st.text_input("Ref")
             location = st.text_input("Location")
+            clients = utils.get_clients()
+            selected_client = st.selectbox("Choisissez le client:", clients)
 
             st.divider()
             st.write("Partie Requérante")
@@ -29,9 +31,6 @@ def manage_rfi_rfq():
             requestDate = st.text_input("Date de la demande")
             requestDueDate = st.text_input("Date d'échéance")
             information = st.text_area("Informations de la Demande")
-
-            clients = utils.get_clients()
-            selected_client = st.selectbox("Choisissez le client:", clients)
             
             suppliers = utils.get_suppliers()
             selected_suppliers = st.multiselect("Choisissez les Fournisseurs:", suppliers)
@@ -78,11 +77,11 @@ def manage_rfi_rfq():
             reference = st.text_input("Ref")
             location = st.text_input("Location")
 
+            clients = utils.get_clients()
+            selected_client = st.selectbox("Choisissez le client:", clients)
+
             rfis = utils.get_rfis()
             selected_rfis = st.selectbox("Choisissez une RFI:", rfis)
-
-            companies = utils.get_suppliers()
-            selected_company = st.multiselect("Choisissez les entreprises:", companies)
             
             st.divider()
             st.write("Partie Requérante")
@@ -96,9 +95,6 @@ def manage_rfi_rfq():
             requestDate = st.text_input("Date de la demande")
             requestDueDate = st.text_input("Date d'échéance")
             quotationContent = st.text_area("Contenu du Devis")
-
-            clients = utils.get_clients()
-            selected_client = st.selectbox("Choisissez le client:", clients)
             
             suppliers = utils.get_suppliers()
             selected_suppliers = st.multiselect("Choisissez les Fournisseurs:", suppliers)

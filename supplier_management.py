@@ -7,22 +7,25 @@ from io import StringIO
 def manage_suppliers():
     st.sidebar.title("Gestion des Fournisseurs")
     doc_type = st.sidebar.radio("Choisissez un type de document", ("Liste", "Ajouter un Fournisseur"), label_visibility="hidden")
-    selected_categories = st.sidebar.multiselect("Filtrer par catégories de produit", options=get_distinct_values("category"))
-    selected_fields = st.sidebar.multiselect("Filtrer par domaines d'activité", options=get_distinct_values("fields"))
 
     if doc_type == "Liste":
-        # Display list of suppliers
-        suppliers = get_suppliers(selected_categories, selected_fields)
-        st.subheader("Liste des Fournisseurs")
 
+        # Display list of suppliers
+        st.subheader("Liste des Fournisseurs")
+        col1, col2 = st.columns(2)
+        selected_categories = col1.multiselect("Filtrer par catégories de produit", options=get_distinct_values("category"))
+        selected_fields = col2.multiselect("Filtrer par domaines d'activité", options=get_distinct_values("fields"))
+        
+        suppliers = get_suppliers(selected_categories, selected_fields)
+        
         if suppliers:
             suppliers_df = pd.DataFrame(suppliers)
             suppliers_df = suppliers_df.sort_values(by=['company', 'name'])
 
-            columns_order = ['company', 'name', 'email', 'address', 'category', 'fields', 'rate', 'id']
+            columns_order = ['company', 'name', 'email', 'address', 'category', 'fields', 'rate']
             suppliers_df = suppliers_df[columns_order]
 
-            edited_df = st.data_editor(suppliers_df, hide_index=True)
+            edited_df = st.data_editor(suppliers_df, hide_index=True, use_container_width=True)
 
             if st.button("Enregistrer les modifications"):
                 for index, row in edited_df.iterrows():
@@ -33,7 +36,7 @@ def manage_suppliers():
                 st.success("Modifications enregistrées avec succès!")
         
         # Export functionality
-        if st.button("Exporter les Fournisseurs"):
+        if st.button("Exporter la Liste"):
             export_suppliers_to_csv(suppliers)
 
     elif doc_type == "Ajouter un Fournisseur":
@@ -43,13 +46,13 @@ def manage_suppliers():
             name = st.text_input("Nom du fournisseur")
             email = st.text_input("Email")
             address = st.text_input("Adresse")
-            categories = st.multiselect("Categories", options=get_distinct_values("category"))
-            new_category = st.text_input("Ajouter une nouvelle catégorie")
+            categories = st.multiselect("Categories (Garments, Accessoiries, Home Textiles...)", options=get_distinct_values("category"))
+            new_category = st.text_input("Ajouter des nouvelles catégories (séparées par ,)")
             if new_category:
                 categories.append(new_category)
 
-            fields = st.multiselect("Domaines d'activité", options=get_distinct_values("fields"))
-            new_field = st.text_input("Ajouter un nouveau domaine d'activité")
+            fields = st.multiselect("Domaines d'activité (Dyeing, Importing, Knitting...)", options=get_distinct_values("fields"))
+            new_field = st.text_input("Ajouter des nouveaux domaines d'activité (séparés par ,)")
             if new_field:
                 fields.append(new_field)
 

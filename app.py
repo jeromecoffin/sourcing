@@ -19,6 +19,8 @@ logging.basicConfig(filename='python.log', encoding='utf-8', level=logging.INFO,
 # Initialize Firebase
 initialize_firebase()
 
+st.set_page_config(layout="wide")
+
 # Load config.yaml for authentication
 with open('cred.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
