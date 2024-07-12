@@ -135,11 +135,11 @@ def generate_pdf(doc_type, doc_data):
     elements.append(timelineTable)
     elements.append(Spacer(1, 6))
 
-    otherData = [
+    #otherData = [
         #["Client:", Paragraph(doc_data['client'], styles['Normal'])],
         #["Suppliers:", Paragraph("\n".join(doc_data['suppliers']), styles['Normal'])],  # Convert list to string
         #["Comments:", Paragraph(doc_data['comments'], styles['Normal'])],
-    ]
+    #]
 
     if doc_type == "RFI":
         information = Paragraph(f"<b>Information:</b><br/>{doc_data['information']}", styles['Normal'])
@@ -180,3 +180,43 @@ def get_clients():
     clients_ref = db.collection("clients")
     clients = clients_ref.get()
     return [client.to_dict()["name"] for client in clients]
+
+def detect_and_split_comma_in_lists():
+    db = firestore.client()
+    suppliers_ref = db.collection("suppliers")
+    docs = suppliers_ref.stream()
+
+    for doc in docs:
+        supplier_data = doc.to_dict()
+        changed = False
+        
+        # Check and split 'category' field if it contains comma
+        if 'category' in supplier_data and isinstance(supplier_data['category'], list):
+            updated_categories = []
+            for category in supplier_data['category']:
+                if ',' in category:
+                    updated_categories.extend([c.strip() for c in category.split(',')])
+                    changed = True
+                else:
+                    updated_categories.append(category)
+            if changed:
+                supplier_data['category'] = updated_categories
+                doc.reference.update({'category': updated_categories})
+        
+        # Check and split 'fields' field if it contains comma
+        if 'fields' in supplier_data and isinstance(supplier_data['fields'], list):
+            updated_fields = []
+            for field in supplier_data['fields']:
+                if ',' in field:
+                    updated_fields.extend([f.strip() for f in field.split(',')])
+                    changed = True
+                else:
+                    updated_fields.append(field)
+            if changed:
+                supplier_data['fields'] = updated_fields
+                doc.reference.update({'fields': updated_fields})
+
+        if changed:
+            print(f"Document {doc.id} updated successfully.")
+    return changed
+

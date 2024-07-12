@@ -3,47 +3,58 @@ from firebase_admin import firestore, initialize_app
 import pandas as pd
 from datetime import datetime
 from io import StringIO
+import utils
+
+import logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(filename='python.log', encoding='utf-8', level=logging.INFO, format='%(asctime)s %(message)s')
 
 def manage_suppliers():
     st.sidebar.title("Gestion des Fournisseurs")
     doc_type = st.sidebar.radio("Choisissez un type de document", ("Liste", "Ajouter un Fournisseur"), label_visibility="hidden")
 
     if doc_type == "Liste":
-
+        logging.info('clic supplier Liste')
         # Display list of suppliers
         st.subheader("Liste des Fournisseurs")
         col1, col2 = st.columns(2)
         selected_categories = col1.multiselect("Filtrer par catégories de produit", options=get_distinct_values("category"))
+        logging.info('clic supplier selected_categories multiselect %s', selected_categories)
         selected_fields = col2.multiselect("Filtrer par domaines d'activité", options=get_distinct_values("fields"))
-        
+        logging.info('clic supplier selected_fields multiselect %s', selected_fields)
+
         suppliers = get_suppliers(selected_categories, selected_fields)
         
         if suppliers:
             suppliers_df = pd.DataFrame(suppliers)
             suppliers_df = suppliers_df.sort_values(by=['company', 'name'])
 
-            columns_order = ['company', 'name', 'email', 'address', 'category', 'fields', 'rate']
-            suppliers_df = suppliers_df[columns_order]
+            # Define columns to display, excluding 'id'
+            columns_to_display = ['company', 'name', 'email', 'address', 'category', 'fields', 'rate']
+            suppliers_df = suppliers_df[columns_to_display]
 
+            # Display the data editor
             edited_df = st.data_editor(suppliers_df, hide_index=True, use_container_width=True)
 
             if st.button("Enregistrer les modifications"):
+                logging.info('clic supplier Enregistrer les modifications')
                 for index, row in edited_df.iterrows():
-                    supplier_id = row['id']
+                    supplier_id = suppliers[index]['id']  # Get id from original suppliers list
                     updated_data = row.to_dict()
-                    del updated_data['id']  # Remove 'id' before updating
                     update_supplier(supplier_id, updated_data)
                 st.success("Modifications enregistrées avec succès!")
         
         # Export functionality
         if st.button("Exporter la Liste"):
+            logging.info('clic supplier Exporter la Liste')
             export_suppliers_to_csv(suppliers)
 
     elif doc_type == "Ajouter un Fournisseur":
+        logging.info('clic supplier ajouter un Fournisseur form')
         # Form to add a new supplier
         with st.form("add_supplier_form"):
             company = st.text_input("Nom de l'entreprise")
-            name = st.text_input("Nom du fournisseur")
+            name = st.text_input("Nom du Contact")
             email = st.text_input("Email")
             address = st.text_input("Adresse")
             categories = st.multiselect("Categories (Garments, Accessoiries, Home Textiles...)", options=get_distinct_values("category"))
@@ -60,6 +71,7 @@ def manage_suppliers():
             submit = st.form_submit_button("Ajouter Fournisseur")
 
             if submit:
+                logging.info('clic supplier Ajouter Fournisseur')
                 supplier_data = {
                     "company": company,
                     "name": name,
@@ -75,6 +87,8 @@ def manage_suppliers():
                 db.collection("suppliers").add(supplier_data)
 
                 st.success("Fournisseur ajouté avec succès!")
+
+                utils.detect_and_split_comma_in_lists()
 
 def update_supplier(supplier_id, supplier_data):
     db = firestore.client()

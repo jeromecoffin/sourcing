@@ -1,171 +1,125 @@
-INFO:root:User logged in
-INFO:root:clic Dashboard
-INFO:root:clic onboarding
-INFO:root:clic project
-INFO:root:clic supplier
-INFO:root:clic Dashboard
-INFO:root:clic Dashboard
-INFO:root:clic rfi rfq
-INFO:root:clic rfi rfq
-INFO:root:clic rfi rfq
-INFO:root:clic rfi rfq
-INFO:root:clic rfi rfq
-INFO:root:clic rfi rfq
-INFO:root:clic rfi rfq
-INFO:root:clic rfi rfq
-INFO:root:clic supplier
-INFO:root:clic onboarding
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic rfi rfq
-INFO:root:clic rfi rfq
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic Dashboard
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-INFO:root:clic supplier
-2024-07-12 11:50:17,239 clic Dashboard
-2024-07-12 11:50:49,954 clic onboarding
-2024-07-12 11:50:54,881 clic project
-2024-07-12 11:50:56,418 clic supplier
-2024-07-12 11:51:29,619 clic supplier
-2024-07-12 12:09:20,132 clic onboarding
-2024-07-12 12:09:21,334 clic Dashboard
-2024-07-12 12:09:30,370 clic supplier
-2024-07-12 12:09:47,780 clic supplier
-2024-07-12 12:10:29,740 clic supplier
-2024-07-12 12:10:38,296 clic supplier
-2024-07-12 12:11:35,385 clic supplier
-2024-07-12 12:11:48,206 clic supplier
-2024-07-12 12:12:23,945 clic supplier
-2024-07-12 12:12:29,912 clic supplier
-2024-07-12 12:12:44,092 clic supplier
-2024-07-12 12:12:52,269 clic supplier
-2024-07-12 12:14:33,284 clic supplier
-2024-07-12 12:16:01,094 clic supplier
-2024-07-12 12:16:33,765 clic supplier
-2024-07-12 12:16:37,984 clic supplier
-2024-07-12 12:16:56,177 clic supplier
-2024-07-12 12:16:59,728 clic supplier
-2024-07-12 12:19:32,287 clic supplier
-2024-07-12 12:19:35,827 clic supplier
-2024-07-12 12:19:59,963 clic supplier
-2024-07-12 12:20:03,644 clic supplier
-2024-07-12 12:24:25,505 clic supplier
-2024-07-12 12:25:13,541 clic supplier
-2024-07-12 12:27:10,741 clic supplier
-2024-07-12 12:27:33,482 clic supplier
-2024-07-12 12:27:39,596 clic supplier
-2024-07-12 12:27:43,939 clic supplier
-2024-07-12 12:27:50,806 clic supplier
-2024-07-12 12:27:55,342 clic supplier
-2024-07-12 12:44:33,090 clic Dashboard
-2024-07-12 12:44:40,446 clic supplier
-2024-07-12 12:46:24,842 clic Dashboard
-2024-07-12 12:46:33,676 clic supplier
-2024-07-12 12:47:31,114 clic supplier
-2024-07-12 12:49:01,336 clic supplier
-2024-07-12 12:49:05,813 clic supplier
-2024-07-12 12:49:14,980 clic supplier
-2024-07-12 12:49:32,288 clic supplier
-2024-07-12 14:15:10,455 clic Dashboard
-2024-07-12 14:15:11,088 clic Dashboard
-2024-07-12 14:15:11,807 clic Dashboard
-2024-07-12 14:15:27,580 clic supplier
-2024-07-12 14:15:38,165 clic supplier
-2024-07-12 14:18:21,570 clic supplier
-2024-07-12 14:18:26,014 clic supplier
-2024-07-12 14:18:29,668 clic supplier
-2024-07-12 14:19:39,088 clic supplier
-2024-07-12 14:22:02,144 clic supplier
-2024-07-12 14:22:37,522 clic supplier
-2024-07-12 14:22:42,855 clic supplier
-2024-07-12 14:22:48,978 clic supplier
-2024-07-12 14:23:19,312 clic supplier
-2024-07-12 14:24:26,392 clic supplier
-2024-07-12 14:27:08,826 clic supplier
-2024-07-12 14:27:13,337 clic supplier
-2024-07-12 14:27:16,862 clic supplier
-2024-07-12 14:27:33,214 clic project
-2024-07-12 14:27:59,294 clic rfi rfq
-2024-07-12 14:28:53,090 clic supplier
-2024-07-12 14:30:32,070 clic supplier
-2024-07-12 14:30:39,368 clic supplier
-2024-07-12 14:31:07,283 clic supplier
-2024-07-12 14:31:11,507 clic supplier
-2024-07-12 14:31:14,693 clic supplier
-2024-07-12 14:33:00,885 clic supplier
-2024-07-12 14:33:36,447 clic supplier
-2024-07-12 14:33:42,535 clic supplier
-2024-07-12 14:33:46,157 clic supplier
-2024-07-12 14:35:05,253 clic supplier
-2024-07-12 14:35:06,986 clic supplier
-2024-07-12 14:35:09,723 clic supplier
-2024-07-12 14:35:12,309 clic supplier
-2024-07-12 14:35:19,279 clic supplier
-2024-07-12 14:35:22,417 clic supplier
-2024-07-12 14:35:25,771 clic supplier
-2024-07-12 14:35:54,971 clic supplier
-2024-07-12 14:36:08,322 clic rfi rfq
-2024-07-12 14:37:10,073 clic rfi rfq
-2024-07-12 14:38:37,154 clic rfi rfq
-2024-07-12 14:38:59,632 clic rfi rfq
-2024-07-12 14:39:00,658 clic rfi rfq
-2024-07-12 14:40:01,216 clic rfi rfq
-2024-07-12 14:40:22,709 clic rfi rfq
-2024-07-12 14:40:35,885 clic project
-2024-07-12 14:40:45,695 clic project
-2024-07-12 14:40:49,967 clic onboarding
-2024-07-12 14:40:53,104 clic project
-2024-07-12 14:41:26,562 clic rfi rfq
-2024-07-12 14:45:33,799 clic rfi rfq
-2024-07-12 14:47:46,100 clic rfi rfq
-2024-07-12 14:48:14,692 clic rfi rfq
-2024-07-12 14:49:47,412 clic rfi rfq
-2024-07-12 14:49:51,489 clic rfi rfq
-2024-07-12 14:53:49,630 clic rfi rfq
-2024-07-12 14:55:50,654 clic rfi rfq
-2024-07-12 14:56:15,634 clic Dashboard
-2024-07-12 14:56:26,161 clic rfi rfq
-2024-07-12 14:57:50,345 clic rfi rfq
-2024-07-12 14:59:31,534 clic rfi rfq
-2024-07-12 14:59:37,331 clic rfi rfq
-2024-07-12 15:08:31,029 clic rfi rfq
-2024-07-12 15:08:37,423 clic rfi rfq
-2024-07-12 15:11:32,846 clic rfi rfq
-2024-07-12 15:12:33,726 clic rfi rfq
-2024-07-12 15:13:13,491 clic rfi rfq
-2024-07-12 15:13:32,668 clic rfi rfq
-2024-07-12 15:13:43,642 clic rfi rfq
-2024-07-12 15:15:43,998 clic rfi rfq
-2024-07-12 15:17:31,787 clic rfi rfq
-2024-07-12 15:17:56,105 clic rfi rfq
-2024-07-12 15:18:40,098 clic rfi rfq
-2024-07-12 15:18:48,127 clic rfi rfq
-2024-07-12 15:18:51,237 clic rfi rfq
-2024-07-12 15:19:44,305 clic rfi rfq
-2024-07-12 15:21:30,685 clic rfi rfq
-2024-07-12 15:21:37,590 clic rfi rfq
-2024-07-12 15:22:41,836 clic rfi rfq
-2024-07-12 15:22:44,714 clic rfi rfq
+2024-07-12 15:28:03,301 clic Dashboard
+2024-07-12 15:28:14,520 clic supplier
+2024-07-12 15:28:14,521 clic supplier Liste
+2024-07-12 15:28:21,470 clic supplier
+2024-07-12 15:28:21,471 clic supplier Liste
+2024-07-12 15:28:28,452 clic supplier
+2024-07-12 15:28:28,453 clic supplier ajouter un Fournisseur form
+2024-07-12 15:28:51,202 clic supplier
+2024-07-12 15:28:51,203 clic supplier Liste
+2024-07-12 15:30:09,709 clic supplier
+2024-07-12 15:30:09,710 clic supplier Liste
+2024-07-12 15:30:10,142 clic supplier selected_categories multiselect
+2024-07-12 15:30:11,543 clic supplier selected_fields multiselect
+2024-07-12 15:30:14,200 clic supplier
+2024-07-12 15:30:14,201 clic supplier Liste
+2024-07-12 15:30:14,689 clic supplier selected_categories multiselect
+2024-07-12 15:30:15,914 clic supplier selected_fields multiselect
+2024-07-12 15:30:44,610 clic supplier
+2024-07-12 15:30:44,611 clic supplier Liste
+2024-07-12 15:30:45,098 clic supplier selected_categories multiselect []
+2024-07-12 15:30:46,310 clic supplier selected_fields multiselect
+2024-07-12 15:30:51,467 clic supplier
+2024-07-12 15:30:51,468 clic supplier Liste
+2024-07-12 15:30:51,820 clic supplier selected_categories multiselect ['cloud, tech']
+2024-07-12 15:30:53,161 clic supplier selected_fields multiselect
+2024-07-12 15:32:21,701 clic supplier
+2024-07-12 15:32:21,702 clic supplier Liste
+2024-07-12 15:32:22,087 clic supplier selected_categories multiselect []
+2024-07-12 15:32:23,559 clic supplier selected_fields multiselect []
+2024-07-12 15:32:30,218 clic supplier
+2024-07-12 15:32:30,219 clic supplier Liste
+2024-07-12 15:32:30,560 clic supplier selected_categories multiselect []
+2024-07-12 15:32:32,056 clic supplier selected_fields multiselect []
+2024-07-12 15:32:52,991 clic supplier
+2024-07-12 15:32:52,992 clic supplier Liste
+2024-07-12 15:32:53,546 clic supplier selected_categories multiselect []
+2024-07-12 15:32:54,727 clic supplier selected_fields multiselect []
+2024-07-12 15:32:55,281 clic supplier Enregistrer les modifications
+2024-07-12 15:34:52,128 clic supplier
+2024-07-12 15:34:52,131 clic supplier Liste
+2024-07-12 15:34:52,567 clic supplier selected_categories multiselect []
+2024-07-12 15:34:53,827 clic supplier selected_fields multiselect []
+2024-07-12 15:34:59,726 clic supplier
+2024-07-12 15:34:59,728 clic supplier Liste
+2024-07-12 15:35:00,299 clic supplier selected_categories multiselect []
+2024-07-12 15:35:01,611 clic supplier selected_fields multiselect []
+2024-07-12 15:35:31,783 clic supplier
+2024-07-12 15:35:31,784 clic supplier Liste
+2024-07-12 15:35:32,411 clic supplier selected_categories multiselect []
+2024-07-12 15:35:33,579 clic supplier selected_fields multiselect []
+2024-07-12 15:35:34,120 clic supplier Enregistrer les modifications
+2024-07-12 15:37:38,090 clic supplier
+2024-07-12 15:37:38,091 clic supplier Liste
+2024-07-12 15:37:38,533 clic supplier selected_categories multiselect []
+2024-07-12 15:37:38,898 clic supplier selected_fields multiselect []
+2024-07-12 15:37:45,447 clic supplier
+2024-07-12 15:37:45,448 clic supplier Liste
+2024-07-12 15:37:46,108 clic supplier selected_categories multiselect []
+2024-07-12 15:37:46,631 clic supplier selected_fields multiselect []
+2024-07-12 15:37:47,162 clic supplier Enregistrer les modifications
+2024-07-12 15:38:04,893 clic supplier
+2024-07-12 15:38:04,893 clic supplier Liste
+2024-07-12 15:38:05,507 clic supplier selected_categories multiselect []
+2024-07-12 15:38:06,031 clic supplier selected_fields multiselect []
+2024-07-12 15:38:10,673 clic supplier
+2024-07-12 15:38:10,674 clic supplier ajouter un Fournisseur form
+2024-07-12 15:38:14,019 clic supplier
+2024-07-12 15:38:14,020 clic supplier Liste
+2024-07-12 15:38:14,420 clic supplier selected_categories multiselect []
+2024-07-12 15:38:14,944 clic supplier selected_fields multiselect []
+2024-07-12 15:38:22,218 clic rfi rfq
+2024-07-12 15:38:53,011 clic onboarding
+2024-07-12 15:46:21,004 clic supplier
+2024-07-12 15:46:21,006 clic supplier Liste
+2024-07-12 15:46:22,813 clic supplier selected_categories multiselect []
+2024-07-12 15:46:23,140 clic supplier selected_fields multiselect []
+2024-07-12 15:46:26,581 clic supplier
+2024-07-12 15:46:26,583 clic supplier ajouter un Fournisseur form
+2024-07-12 15:47:49,244 clic supplier
+2024-07-12 15:47:49,246 clic supplier ajouter un Fournisseur form
+2024-07-12 15:47:50,940 clic supplier Ajouter Fournisseur
+2024-07-12 15:48:31,895 clic Dashboard
+2024-07-12 15:48:38,053 clic supplier
+2024-07-12 15:48:38,054 clic supplier Liste
+2024-07-12 15:48:38,379 clic supplier selected_categories multiselect []
+2024-07-12 15:48:39,913 clic supplier selected_fields multiselect []
+2024-07-12 15:48:46,875 clic supplier
+2024-07-12 15:48:46,876 clic supplier ajouter un Fournisseur form
+2024-07-12 15:49:04,687 clic rfi rfq
+2024-07-12 15:50:09,781 clic supplier
+2024-07-12 15:50:09,782 clic supplier Liste
+2024-07-12 15:50:10,114 clic supplier selected_categories multiselect []
+2024-07-12 15:50:11,500 clic supplier selected_fields multiselect []
+2024-07-12 15:50:16,418 clic supplier
+2024-07-12 15:50:16,418 clic supplier Liste
+2024-07-12 15:50:16,911 clic supplier selected_categories multiselect []
+2024-07-12 15:50:18,114 clic supplier selected_fields multiselect ['aa']
+2024-07-12 15:50:23,240 clic supplier
+2024-07-12 15:50:23,241 clic supplier Liste
+2024-07-12 15:50:23,790 clic supplier selected_categories multiselect []
+2024-07-12 15:50:24,939 clic supplier selected_fields multiselect []
+2024-07-12 15:54:34,436 clic supplier
+2024-07-12 15:54:34,438 clic supplier Liste
+2024-07-12 15:54:36,280 clic supplier selected_categories multiselect []
+2024-07-12 15:54:36,618 clic supplier selected_fields multiselect []
+2024-07-12 15:54:47,356 clic supplier
+2024-07-12 15:54:47,357 clic supplier Liste
+2024-07-12 15:54:47,755 clic supplier selected_categories multiselect []
+2024-07-12 15:54:48,241 clic supplier
+2024-07-12 15:54:48,242 clic supplier Liste
+2024-07-12 15:54:49,499 clic supplier selected_categories multiselect []
+2024-07-12 15:54:51,204 clic supplier selected_fields multiselect []
+2024-07-12 15:54:51,544 clic supplier Enregistrer les modifications
+2024-07-12 15:55:46,227 clic supplier
+2024-07-12 15:55:46,229 clic supplier Liste
+2024-07-12 15:55:46,856 clic supplier selected_categories multiselect []
+2024-07-12 15:55:47,947 clic supplier selected_fields multiselect []
+2024-07-12 15:58:39,863 clic rfi rfq
+2024-07-12 15:59:33,353 clic rfi rfq
+2024-07-12 15:59:58,090 clic rfi rfq
+2024-07-12 16:00:36,144 clic Dashboard
+2024-07-12 16:01:31,588 clic supplier
+2024-07-12 16:01:31,589 clic supplier Liste
+2024-07-12 16:01:32,294 clic supplier selected_categories multiselect []
+2024-07-12 16:01:33,463 clic supplier selected_fields multiselect []
