@@ -62,8 +62,8 @@ def manage_rfi_rfq():
                 st.success("RFI ajouté avec succès!")
 
         st.subheader("Liste des RFIs")
-
-        rfis = get_rfis()
+        with st.spinner("Chargement des RFIs..."):
+            rfis = get_rfis()
         for rfi in rfis:
             st.write(rfi)
             pdf = utils.generate_pdf("RFI", rfi)
@@ -127,18 +127,21 @@ def manage_rfi_rfq():
                 st.success("RFQ ajouté avec succès!")
 
         st.subheader("Liste des RFQs")
-        rfqs = get_rfqs()
+        with st.spinner("Chargement des RFQs..."):
+            rfqs = get_rfqs()
         for rfq in rfqs:
             st.write(rfq)
             pdf = utils.generate_pdf("RFQ", rfq)
             st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFQ_{rfq['title']}.pdf")
 
+@st.cache_data(ttl=3600)
 def get_rfis():
     db = firestore.client()
     rfis_ref = db.collection("rfis")
     rfis = [doc.to_dict() for doc in rfis_ref.stream()]
     return rfis
 
+@st.cache_data(ttl=3600)
 def get_rfqs():
     db = firestore.client()
     rfqs_ref = db.collection("rfqs")

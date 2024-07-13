@@ -8,12 +8,14 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from io import BytesIO
+import streamlit as st
 
 def initialize_firebase():
     if not _apps:
         cred = credentials.Certificate('firebase_config.json')
         initialize_app(cred)
 
+@st.cache_data(ttl=3600)
 def calculate_kpis():
     db = firestore.client()
 
@@ -157,24 +159,28 @@ def generate_pdf(doc_type, doc_data):
     buffer.seek(0)
     return buffer
 
+@st.cache_data(ttl=3600)
 def get_suppliers():
     db = firestore.client()
     suppliers_ref = db.collection("suppliers")
     suppliers = suppliers_ref.get()
     return [supplier.to_dict()["name"] for supplier in suppliers]
 
+@st.cache_data(ttl=3600)
 def get_rfis():
     db = firestore.client()
     rfis_ref = db.collection("rfis")
     rfis = rfis_ref.get()
     return [rfi.to_dict()["title"] for rfi in rfis]
 
+@st.cache_data(ttl=3600)
 def get_rfqs():
     db = firestore.client()
     rfqs_ref = db.collection("rfqs")
     rfqs = rfqs_ref.get()
     return [rfq.to_dict()["title"] for rfq in rfqs]
 
+@st.cache_data(ttl=3600)
 def get_clients():
     db = firestore.client()
     clients_ref = db.collection("clients")
@@ -219,4 +225,3 @@ def detect_and_split_comma_in_lists():
         if changed:
             print(f"Document {doc.id} updated successfully.")
     return changed
-

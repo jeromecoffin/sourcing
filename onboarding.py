@@ -28,6 +28,7 @@ def show_onboarding():
     for client in clients:
         st.write(client)
 
+@st.cache_data(ttl=3600)
 def get_clients():
     db = firestore.client()
     clients_ref = db.collection("clients")

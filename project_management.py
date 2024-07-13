@@ -5,24 +5,28 @@ import firebase_admin
 from firebase_admin import firestore
 import new_project
 
+@st.cache_data(ttl=3600)
 def get_projects():
     db = firestore.client()
     projects_ref = db.collection("projects")
     projects = projects_ref.get()
     return [project.to_dict() for project in projects]
 
+@st.cache_data(ttl=3600)
 def get_rfi_details(rfi_id):
     db = firestore.client()
     rfi_ref = db.collection("rfis").where("title", "==", rfi_id)
     rfi = rfi_ref.get()
     return rfi[0].to_dict() if rfi else {}
 
+@st.cache_data(ttl=3600)
 def get_rfq_details(rfq_id):
     db = firestore.client()
     rfq_ref = db.collection("rfqs").where("title", "==", rfq_id)
     rfq = rfq_ref.get()
     return rfq[0].to_dict() if rfq else {}
 
+@st.cache_data(ttl=3600)
 def get_clients_details(client_name):
     db = firestore.client()
     client_ref = db.collection("clients").where("name", "==", client_name)
