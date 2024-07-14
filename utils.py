@@ -10,10 +10,6 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from io import BytesIO
 import streamlit as st
 
-'''def initialize_firebase():
-    if not _apps:
-        cred = credentials.Certificate('firebase_config.json')
-        initialize_app(cred)'''
 
 def initialize_firebase():
     if not _apps:
