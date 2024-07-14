@@ -829,3 +829,15 @@ google.auth.exceptions.TransportError: ('Connection aborted.', ConnectionResetEr
 2024-07-14 17:47:24,124 clic project
 2024-07-14 17:47:26,891 clic project
 2024-07-14 17:47:53,362 clic project
+2024-07-14 17:49:34,641 clic Dashboard
+2024-07-14 17:49:50,911 clic onboarding
+2024-07-14 17:50:01,598 clic project
+2024-07-14 17:50:12,264 clic supplier
+2024-07-14 17:50:12,266 clic supplier Liste
+2024-07-14 17:50:12,904 clic supplier selected_categories multiselect []
+2024-07-14 17:50:14,121 clic supplier selected_fields multiselect []
+2024-07-14 17:50:29,817 clic supplier
+2024-07-14 17:50:29,818 clic supplier ajouter un Fournisseur form
+2024-07-14 17:50:35,282 clic rfi rfq
+2024-07-14 17:50:59,567 clic rfi rfq
+2024-07-14 17:51:06,222 clic Dashboard

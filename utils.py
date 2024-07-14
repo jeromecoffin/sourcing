@@ -10,9 +10,26 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from io import BytesIO
 import streamlit as st
 
-def initialize_firebase():
+'''def initialize_firebase():
     if not _apps:
         cred = credentials.Certificate('firebase_config.json')
+        initialize_app(cred)'''
+
+def initialize_firebase():
+    if not _apps:
+        firebase_config = st.secrets["firebase"]
+        cred = credentials.Certificate({
+            "type": firebase_config["type"],
+            "project_id": firebase_config["project_id"],
+            "private_key_id": firebase_config["private_key_id"],
+            "private_key": firebase_config["private_key"].replace("\\n", "\n"),
+            "client_email": firebase_config["client_email"],
+            "client_id": firebase_config["client_id"],
+            "auth_uri": firebase_config["auth_uri"],
+            "token_uri": firebase_config["token_uri"],
+            "auth_provider_x509_cert_url": firebase_config["auth_provider_x509_cert_url"],
+            "client_x509_cert_url": firebase_config["client_x509_cert_url"]
+        })
         initialize_app(cred)
 
 @st.cache_data(ttl=3600)
