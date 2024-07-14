@@ -10,7 +10,6 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from io import BytesIO
 import streamlit as st
 
-
 def initialize_firebase():
     if not _apps:
         firebase_config = st.secrets["firebase"]
@@ -24,7 +23,8 @@ def initialize_firebase():
             "auth_uri": firebase_config["auth_uri"],
             "token_uri": firebase_config["token_uri"],
             "auth_provider_x509_cert_url": firebase_config["auth_provider_x509_cert_url"],
-            "client_x509_cert_url": firebase_config["client_x509_cert_url"]
+            "client_x509_cert_url": firebase_config["client_x509_cert_url"],
+            "universe_domain": firebase_config["universe_domain"]
         })
         initialize_app(cred)
 
