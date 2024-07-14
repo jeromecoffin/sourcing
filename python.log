@@ -841,3 +841,2047 @@ google.auth.exceptions.TransportError: ('Connection aborted.', ConnectionResetEr
 2024-07-14 17:50:35,282 clic rfi rfq
 2024-07-14 17:50:59,567 clic rfi rfq
 2024-07-14 17:51:06,222 clic Dashboard
+2024-07-14 19:29:28,638 clic Dashboard
+2024-07-14 19:29:28,959 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:29,070 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:29,196 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:29,284 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:29,445 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:29,647 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:29,691 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:30,172 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:30,528 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:30,741 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:30,949 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:32,334 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:32,965 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:33,781 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:36,557 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:37,245 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:42,208 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:43,472 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:51,445 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:29:55,907 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:05,247 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:18,280 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:39,222 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x118f1e550>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:53,009 clic Dashboard
+2024-07-14 19:30:53,373 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:53,451 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:53,482 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:53,655 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:53,849 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:53,879 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:54,214 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:54,383 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:54,619 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:54,925 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:55,932 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:56,361 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:57,925 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:30:58,412 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:00,633 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:03,798 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:08,906 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:12,334 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:16,022 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:24,480 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:29,988 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:42,564 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:44,013 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:31:52,522 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:32:16,344 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:32:34,521 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:32:39,479 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:33:17,008 AuthMetadataPluginCallback "<google.auth.transport.grpc.AuthMetadataPlugin object at 0x1188528b0>" raised exception!
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 186, in __call__
+    response = self.session.request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/grpc/_plugin_wrapping.py", line 105, in __call__
+    self._metadata_plugin(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 95, in __call__
+    callback(self._get_authorization_headers(context), None)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/grpc.py", line 81, in _get_authorization_headers
+    self._credentials.before_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 230, in before_request
+    self._blocking_refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/credentials.py", line 193, in _blocking_refresh
+    self.refresh(request)
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/service_account.py", line 445, in refresh
+    access_token, expiry, _ = _client.jwt_grant(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 308, in jwt_grant
+    response_data = _token_endpoint_request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 268, in _token_endpoint_request
+    response_status_ok, response_data, retryable_error = _token_endpoint_request_no_throw(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 215, in _token_endpoint_request_no_throw
+    request_succeeded, response_data, retryable_error = _perform_request()
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/oauth2/_client.py", line 191, in _perform_request
+    response = request(
+  File "/Users/jeromecoffin/Library/Python/3.9/lib/python/site-packages/google/auth/transport/requests.py", line 192, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
+2024-07-14 19:36:49,269 clic Dashboard
+2024-07-14 19:45:44,279 clic Dashboard
