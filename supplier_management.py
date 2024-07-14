@@ -91,6 +91,7 @@ def manage_suppliers():
                     st.success("Fournisseur ajouté avec succès!")
 
                     utils.detect_and_split_comma_in_lists()
+                    st.cache_data.clear()
 
 def update_supplier(supplier_id, supplier_data):
     db = firestore.client()

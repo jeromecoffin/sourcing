@@ -50,18 +50,23 @@ if authentication_status:
         if choice == "Tableau de Bord":
             logging.info('clic Dashboard')
             kpi_dashboard.show_dashboard()
+            st.text_area("feedback")
         elif choice == "Onboarding Client":
             logging.info('clic onboarding')
             onboarding.show_onboarding()
+            st.text_area("feedback")
         elif choice == "Gestion des Projets":
             logging.info('clic project')
             project_management.manage_projects() 
+            st.text_area("feedback")
         elif choice == "Gestion des Fournisseurs":
             logging.info('clic supplier')
             supplier_management.manage_suppliers()
+            st.text_area("feedback")
         elif choice == "RFI/RFQ":
             logging.info('clic rfi rfq')
             rfi_rfq_management.manage_rfi_rfq()
+            st.text_area("feedback")
 
     if __name__ == "__main__":
         main()

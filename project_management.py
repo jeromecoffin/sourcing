@@ -4,37 +4,46 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import firestore
 import new_project
+from google.cloud.firestore_v1.base_query import FieldFilter
 
 @st.cache_data(ttl=3600)
 def get_projects():
     db = firestore.client()
     projects_ref = db.collection("projects")
-    projects = projects_ref.get()
-    return [project.to_dict() for project in projects]
+    projects = []
+    for doc in projects_ref.stream():
+        project = doc.to_dict()
+        project['doc_id'] = doc.id  # Add the document ID
+        projects.append(project)
+    return projects
 
 @st.cache_data(ttl=3600)
 def get_rfi_details(rfi_id):
     db = firestore.client()
-    rfi_ref = db.collection("rfis").where("title", "==", rfi_id)
+    rfi_ref = db.collection("rfis").where(filter=FieldFilter("title", "==", rfi_id))
     rfi = rfi_ref.get()
     return rfi[0].to_dict() if rfi else {}
 
 @st.cache_data(ttl=3600)
 def get_rfq_details(rfq_id):
     db = firestore.client()
-    rfq_ref = db.collection("rfqs").where("title", "==", rfq_id)
+    rfq_ref = db.collection("rfqs").where(filter=FieldFilter("title", "==", rfq_id))
     rfq = rfq_ref.get()
     return rfq[0].to_dict() if rfq else {}
 
 @st.cache_data(ttl=3600)
 def get_clients_details(client_name):
     db = firestore.client()
-    client_ref = db.collection("clients").where("name", "==", client_name)
+    client_ref = db.collection("clients").where(filter=FieldFilter("name", "==", client_name))
     client = client_ref.get()
     return client[0].to_dict() if client else {}
 
-def show_project_details(project):
+def update_project(doc_id, project_data):
+    db = firestore.client()
+    project_ref = db.collection("projects").document(doc_id)
+    project_ref.update(project_data)
 
+def show_project_details(project):
     st.divider()
 
     st.write("Titre :", project['title'])
@@ -48,24 +57,15 @@ def show_project_details(project):
 
     st.divider()
 
-    st.write("KPIs :")
-    col1, col2, col3 = st.columns(3)
-    i=1
-    for kpi, value in project['kpis'].items():
-        if i == 1:
-            col1.metric(label=kpi, value=value)
-            i += 1
-        elif i == 2:
-            col2.metric(label=kpi, value=value)
-            i += 1
-        elif i == 3:
-            col3.metric(label=kpi, value=value)
-            i = 1
-
-    st.divider()
-
     st.write("RFI :", project['rfi'])
-    rfi_details = get_rfi_details(project['rfi'])
+    rfi = project['rfi']
+    if project['rfi'] == "vide":
+        rfi_options = utils.get_rfis()
+        rfi_options.insert(0, "vide")
+        rfi = st.selectbox("Sélectionnez une RFI:", rfi_options)
+        rfi_details = get_rfi_details(rfi)
+    else:
+        rfi_details = get_rfi_details(project['rfi'])
     if rfi_details:
         with st.expander("Détails du RFI :"):
             for key, value in rfi_details.items():
@@ -76,7 +76,14 @@ def show_project_details(project):
     st.divider()
 
     st.write("RFQ :", project['rfq'])
-    rfq_details = get_rfq_details(project['rfq'])
+    rfq = project['rfq']
+    if project['rfq'] == "vide":
+        rfq_options = utils.get_rfqs()
+        rfq_options.insert(0, "vide")
+        rfq = st.selectbox("Sélectionnez une RFQ:", rfq_options)
+        rfq_details = get_rfq_details(rfq)
+    else:
+        rfq_details = get_rfq_details(project['rfq'])
     if rfq_details:
         with st.expander("Détails du RFQ :"):
             for key, value in rfq_details.items():
@@ -86,12 +93,40 @@ def show_project_details(project):
 
     st.divider()
 
-    st.write("Fournisseur Final :", project['fournisseur'])
+    suppliers = []
+    suppliers = project['fournisseur']
+    suppliers.insert(0, "vide")
+    supplier = st.selectbox("Fournisseur Final :", project['fournisseur'])
+    st.write("Fournisseur Final : ", supplier)
+
+    submit = st.button("Enregistrer les modifications")
+
+    if submit:
+        project_data = {
+            "title": project['title'],
+            "client": project['client'],
+            "details": project['details'],
+            "fournisseurs": suppliers,
+            "fournisseur_final": supplier,  
+            "rfi": rfi,
+            "rfq": rfq,
+            "kpis": {
+                "response_time": 0,
+                "cost": 0,
+                "performance": 0,
+                "on_time_deliveries": 0,
+                "late_deliveries": 0
+            }
+        }
+
+        # Update the project in Firestore
+        update_project(project['doc_id'], project_data)
+
+        st.success("Projet modifié avec succès!")
 
     st.divider()
 
 def manage_projects():
-
     utils.initialize_firebase()
 
     st.sidebar.title("Project Management")
@@ -114,3 +149,6 @@ def manage_projects():
             
     elif doc_type == "Nouveau Projet":
         new_project.new_projects()
+
+if __name__ == "__main__":
+    manage_projects()

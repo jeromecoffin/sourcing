@@ -60,6 +60,7 @@ def manage_rfi_rfq():
                 db.collection("rfis").add(rfi_data)
 
                 st.success("RFI ajouté avec succès!")
+                st.cache_data.clear()
 
         st.subheader("Liste des RFIs")
         with st.spinner("Chargement des RFIs..."):
@@ -125,6 +126,7 @@ def manage_rfi_rfq():
                 db.collection("rfqs").add(rfq_data)
 
                 st.success("RFQ ajouté avec succès!")
+                st.cache_data.clear()
 
         st.subheader("Liste des RFQs")
         with st.spinner("Chargement des RFQs..."):

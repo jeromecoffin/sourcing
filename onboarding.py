@@ -22,6 +22,7 @@ def show_onboarding():
             db = firestore.client()
             db.collection("clients").add(client_data)
             st.success("Client inscrit avec succès!")
+            st.cache_data.clear()
 
     clients = get_clients()
     st.subheader("Liste des Clients")

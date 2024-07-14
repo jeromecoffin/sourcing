@@ -13,7 +13,7 @@ def create_project(title, client, details, fournisseur, rfi, rfq):
         "title": title,
         "client": client,
         "details": details,
-        "fournisseur": fournisseur,
+        "fournisseurs": fournisseur,
         "rfi": rfi,
         "rfq": rfq,
         "kpis": {
@@ -53,11 +53,14 @@ def new_projects():
             rfq = st.selectbox("Sélectionnez un RFQ:", rfq_options)
             details = st.multiselect("Préférences de Sourcing", sourcingTypes)
             fournisseur = st.multiselect("Sélectionnez les Fournisseurs:", fournisseurs)
+            fournisseur.insert(0, "vide")
             
             submit_button = st.form_submit_button(label='Créer le Projet')
         
             if submit_button:
                 project = create_project(title, client, details, fournisseur, rfi, rfq)
                 st.success("Projet créé avec succès!")
+                st.cache_data.clear()
                 st.write(project)
+
         
