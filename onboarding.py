@@ -1,5 +1,6 @@
 import streamlit as st
 from firebase_admin import firestore
+import utils
 
 def show_onboarding():
     
@@ -26,6 +27,7 @@ def show_onboarding():
             }
             db = firestore.client()
             db.collection("clients").add(client_data)
+            utils.log_event("Nouveau Client", details=email)
             st.success("Client inscrit avec succès!")
             st.cache_data.clear()
 

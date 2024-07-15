@@ -58,7 +58,7 @@ def manage_rfi_rfq():
 
                 db = firestore.client()
                 db.collection("rfis").add(rfi_data)
-
+                utils.log_event("Nouveau RFI", details=title)
                 st.success("RFI ajouté avec succès!")
                 st.cache_data.clear()
 
@@ -69,6 +69,7 @@ def manage_rfi_rfq():
             st.write(rfi)
             pdf = utils.generate_pdf("RFI", rfi)
             st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFI_{rfi['title']}.pdf")
+            utils.log_event("Telecharger RFI")
 
     elif doc_type == "RFQ":
 
@@ -125,6 +126,7 @@ def manage_rfi_rfq():
                 db = firestore.client()
                 db.collection("rfqs").add(rfq_data)
 
+                utils.log_event("Ajouter RFQ", details=title)
                 st.success("RFQ ajouté avec succès!")
                 st.cache_data.clear()
 
@@ -135,6 +137,7 @@ def manage_rfi_rfq():
             st.write(rfq)
             pdf = utils.generate_pdf("RFQ", rfq)
             st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFQ_{rfq['title']}.pdf")
+            utils.log_event("Telecharger RFQ")
 
 @st.cache_data(ttl=3600)
 def get_rfis():

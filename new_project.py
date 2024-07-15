@@ -57,6 +57,7 @@ def new_projects():
             if submit_button:
                 project = create_project(title, client, fournisseursProject, rfi, rfq)
                 st.success("Projet créé avec succès!")
+                utils.log_event("Nouveau Projet", details=title)
                 st.cache_data.clear()
                 st.write(project)
 

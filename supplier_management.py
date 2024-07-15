@@ -5,23 +5,16 @@ from datetime import datetime
 from io import StringIO
 import utils
 
-import logging
-logger = logging.getLogger(__name__)
-logging.basicConfig(filename='python.log', encoding='utf-8', level=logging.INFO, format='%(asctime)s %(message)s')
-
 def manage_suppliers():
     st.sidebar.title("Gestion des Fournisseurs")
     doc_type = st.sidebar.radio("Choisissez un type de document", ("Liste", "Ajouter un Fournisseur"), label_visibility="hidden")
 
     if doc_type == "Liste":
-        logging.info('clic supplier Liste')
         # Display list of suppliers
         st.subheader("Liste des Fournisseurs")
         col1, col2 = st.columns(2)
         selected_categories = col1.multiselect("Filtrer par catégories de produit", options=get_distinct_values("category"))
-        logging.info('clic supplier selected_categories multiselect %s', selected_categories)
         selected_fields = col2.multiselect("Filtrer par domaines d'activité", options=get_distinct_values("fields"))
-        logging.info('clic supplier selected_fields multiselect %s', selected_fields)
 
         with st.spinner("Chargement des fournisseurs..."):
             suppliers = get_suppliers(selected_categories, selected_fields)
@@ -38,7 +31,7 @@ def manage_suppliers():
             edited_df = st.data_editor(suppliers_df, hide_index=True, use_container_width=True)
 
             if st.button("Enregistrer les modifications"):
-                logging.info('clic supplier Enregistrer les modifications')
+                utils.log_event("modifier fournisseur")
                 for index, row in edited_df.iterrows():
                     supplier_id = suppliers[index]['id']  # Get id from original suppliers list
                     updated_data = row.to_dict()
@@ -47,11 +40,10 @@ def manage_suppliers():
         
         # Export functionality
         if st.button("Exporter la Liste"):
-            logging.info('clic supplier Exporter la Liste')
+            utils.log_event("Exporter la Liste de Fournisseurs")
             export_suppliers_to_csv(suppliers)
 
     elif doc_type == "Ajouter un Fournisseur":
-        logging.info('clic supplier ajouter un Fournisseur form')
         # Form to add a new supplier
         with st.spinner("Chargement des fournisseurs..."):
             with st.form("add_supplier_form", clear_on_submit=True):
@@ -73,7 +65,7 @@ def manage_suppliers():
                 submit = st.form_submit_button("Ajouter Fournisseur")
 
                 if submit:
-                    logging.info('clic supplier Ajouter Fournisseur')
+                    utils.log_event("Nouveau Fournisseur", details=name)
                     supplier_data = {
                         "company": company,
                         "name": name,

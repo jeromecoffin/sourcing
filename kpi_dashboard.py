@@ -2,7 +2,7 @@ import streamlit as st
 from utils import calculate_kpis
 
 def show_dashboard():
-    st.header("Tableau de Bord - KPIs")
+    st.header("Tableau de Bord")
     kpis = calculate_kpis()
     col1, col2, col3 = st.columns(3)
     col1.metric(label="Nombre Total de Projets", value=kpis["total_projects"])

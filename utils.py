@@ -238,3 +238,12 @@ def detect_and_split_comma_in_lists():
         if changed:
             print(f"Document {doc.id} updated successfully.")
     return changed
+
+def log_event(event_type, details=None):
+    event_data = {
+        "event_type": event_type,
+        "timestamp": datetime.now().strftime('%Y%m%d%H%M%S'),
+        "details": details
+    }
+    db = firestore.client()
+    db.collection("event_logs").add(event_data)

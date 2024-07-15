@@ -10,7 +10,7 @@ credentials:
       password: "hashed_password_here"
 
 cookie:
-  expiry_days: 30
+  expiry_days: 1
   key: some_random_key
   name: some_random_name
 
