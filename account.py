@@ -5,7 +5,7 @@ def show_profile():
 
     st.header("Profil de l'Agent")
 
-    with st.form("profile_form"):
+    with st.form("profile_form", clear_on_submit=True):
         name = st.text_input("Nom")
         email = st.text_input("Email")
         company = st.text_input("Entreprise")

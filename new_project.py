@@ -3,7 +3,7 @@ import utils
 from datetime import datetime
 from firebase_admin import firestore
 
-def create_project(title, client, details, fournisseur, rfi, rfq):
+def create_project(title, client, fournisseurs, rfi, rfq):
 
     db = firestore.client()
 
@@ -12,8 +12,7 @@ def create_project(title, client, details, fournisseur, rfi, rfq):
     project_data = {
         "title": title,
         "client": client,
-        "details": details,
-        "fournisseurs": fournisseur,
+        "fournisseurs": fournisseurs,
         "rfi": rfi,
         "rfq": rfq,
         "kpis": {
@@ -37,7 +36,7 @@ def new_projects():
 
     with st.spinner("Chargement du Formulaire..."):
     
-        with st.form(key='create_project_form'):
+        with st.form(key='create_project_form', clear_on_submit=True):
             
             clients = utils.get_clients()
             rfi_options = utils.get_rfis()
@@ -48,17 +47,15 @@ def new_projects():
             
             title = st.text_input("Titre du Projet")
             client = st.selectbox("Sélectionnez un Client:", clients)
-            sourcingTypes = ["Garments", "Furnitures"]
             rfi = st.selectbox("Sélectionnez un RFI:", rfi_options)
             rfq = st.selectbox("Sélectionnez un RFQ:", rfq_options)
-            details = st.multiselect("Préférences de Sourcing", sourcingTypes)
-            fournisseur = st.multiselect("Sélectionnez les Fournisseurs:", fournisseurs)
-            fournisseur.insert(0, "vide")
+            fournisseursProject = st.multiselect("Sélectionnez les Fournisseurs:", fournisseurs)
+            fournisseursProject.insert(0, "vide")
             
             submit_button = st.form_submit_button(label='Créer le Projet')
         
             if submit_button:
-                project = create_project(title, client, details, fournisseur, rfi, rfq)
+                project = create_project(title, client, fournisseursProject, rfi, rfq)
                 st.success("Projet créé avec succès!")
                 st.cache_data.clear()
                 st.write(project)

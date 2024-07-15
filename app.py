@@ -50,23 +50,78 @@ if authentication_status:
         if choice == "Tableau de Bord":
             logging.info('clic Dashboard')
             kpi_dashboard.show_dashboard()
-            st.text_area("feedback")
+            st.divider()
+            with st.form("kpi_feedback_form", clear_on_submit=True):
+                feedback = st.text_area("feedback", placeholder="Plus de KPI, autre info...")
+                submit = st.form_submit_button("Envoyer")
+                if submit:
+                    user_feedback = {
+                        "module": choice,
+                        "feedback": feedback,
+                    }
+                    db = firestore.client()
+                    db.collection("feedbacks").add(user_feedback)
+                    st.success("Merci pour votre retour !")
         elif choice == "Onboarding Client":
             logging.info('clic onboarding')
             onboarding.show_onboarding()
-            st.text_area("feedback")
+            st.divider()
+            with st.form("onboarding_feedback_form", clear_on_submit=True):
+                feedback = st.text_area("feedback", placeholder="Plus d'info client...")
+                submit = st.form_submit_button("Envoyer")
+                if submit:
+                    user_feedback = {
+                        "module": choice,
+                        "feedback": feedback,
+                    }
+                    db = firestore.client()
+                    db.collection("feedbacks").add(user_feedback)
+                    st.success("Merci pour votre retour !")
         elif choice == "Gestion des Projets":
             logging.info('clic project')
-            project_management.manage_projects() 
-            st.text_area("feedback")
+            project_management.manage_projects()
+            st.divider()
+            with st.form("projets_feedback_form", clear_on_submit=True):
+                feedback = st.text_area("feedback", placeholder="Ajouter un champs ; Plus de RFIs...")
+                submit = st.form_submit_button("Envoyer")
+                if submit:
+                    user_feedback = {
+                        "module": choice,
+                        "feedback": feedback,
+                    }
+                    db = firestore.client()
+                    db.collection("feedbacks").add(user_feedback)
+                    st.success("Merci pour votre retour !")
         elif choice == "Gestion des Fournisseurs":
             logging.info('clic supplier')
             supplier_management.manage_suppliers()
-            st.text_area("feedback")
+            st.divider()
+            with st.form("suppliers_feedback_form", clear_on_submit=True):
+                feedback = st.text_area("feedback", placeholder="More/less fields if the new client form ; display other details in the list...")
+                submit = st.form_submit_button("Envoyer")
+                if submit:
+                    user_feedback = {
+                        "module": choice,
+                        "feedback": feedback,
+                    }
+                    db = firestore.client()
+                    db.collection("feedbacks").add(user_feedback)
+                    st.success("Merci pour votre retour !")
         elif choice == "RFI/RFQ":
             logging.info('clic rfi rfq')
             rfi_rfq_management.manage_rfi_rfq()
-            st.text_area("feedback")
+            st.divider()
+            with st.form("documents_feedback_form", clear_on_submit=True):
+                feedback = st.text_area("feedback", placeholder="Modify fields for RFI/RFQ...")
+                submit = st.form_submit_button("Envoyer")
+                if submit:
+                    user_feedback = {
+                        "module": choice,
+                        "feedback": feedback,
+                    }
+                    db = firestore.client()
+                    db.collection("feedbacks").add(user_feedback)
+                    st.success("Merci pour votre retour !")
 
     if __name__ == "__main__":
         main()

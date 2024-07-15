@@ -94,9 +94,8 @@ def show_project_details(project):
     st.divider()
 
     suppliers = []
-    suppliers = project['fournisseur']
-    suppliers.insert(0, "vide")
-    supplier = st.selectbox("Fournisseur Final :", project['fournisseur'])
+    suppliers = project['fournisseurs']
+    supplier = st.selectbox("Fournisseur Final :", project['fournisseurs'])
     st.write("Fournisseur Final : ", supplier)
 
     submit = st.button("Enregistrer les modifications")
@@ -105,7 +104,6 @@ def show_project_details(project):
         project_data = {
             "title": project['title'],
             "client": project['client'],
-            "details": project['details'],
             "fournisseurs": suppliers,
             "fournisseur_final": supplier,  
             "rfi": rfi,
@@ -123,8 +121,6 @@ def show_project_details(project):
         update_project(project['doc_id'], project_data)
 
         st.success("Projet modifié avec succès!")
-
-    st.divider()
 
 def manage_projects():
     utils.initialize_firebase()

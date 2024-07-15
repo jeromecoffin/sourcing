@@ -11,7 +11,7 @@ def manage_rfi_rfq():
 
     if doc_type == "RFI":
 
-        with st.form("add_rfi_form"):
+        with st.form("add_rfi_form", clear_on_submit=True):
 
             title = st.text_input("Titre du RFI")
             reference = st.text_input("Ref")
@@ -72,7 +72,7 @@ def manage_rfi_rfq():
 
     elif doc_type == "RFQ":
 
-        with st.form("add_rfq_form"):
+        with st.form("add_rfq_form", clear_on_submit=True):
 
             title = st.text_input("Titre du RFQ")
             reference = st.text_input("Ref")

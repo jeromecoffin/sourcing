@@ -2885,3 +2885,109 @@ Traceback (most recent call last):
 google.auth.exceptions.TransportError: Invalid URL 'https =//oauth2.googleapis.com/token': No scheme supplied. Perhaps you meant https://https =//oauth2.googleapis.com/token?
 2024-07-14 19:36:49,269 clic Dashboard
 2024-07-14 19:45:44,279 clic Dashboard
+2024-07-15 14:45:06,579 clic Dashboard
+2024-07-15 14:45:19,280 clic project
+2024-07-15 14:45:25,049 clic project
+2024-07-15 14:46:19,402 clic project
+2024-07-15 14:46:24,696 clic project
+2024-07-15 14:46:30,735 clic project
+2024-07-15 14:48:59,857 clic supplier
+2024-07-15 14:48:59,859 clic supplier Liste
+2024-07-15 14:49:01,563 clic supplier selected_categories multiselect []
+2024-07-15 14:49:01,944 clic supplier selected_fields multiselect []
+2024-07-15 14:58:54,599 clic Dashboard
+2024-07-15 14:59:07,546 clic supplier
+2024-07-15 14:59:07,549 clic supplier Liste
+2024-07-15 14:59:07,894 clic supplier selected_categories multiselect []
+2024-07-15 14:59:09,496 clic supplier selected_fields multiselect []
+2024-07-15 15:00:32,917 clic supplier
+2024-07-15 15:00:32,919 clic supplier ajouter un Fournisseur form
+2024-07-15 15:02:21,733 clic supplier
+2024-07-15 15:02:21,738 clic supplier ajouter un Fournisseur form
+2024-07-15 15:02:21,750 clic supplier Ajouter Fournisseur
+2024-07-15 15:02:26,112 clic supplier
+2024-07-15 15:02:26,113 clic supplier Liste
+2024-07-15 15:02:26,486 clic supplier selected_categories multiselect []
+2024-07-15 15:02:27,847 clic supplier selected_fields multiselect []
+2024-07-15 15:04:53,691 clic supplier
+2024-07-15 15:04:53,694 clic supplier Liste
+2024-07-15 15:04:54,624 clic supplier selected_categories multiselect []
+2024-07-15 15:04:55,598 clic supplier selected_fields multiselect []
+2024-07-15 15:06:26,665 clic supplier
+2024-07-15 15:06:26,667 clic supplier ajouter un Fournisseur form
+2024-07-15 15:08:25,879 clic supplier
+2024-07-15 15:08:25,882 clic supplier ajouter un Fournisseur form
+2024-07-15 15:09:37,284 clic supplier
+2024-07-15 15:09:37,288 clic supplier Liste
+2024-07-15 15:09:37,314 clic supplier selected_categories multiselect []
+2024-07-15 15:09:37,326 clic supplier selected_fields multiselect []
+2024-07-15 15:10:10,389 clic project
+2024-07-15 15:11:13,020 clic project
+2024-07-15 15:11:20,085 clic project
+2024-07-15 15:11:37,309 clic onboarding
+2024-07-15 15:12:01,070 clic onboarding
+2024-07-15 15:12:08,389 clic onboarding
+2024-07-15 15:16:52,127 clic onboarding
+2024-07-15 15:17:02,982 clic onboarding
+2024-07-15 15:18:14,498 clic onboarding
+2024-07-15 15:20:16,534 clic onboarding
+2024-07-15 15:20:19,228 clic onboarding
+2024-07-15 15:20:32,563 clic project
+2024-07-15 15:20:39,097 clic project
+2024-07-15 15:35:15,580 clic project
+2024-07-15 15:36:52,472 clic project
+2024-07-15 15:37:15,560 clic project
+2024-07-15 15:37:28,040 clic project
+2024-07-15 15:38:07,686 clic project
+2024-07-15 15:39:53,510 clic project
+2024-07-15 15:40:12,438 clic project
+2024-07-15 15:40:23,815 clic project
+2024-07-15 15:43:15,666 clic project
+2024-07-15 15:43:39,397 clic project
+2024-07-15 15:43:53,815 clic project
+2024-07-15 15:45:14,290 clic project
+2024-07-15 15:46:04,019 clic project
+2024-07-15 15:46:09,788 clic project
+2024-07-15 15:47:27,093 clic project
+2024-07-15 15:47:42,383 clic project
+2024-07-15 15:48:07,246 clic rfi rfq
+2024-07-15 15:58:01,387 clic Dashboard
+2024-07-15 15:58:27,320 clic Dashboard
+2024-07-15 15:59:18,912 clic Dashboard
+2024-07-15 15:59:24,730 clic Dashboard
+2024-07-15 16:00:09,262 clic Dashboard
+2024-07-15 16:00:30,562 clic Dashboard
+2024-07-15 16:09:40,727 clic Dashboard
+2024-07-15 16:09:43,396 clic supplier
+2024-07-15 16:09:43,398 clic supplier Liste
+2024-07-15 16:09:45,188 clic supplier selected_categories multiselect []
+2024-07-15 16:09:47,065 clic supplier selected_fields multiselect []
+2024-07-15 16:09:59,976 clic supplier
+2024-07-15 16:09:59,976 clic supplier Liste
+2024-07-15 16:09:59,980 clic supplier selected_categories multiselect []
+2024-07-15 16:09:59,982 clic supplier selected_fields multiselect []
+2024-07-15 16:11:01,984 clic rfi rfq
+2024-07-15 16:12:53,452 clic rfi rfq
+2024-07-15 16:13:03,910 clic Dashboard
+2024-07-15 16:13:38,505 clic Dashboard
+2024-07-15 16:13:42,109 clic onboarding
+2024-07-15 16:13:54,537 clic onboarding
+2024-07-15 16:13:57,037 clic project
+2024-07-15 16:14:07,821 clic project
+2024-07-15 16:14:25,948 clic project
+2024-07-15 16:14:27,900 clic project
+2024-07-15 16:14:31,152 clic project
+2024-07-15 16:14:51,592 clic supplier
+2024-07-15 16:14:51,593 clic supplier Liste
+2024-07-15 16:14:51,595 clic supplier selected_categories multiselect []
+2024-07-15 16:14:51,596 clic supplier selected_fields multiselect []
+2024-07-15 16:14:56,967 clic rfi rfq
+2024-07-15 16:15:03,405 clic supplier
+2024-07-15 16:15:03,407 clic supplier Liste
+2024-07-15 16:15:03,408 clic supplier selected_categories multiselect []
+2024-07-15 16:15:03,410 clic supplier selected_fields multiselect []
+2024-07-15 16:15:04,641 clic supplier
+2024-07-15 16:15:04,642 clic supplier ajouter un Fournisseur form
+2024-07-15 16:15:10,892 clic Dashboard
+2024-07-15 16:18:23,183 clic Dashboard
+2024-07-15 16:19:35,058 clic Dashboard

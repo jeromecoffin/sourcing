@@ -54,7 +54,7 @@ def manage_suppliers():
         logging.info('clic supplier ajouter un Fournisseur form')
         # Form to add a new supplier
         with st.spinner("Chargement des fournisseurs..."):
-            with st.form("add_supplier_form"):
+            with st.form("add_supplier_form", clear_on_submit=True):
                 company = st.text_input("Nom de l'entreprise")
                 name = st.text_input("Nom du Contact")
                 email = st.text_input("Email")

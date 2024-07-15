@@ -5,10 +5,13 @@ def show_onboarding():
     
     st.header("Onboarding Client")
 
-    with st.form("onboarding_form"):
-        name = st.text_input("Nom")
-        email = st.text_input("Email")
+    with st.form("onboarding_form", clear_on_submit=True):
         company = st.text_input("Entreprise")
+        name = st.text_input("Nom du contact")
+        col1, col2 = st.columns(2)
+        email = col1.text_input("Email")
+        phone = col2.text_input("Téléphone")
+        address = st.text_input("Adresse")
         notes = st.text_area("Notes")
         submit = st.form_submit_button("Enregistrer")
 
@@ -16,6 +19,8 @@ def show_onboarding():
             client_data = {
                 "name": name,
                 "email": email,
+                "phone": phone,
+                "address": address,
                 "company": company,
                 "notes": notes
             }
