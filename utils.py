@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from firebase_admin import credentials, firestore, initialize_app, _apps
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -240,9 +240,10 @@ def detect_and_split_comma_in_lists():
     return changed
 
 def log_event(event_type, details=None):
+    utc_plus_7 = timezone(timedelta(hours=7))
     event_data = {
         "event_type": event_type,
-        "timestamp": datetime.now().strftime('%Y%m%d%H%M%S'),
+        "timestamp": datetime.now(utc_plus_7).strftime('%Y%m%d%H%M%S'),
         "details": details
     }
     db = firestore.client()

@@ -67,10 +67,15 @@ def manage_rfi_rfq():
             rfis = get_rfis()
         for rfi in rfis:
             st.write(rfi)
-            pdf = utils.generate_pdf("RFI", rfi)
-            st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFI_{rfi['title']}.pdf")
-            utils.log_event("Telecharger RFI")
-
+            if st.button(f"Télécharger {rfi['title']} en PDF"):
+                pdf = utils.generate_pdf("RFI", rfi)
+                utils.log_event("Télécharger RFI", details=rfi['title'])
+                st.download_button(
+                    label="Télécharger en PDF",
+                    data=pdf,
+                    file_name=f"RFI_{rfi['title']}.pdf",
+                    mime="application/pdf"
+                )
     elif doc_type == "RFQ":
 
         with st.form("add_rfq_form", clear_on_submit=True):
@@ -135,9 +140,15 @@ def manage_rfi_rfq():
             rfqs = get_rfqs()
         for rfq in rfqs:
             st.write(rfq)
-            pdf = utils.generate_pdf("RFQ", rfq)
-            st.download_button(label="Télécharger en PDF", data=pdf, file_name=f"RFQ_{rfq['title']}.pdf")
-            utils.log_event("Telecharger RFQ")
+            if st.button(f"Télécharger {rfq['title']} en PDF"):
+                pdf = utils.generate_pdf("RFQ", rfq)
+                utils.log_event("Télécharger RFQ", details=rfq['title'])
+                st.download_button(
+                    label="Télécharger en PDF",
+                    data=pdf,
+                    file_name=f"RFQ_{rfq['title']}.pdf",
+                    mime="application/pdf"
+                )
 
 @st.cache_data(ttl=3600)
 def get_rfis():
