@@ -251,16 +251,16 @@ def log_event(event_type, details=None):
     db = firestore.client()
     db.collection("event_logs").add(event_data)
 
-def translate():
-
+@st.cache_data(ttl=3600)
+def get_language():
     db = firestore.client()
     agent_ref = db.collection("agents").document("user")
     agent = agent_ref.get()
+    return agent.to_dict()["language"]
 
-    try: 
-        language = agent.to_dict()["language"]
-    except:
-        language = 'en'
+def translate():
+
+    language = get_language()
 
     # Configurer le chemin des fichiers de traduction
     locales_dir = os.path.join(os.path.dirname(__file__), 'locales')

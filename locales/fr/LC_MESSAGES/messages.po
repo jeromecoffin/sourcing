@@ -63,7 +63,7 @@ msgstr "Nom d'utilisateur/mot de passe incorrect"
 msgid "Please enter your username and password"
 msgstr "Veuillez entrer votre nom d'utilisateur et votre mot de passe"
 
-msgid "Total Number of Project"
+msgid "Total Number of Projects"
 msgstr "Nombre Total de projets"
 
 msgid "Total Number of suppliers"

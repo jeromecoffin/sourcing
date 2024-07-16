@@ -45,5 +45,6 @@ def show_profile():
             db = firestore.client()
             agent_ref.update(agent_data)            
             st.success(_("Data successfully modified!"))
+            st.cache_data.clear() #pour la langue
             st.rerun()
         

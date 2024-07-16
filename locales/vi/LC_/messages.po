@@ -63,7 +63,7 @@ msgstr "Tên đăng nhập/mật khẩu không chính xác"
 msgid "Please enter your username and password"
 msgstr "Vui lòng nhập tên đăng nhập và mật khẩu của bạn"
 
-msgid "Total Number of Project"
+msgid "Total Number of Projects"
 msgstr "Tổng số dự án"
 
 msgid "Total Number of suppliers"

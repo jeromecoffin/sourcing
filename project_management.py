@@ -44,61 +44,64 @@ def update_project(doc_id, project_data):
     project_ref.update(project_data)
 
 def show_project_details(project):
+
+    _ = utils.translate()
+
     st.divider()
 
-    st.write("Titre :", project['title'])
+    st.write(_("Title:"), project['title'])
 
-    st.write("Client :", project['client'])
+    st.write(_("Customer:"), project['client'])
     client_details = get_clients_details(project['client'])
     if client_details:
-        with st.expander("Informations Client"):
+        with st.expander(_("Customer Data:")):
             for key, value in client_details.items():
                 st.code(f"{key}: {value}")
 
     st.divider()
 
-    st.write("RFI :", project['rfi'])
+    st.write("RFI:", project['rfi'])
     rfi = project['rfi']
-    if project['rfi'] == "vide":
+    if project['rfi'] == _("empty"):
         rfi_options = utils.get_rfis()
-        rfi_options.insert(0, "vide")
-        rfi = st.selectbox("Sélectionnez une RFI:", rfi_options)
+        rfi_options.insert(0, _("empty"))
+        rfi = st.selectbox(_("Chose one RFI:"), rfi_options)
         rfi_details = get_rfi_details(rfi)
     else:
         rfi_details = get_rfi_details(project['rfi'])
     if rfi_details:
-        with st.expander("Détails du RFI :"):
+        with st.expander(_("RFI Data :")):
             for key, value in rfi_details.items():
                 st.code(f"{key}: {value}")
     else:
-        st.write("Aucun détail RFI disponible.")
+        st.write(_("No RFI Selected"))
 
     st.divider()
 
-    st.write("RFQ :", project['rfq'])
+    st.write("RFQ:", project['rfq'])
     rfq = project['rfq']
-    if project['rfq'] == "vide":
+    if project['rfq'] == _("empty"):
         rfq_options = utils.get_rfqs()
-        rfq_options.insert(0, "vide")
-        rfq = st.selectbox("Sélectionnez une RFQ:", rfq_options)
+        rfq_options.insert(0, _("empty"))
+        rfq = st.selectbox(_("Chose one RFQ:"), rfq_options)
         rfq_details = get_rfq_details(rfq)
     else:
         rfq_details = get_rfq_details(project['rfq'])
     if rfq_details:
-        with st.expander("Détails du RFQ :"):
+        with st.expander(_("RFQ Data:")):
             for key, value in rfq_details.items():
                 st.code(f"{key}: {value}")
     else:
-        st.write("Aucun détail RFQ disponible.")
+        st.write(_("No RFQ Selected"))
 
     st.divider()
 
     suppliers = []
     suppliers = project['fournisseurs']
-    supplier = st.selectbox("Fournisseur Final :", project['fournisseurs'])
-    st.write("Fournisseur Final : ", supplier)
+    supplier = st.selectbox(_("Final Supplier:"), project['fournisseurs'])
+    st.write(_("Final Supplier:"), supplier)
 
-    submit = st.button("Enregistrer les modifications")
+    submit = st.button(_("Save"))
 
     if submit:
         project_data = {
@@ -120,30 +123,33 @@ def show_project_details(project):
         # Update the project in Firestore
         update_project(project['doc_id'], project_data)
         utils.log_event("Mettre à jour projet", project['title'])
-        st.success("Projet modifié avec succès!")
+        st.success(_("Project Successfully Updated"))
 
 def manage_projects():
+
+    _ = utils.translate()
+
     utils.initialize_firebase()
 
-    st.sidebar.title("Project Management")
-    doc_type = st.sidebar.radio("Choisissez un type de document", ("Projets", "Nouveau Projet"), label_visibility="hidden")
+    st.sidebar.title(_("Project Management"))
+    doc_type = st.sidebar.radio(_("Select Document Type"), (_("Projects"), _("New Project")), label_visibility="hidden")
 
-    if doc_type == "Projets":
-        st.header("Gestion des Projets")
+    if doc_type == _("Projects"):
+        st.header(_("Projects Management"))
         
-        st.header("Projets Existants")
+        st.header(_("Existing Project"))
         projects = get_projects()
         
         if projects:
             project_names = [project['title'] for project in projects]
-            selected_project_name = st.selectbox("Sélectionnez un Projet:", project_names)
+            selected_project_name = st.selectbox(_("Select a Project"), project_names)
             selected_project = next(project for project in projects if project['title'] == selected_project_name)
             
             show_project_details(selected_project)
         else:
-            st.write("Aucun projet disponible.")
+            st.write(_("No Project Created"))
             
-    elif doc_type == "Nouveau Projet":
+    elif doc_type == _("New Project"):
         new_project.new_projects()
 
 if __name__ == "__main__":

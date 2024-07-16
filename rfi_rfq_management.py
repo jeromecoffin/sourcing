@@ -6,37 +6,39 @@ import utils
 
 def manage_rfi_rfq():
 
-    st.sidebar.title("RFI/RFQ Management")
-    doc_type = st.sidebar.radio("Choisissez un type de document", ("RFI", "RFQ"))
+    _ = utils.translate()
+
+    st.sidebar.title(_("RFI/RFQ Management"))
+    doc_type = st.sidebar.radio(_("Chose a type of document"), ("RFI", "RFQ"))
 
     if doc_type == "RFI":
 
         with st.form("add_rfi_form", clear_on_submit=True):
 
-            title = st.text_input("Titre du RFI")
-            reference = st.text_input("Ref")
-            location = st.text_input("Location")
+            title = st.text_input(_("RFI Title"))
+            reference = st.text_input(_("Reference"))
+            location = st.text_input(_("Location"))
             clients = utils.get_clients()
-            selected_client = st.selectbox("Choisissez le client:", clients)
+            selected_client = st.selectbox(_("Select a Client:"), clients)
 
             st.divider()
-            st.write("Partie Requérante")
-            rp_name = st.text_input("Nom")
-            rp_company = st.text_input("Entreprise")
-            rp_position = st.text_input("Rôle")
-            rp_mail = st.text_input("email")
-            rp_phone = st.text_input("Téléphone")
+            st.write(_("Requesting Party"))
+            rp_name = st.text_input(_("Name"))
+            rp_company = st.text_input(_("Company"))
+            rp_position = st.text_input(_("Position"))
+            rp_mail = st.text_input(_("email"))
+            rp_phone = st.text_input(_("TéléphPhoneone"))
             st.divider()
 
-            requestDate = st.text_input("Date de la demande")
-            requestDueDate = st.text_input("Date d'échéance")
-            information = st.text_area("Informations de la Demande")
+            requestDate = st.text_input(_("Requesting Date"))
+            requestDueDate = st.text_input(_("Deadline"))
+            information = st.text_area(_("Requesting Information"))
             
             suppliers = utils.get_suppliers()
-            selected_suppliers = st.multiselect("Choisissez les Fournisseurs:", suppliers)
+            selected_suppliers = st.multiselect(_("Select Suppliers", suppliers))
             
-            comments = st.text_area("Commentaires Supplémentaires")
-            submit = st.form_submit_button("Ajouter RFI")
+            comments = st.text_area(_("Additional Comments"))
+            submit = st.form_submit_button(_("Submit RFI"))
 
             if submit:
                 rfi_data = {
@@ -59,19 +61,19 @@ def manage_rfi_rfq():
                 db = firestore.client()
                 db.collection("rfis").add(rfi_data)
                 utils.log_event("Nouveau RFI", details=title)
-                st.success("RFI ajouté avec succès!")
+                st.success(_("Added New RFI"))
                 st.cache_data.clear()
 
-        st.subheader("Liste des RFIs")
-        with st.spinner("Chargement des RFIs..."):
+        st.subheader(_("RFIs List"))
+        with st.spinner(_("Loading RFIs...")):
             rfis = get_rfis()
         for rfi in rfis:
             st.write(rfi)
-            if st.button(f"Télécharger {rfi['title']} en PDF"):
+            if st.button(_("Download") + " " + rfi['title'] + _(" in PDF")):
                 pdf = utils.generate_pdf("RFI", rfi)
                 utils.log_event("Télécharger RFI", details=rfi['title'])
                 st.download_button(
-                    label="Télécharger en PDF",
+                    label=_("Download PDF"),
                     data=pdf,
                     file_name=f"RFI_{rfi['title']}.pdf",
                     mime="application/pdf"
@@ -80,34 +82,34 @@ def manage_rfi_rfq():
 
         with st.form("add_rfq_form", clear_on_submit=True):
 
-            title = st.text_input("Titre du RFQ")
-            reference = st.text_input("Ref")
-            location = st.text_input("Location")
+            title = st.text_input(_("RFQ Title"))
+            reference = st.text_input(_("Reference"))
+            location = st.text_input(_("Location"))
 
             clients = utils.get_clients()
-            selected_client = st.selectbox("Choisissez le client:", clients)
+            selected_client = st.selectbox(_("Select Customer:"), clients)
 
             rfis = utils.get_rfis()
-            selected_rfis = st.selectbox("Choisissez une RFI:", rfis)
+            selected_rfis = st.selectbox(_("Select RFI:"), rfis)
             
             st.divider()
-            st.write("Partie Requérante")
-            rp_name = st.text_input("Nom")
-            rp_company = st.text_input("Entreprise")
-            rp_position = st.text_input("Rôle")
-            rp_mail = st.text_input("email")
-            rp_phone = st.text_input("Téléphone")
+            st.write(_("Requesting Party"))
+            rp_name = st.text_input(_("Name"))
+            rp_company = st.text_input(_("Company"))
+            rp_position = st.text_input(_("Position"))
+            rp_mail = st.text_input(_("email"))
+            rp_phone = st.text_input(_("Phone"))
             st.divider()
 
-            requestDate = st.text_input("Date de la demande")
-            requestDueDate = st.text_input("Date d'échéance")
-            quotationContent = st.text_area("Contenu du Devis")
+            requestDate = st.text_input(_("Requesting Date"))
+            requestDueDate = st.text_input(_("Deadline"))
+            quotationContent = st.text_area(_("Quotation Content"))
             
             suppliers = utils.get_suppliers()
-            selected_suppliers = st.multiselect("Choisissez les Fournisseurs:", suppliers)
+            selected_suppliers = st.multiselect(_("Select Suppliers:"), suppliers)
             
-            comments = st.text_area("Commentaires Supplémentaires")
-            submit = st.form_submit_button("Ajouter RFQ")
+            comments = st.text_area(_("Comments"))
+            submit = st.form_submit_button(_("Submit RFQ"))
 
             if submit:
                 rfq_data = {
@@ -132,19 +134,19 @@ def manage_rfi_rfq():
                 db.collection("rfqs").add(rfq_data)
 
                 utils.log_event("Ajouter RFQ", details=title)
-                st.success("RFQ ajouté avec succès!")
+                st.success(_("RFQ Successfully Added!"))
                 st.cache_data.clear()
 
-        st.subheader("Liste des RFQs")
-        with st.spinner("Chargement des RFQs..."):
+        st.subheader(_("RFQs List"))
+        with st.spinner(_("RFQs Loading...")):
             rfqs = get_rfqs()
         for rfq in rfqs:
             st.write(rfq)
-            if st.button(f"Télécharger {rfq['title']} en PDF"):
+            if st.button(_("Download") + " " + rfq['title'] + _(" in PDF")):
                 pdf = utils.generate_pdf("RFQ", rfq)
-                utils.log_event("Télécharger RFQ", details=rfq['title'])
+                utils.log_event(_("Download RFQ"), details=rfq['title'])
                 st.download_button(
-                    label="Télécharger en PDF",
+                    label=_("Download PDF"),
                     data=pdf,
                     file_name=f"RFQ_{rfq['title']}.pdf",
                     mime="application/pdf"

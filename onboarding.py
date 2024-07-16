@@ -4,17 +4,19 @@ import utils
 
 def show_onboarding():
     
-    st.header("Onboarding Client")
+    _ = utils.translate()
+
+    st.header(_("Customer Onboarding"))
 
     with st.form("onboarding_form", clear_on_submit=True):
-        company = st.text_input("Entreprise")
-        name = st.text_input("Nom du contact")
+        company = st.text_input(_("Company"))
+        name = st.text_input(_("Contact Name"))
         col1, col2 = st.columns(2)
-        email = col1.text_input("Email")
-        phone = col2.text_input("Téléphone")
-        address = st.text_input("Adresse")
-        notes = st.text_area("Notes")
-        submit = st.form_submit_button("Enregistrer")
+        email = col1.text_input(_("Email"))
+        phone = col2.text_input(_("Phone"))
+        address = st.text_input(_("Address"))
+        notes = st.text_area(_("Notes"))
+        submit = st.form_submit_button(_("Save"))
 
         if submit:
             client_data = {
@@ -28,11 +30,11 @@ def show_onboarding():
             db = firestore.client()
             db.collection("clients").add(client_data)
             utils.log_event("Nouveau Client", details=email)
-            st.success("Client inscrit avec succès!")
+            st.success(_("Customer Successfully Added"))
             st.cache_data.clear()
 
     clients = get_clients()
-    st.subheader("Liste des Clients")
+    st.subheader(_("Customer List"))
     for client in clients:
         st.write(client)
 

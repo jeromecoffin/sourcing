@@ -39,7 +39,7 @@ _ = utils.translate()
 if authentication_status:
 
     authenticator.logout(_('Logout'), 'sidebar')
-    st.sidebar.title(f"{_('Welcome')} {user}")
+    st.sidebar.title(_("Welcome") + " " + user)
 
     def main():
         
