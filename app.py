@@ -10,6 +10,8 @@ import rfi_rfq_management
 import kpi_dashboard
 import project_management
 from utils import initialize_firebase
+import gettext
+import os
 
 # Initialize Firebase
 initialize_firebase()
@@ -28,26 +30,35 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
+# Configurer le chemin des fichiers de traduction
+locales_dir = os.path.join(os.path.dirname(__file__), 'locales')
+
+# Configurer gettext pour utiliser les traductions françaises
+lang = 'fr'  # 'en' pour anglais, 'vi' pour vietnamien
+gettext.bindtextdomain('messages', locales_dir)
+gettext.textdomain('messages')
+language = gettext.translation('messages', locales_dir, languages=[lang])
+language.install()
+_ = language.gettext
+
 user, authentication_status, username = authenticator.login('main', fields = {'Form name': 'login'})
 
 if authentication_status:
 
-    authenticator.logout('Logout', 'sidebar')
-    st.sidebar.title(f"Welcome {user}")
+    authenticator.logout(_('Logout'), 'sidebar')
+    st.sidebar.title(f"{_('Welcome')} {user}")
 
     def main():
 
-        st.sidebar.title("Menu")
+        menu = [_("Dasboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Account")]
+        choice = st.sidebar.selectbox(_("Select an option"), menu)
 
-        menu = ["Tableau de Bord", "Onboarding Client", "Gestion des Projets", "Gestion des Fournisseurs", "RFI/RFQ", "Mon Compte"]
-        choice = st.sidebar.selectbox("Choisissez une option", menu)
-
-        if choice == "Tableau de Bord":
+        if choice == _("Dasboard"):
             kpi_dashboard.show_dashboard()
             st.divider()
             with st.form("kpi_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder="Plus de KPI, autre info...")
-                submit = st.form_submit_button("Envoyer")
+                feedback = st.text_area("feedback", placeholder=_("More KPI, other details..."))
+                submit = st.form_submit_button(_("Submit"))
                 if submit:
                     user_feedback = {
                         "module": choice,
@@ -55,13 +66,13 @@ if authentication_status:
                     }
                     db = firestore.client()
                     db.collection("feedbacks").add(user_feedback)
-                    st.success("Merci pour votre retour !")
-        elif choice == "Onboarding Client":
+                    st.success(_("Thanks for feedback!"))
+        elif choice == _("Onboarding"):
             onboarding.show_onboarding()
             st.divider()
             with st.form("onboarding_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder="Plus d'info client...")
-                submit = st.form_submit_button("Envoyer")
+                feedback = st.text_area("feedback", placeholder=_("More customer data..."))
+                submit = st.form_submit_button(_("Submit"))
                 if submit:
                     user_feedback = {
                         "module": choice,
@@ -69,13 +80,13 @@ if authentication_status:
                     }
                     db = firestore.client()
                     db.collection("feedbacks").add(user_feedback)
-                    st.success("Merci pour votre retour !")
-        elif choice == "Gestion des Projets":
+                    st.success(_("Thanks for feedback!"))
+        elif choice == _("Project Management"):
             project_management.manage_projects()
             st.divider()
             with st.form("projets_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder="Ajouter un champs ; Plus de RFIs...")
-                submit = st.form_submit_button("Envoyer")
+                feedback = st.text_area("feedback", placeholder=_("Add field xxx ; More RFIs..."))
+                submit = st.form_submit_button(_("Submit"))
                 if submit:
                     user_feedback = {
                         "module": choice,
@@ -83,13 +94,13 @@ if authentication_status:
                     }
                     db = firestore.client()
                     db.collection("feedbacks").add(user_feedback)
-                    st.success("Merci pour votre retour !")
-        elif choice == "Gestion des Fournisseurs":
+                    st.success(_("Thanks for feedback!"))
+        elif choice == _("Suppliers Management"):
             supplier_management.manage_suppliers()
             st.divider()
             with st.form("suppliers_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder="More/less fields if the new client form ; display other details in the list...")
-                submit = st.form_submit_button("Envoyer")
+                feedback = st.text_area("feedback", placeholder=_("More/less fields if the new client form ; display other details in the list..."))
+                submit = st.form_submit_button(_("Submit"))
                 if submit:
                     user_feedback = {
                         "module": choice,
@@ -97,13 +108,13 @@ if authentication_status:
                     }
                     db = firestore.client()
                     db.collection("feedbacks").add(user_feedback)
-                    st.success("Merci pour votre retour !")
+                    st.success(_("Thanks for feedback!"))
         elif choice == "RFI/RFQ":
             rfi_rfq_management.manage_rfi_rfq()
             st.divider()
             with st.form("documents_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder="Modify fields for RFI/RFQ...")
-                submit = st.form_submit_button("Envoyer")
+                feedback = st.text_area("feedback", placeholder=_("Modify fields for RFI/RFQ..."))
+                submit = st.form_submit_button(_("Submit"))
                 if submit:
                     user_feedback = {
                         "module": choice,
@@ -111,21 +122,21 @@ if authentication_status:
                     }
                     db = firestore.client()
                     db.collection("feedbacks").add(user_feedback)
-                    st.success("Merci pour votre retour !")
-        elif choice == "Mon Compte":
+                    st.success(_("Thanks for feedback!"))
+        elif choice == _("Account"):
             agent_account.show_profile()
             if st.session_state["authentication_status"]:
                 try:
                     if authenticator.reset_password(st.session_state["username"]):
-                        st.success('Password modified successfully')
+                        st.success(_('Password modified successfully'))
                 except Exception as e:
                     st.error(e)
             with open('cred.yaml', 'w') as file:
                 yaml.dump(config, file, default_flow_style=False)
             st.divider()
             with st.form("documents_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder="Info sur la facturation...")
-                submit = st.form_submit_button("Envoyer")
+                feedback = st.text_area("feedback", placeholder=_("Data to generate invoices..."))
+                submit = st.form_submit_button(_("Submit"))
                 if submit:
                     user_feedback = {
                         "module": choice,
@@ -133,12 +144,14 @@ if authentication_status:
                     }
                     db = firestore.client()
                     db.collection("feedbacks").add(user_feedback)
-                    st.success("Merci pour votre retour !")
+                    st.success(_("Thanks for feedback!"))
+
+
 
     if __name__ == "__main__":
         main()
 
 elif authentication_status == False:
-    st.error('Username/password is incorrect')
+    st.error(_('Username/password is incorrect'))
 elif authentication_status == None:
-    st.warning('Please enter your username and password')
+    st.warning(_('Please enter your username and password'))

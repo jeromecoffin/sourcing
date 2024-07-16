@@ -2,3 +2,4 @@ streamlit
 firebase-admin
 reportlab
 streamlit-authenticator
+python-gettext
