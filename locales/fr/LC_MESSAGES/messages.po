@@ -3,6 +3,42 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "Your Profile"
+msgstr "Votre Profil"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Lastname"
+msgstr "Prénom"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "Company"
+msgstr "Entreprise"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Sourcing preferences"
+msgstr "Préférences d'approvisionnement"
+
+msgid "Years of Experiences"
+msgstr "Années d'expérience"
+
+msgid "Submit changes"
+msgstr "Soumettre les modifications"
+
+msgid "Data successfully modified!"
+msgstr "Données modifiées avec succès!"
+
 msgid "Logout"
 msgstr "Déconnexion"
 
@@ -17,9 +53,6 @@ msgstr "Intégration"
 
 msgid "Project Management"
 msgstr "Gestion de projets"
-
-msgid "Suppliers Management"
-msgstr "Gestion des fournisseurs"
 
 msgid "RFI/RFQ"
 msgstr "RFI/RFQ"
@@ -70,7 +103,7 @@ msgid "Total Number of suppliers"
 msgstr "Nombre Total de fournisseurs"
 
 msgid "Total Number of Customers"
-msgstr "Nombre Total du clients"
+msgstr "Nombre Total de clients"
 
 msgid "Total Number of RFIs"
 msgstr "Nombre Total de RFIs"
@@ -78,38 +111,227 @@ msgstr "Nombre Total de RFIs"
 msgid "Total Number of RFQs"
 msgstr "Nombre Total de RFQs"
 
-msgid "Your Profile"
-msgstr "Votre Profil"
+msgid "Create New Project"
+msgstr "Créer un nouveau projet"
 
-msgid "Name"
-msgstr "Nom"
+msgid "Loading Form..."
+msgstr "Chargement du formulaire..."
 
-msgid "Lastname"
-msgstr "Prénom"
+msgid "Project Title"
+msgstr "Titre du projet"
 
-msgid "Email"
-msgstr "Email"
+msgid "Select Customer:"
+msgstr "Sélectionner le client:"
 
-msgid "Phone"
-msgstr "Téléphone"
+msgid "Select RFI"
+msgstr "Sélectionner RFI"
 
-msgid "Company"
-msgstr "Entreprise"
+msgid "Select RFQ:"
+msgstr "Sélectionner RFQ:"
 
-msgid "Language"
-msgstr "Langue"
+msgid "Chose Suppliers"
+msgstr "Choisir les fournisseurs"
 
-msgid "Address"
-msgstr "Adresse"
+msgid "Customer Onboarding"
+msgstr "Intégration des clients"
 
-msgid "Sourcing preferences"
-msgstr "Préférences d'approvisionnement"
+msgid "Notes"
+msgstr "Remarques"
 
-msgid "Years of Experiences"
-msgstr "Années d'expérience"
+msgid "Save"
+msgstr "Enregistrer"
 
-msgid "Submit changes"
-msgstr "Soumettre les modifications"
+msgid "Customer Successfully Added"
+msgstr "Client ajouté avec succès"
 
-msgid "Data successfully modified!"
-msgstr "Données modifiées avec succès!"
+msgid "Customer List"
+msgstr "Liste des clients"
+
+msgid "Title:"
+msgstr "Titre:"
+
+msgid "Customer:"
+msgstr "Client:"
+
+msgid "Customer Data:"
+msgstr "Données du client:"
+
+msgid "RFI Data :"
+msgstr "Données RFI:"
+
+msgid "No RFI Selected"
+msgstr "Aucun RFI sélectionné"
+
+msgid "RFQ Data:"
+msgstr "Données RFQ:"
+
+msgid "No RFQ Selected"
+msgstr "Aucun RFQ sélectionné"
+
+msgid "Final Supplier:"
+msgstr "Fournisseur final:"
+
+msgid "Project Successfully Updated"
+msgstr "Projet mis à jour avec succès"
+
+msgid "Select Document Type"
+msgstr "Sélectionner le type de document"
+
+msgid "Projects"
+msgstr "Projets"
+
+msgid "New Project"
+msgstr "Nouveau projet"
+
+msgid "Projects Management"
+msgstr "Gestion des projets"
+
+msgid "Existing Project"
+msgstr "Projet existant"
+
+msgid "Select a Project"
+msgstr "Sélectionner un projet"
+
+msgid "No Project Created"
+msgstr "Aucun projet créé"
+
+msgid "RFI/RFQ Management"
+msgstr "Gestion des RFI/RFQ"
+
+msgid "Chose a type of document"
+msgstr "Choisir un type de document"
+
+msgid "RFI Title"
+msgstr "Titre du RFI"
+
+msgid "Reference"
+msgstr "Référence"
+
+msgid "Location"
+msgstr "Emplacement"
+
+msgid "Select a Client:"
+msgstr "Sélectionner un client:"
+
+msgid "Requesting Party"
+msgstr "Partie demandante"
+
+msgid "Position"
+msgstr "Position"
+
+msgid "Requesting Date"
+msgstr "Date de la demande"
+
+msgid "Deadline"
+msgstr "Date limite"
+
+msgid "Requesting Information"
+msgstr "Informations demandées"
+
+msgid "Select Suppliers"
+msgstr "Sélectionner les fournisseurs"
+
+msgid "Additional Comments"
+msgstr "Commentaires supplémentaires"
+
+msgid "Submit RFI"
+msgstr "Soumettre RFI"
+
+msgid "Added New RFI"
+msgstr "Nouveau RFI ajouté"
+
+msgid "RFIs List"
+msgstr "Liste des RFI"
+
+msgid "Loading RFIs..."
+msgstr "Chargement des RFI..."
+
+msgid "Download"
+msgstr "Télécharger"
+
+msgid "Download PDF"
+msgstr "Télécharger le PDF"
+
+msgid "RFQ Title"
+msgstr "Titre du RFQ"
+
+msgid "Select RFI:"
+msgstr "Sélectionner RFI:"
+
+msgid "Quotation Content"
+msgstr "Contenu de la citation"
+
+msgid "Submit RFQ"
+msgstr "Soumettre RFQ"
+
+msgid "RFQ Successfully Added!"
+msgstr "RFQ ajouté avec succès!"
+
+msgid "RFQs List"
+msgstr "Liste des RFQ"
+
+msgid "RFQs Loading..."
+msgstr "Chargement des RFQ..."
+
+msgid "Download RFQ"
+msgstr "Télécharger RFQ"
+
+msgid "Suppliers Management"
+msgstr "Gestion des fournisseurs"
+
+msgid "Select Type of Document"
+msgstr "Sélectionner le type de document"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "New Supplier"
+msgstr "Nouveau fournisseur"
+
+msgid "Suppliers List"
+msgstr "Liste des fournisseurs"
+
+msgid "Filter by Product Category"
+msgstr "Filtrer par catégorie de produit"
+
+msgid "Filter by Field of Activity"
+msgstr "Filtrer par domaine d'activité"
+
+msgid "Loading Suppliers..."
+msgstr "Chargement des fournisseurs..."
+
+msgid "Save edits"
+msgstr "Enregistrer les modifications"
+
+msgid "Successfully Saved Edits!"
+msgstr "Modifications enregistrées avec succès!"
+
+msgid "Export List"
+msgstr "Exporter la liste"
+
+msgid "Add Suppliers"
+msgstr "Ajouter des fournisseurs"
+
+msgid "Company Name"
+msgstr "Nom de l'entreprise"
+
+msgid "Contact Name"
+msgstr "Nom du contact"
+
+msgid "Categories (Garments, Accessories, Home Textiles...)"
+msgstr "Catégories (vêtements, accessoires, textiles de maison...)"
+
+msgid "Add new Categories (separated by ,)"
+msgstr "Ajouter de nouvelles catégories (séparées par ,)"
+
+msgid "Fields of Activity (Dyeing, Importing, Knitting...)"
+msgstr "Champs d'activité (teinture, importation, tricotage...)"
+
+msgid "Add now fields of activity (separated by ,)"
+msgstr "Ajouter maintenant des champs d'activité (séparés par ,)"
+
+msgid "Supplier Successfully Added!"
+msgstr "Fournisseur ajouté avec succès!"
+
+msgid "Download CSV"
+msgstr "Télécharger CSV"

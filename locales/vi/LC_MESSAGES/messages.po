@@ -1,0 +1,337 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Your Profile"
+msgstr "Hồ sơ của bạn"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Lastname"
+msgstr "Họ"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Điện thoại"
+
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+msgid "Address"
+msgstr "Địa chỉ"
+
+msgid "Sourcing preferences"
+msgstr "Sở thích tìm nguồn cung ứng"
+
+msgid "Years of Experiences"
+msgstr "Số năm kinh nghiệm"
+
+msgid "Submit changes"
+msgstr "Gửi thay đổi"
+
+msgid "Data successfully modified!"
+msgstr "Dữ liệu đã được sửa đổi thành công!"
+
+msgid "Logout"
+msgstr "Đăng xuất"
+
+msgid "Welcome"
+msgstr "Chào mừng"
+
+msgid "Dashboard"
+msgstr "Bảng điều khiển"
+
+msgid "Onboarding"
+msgstr "Hội nhập"
+
+msgid "Project Management"
+msgstr "Quản lý dự án"
+
+msgid "RFI/RFQ"
+msgstr "Yêu cầu thông tin/Yêu cầu báo giá"
+
+msgid "Account"
+msgstr "Tài khoản"
+
+msgid "Select an option"
+msgstr "Chọn một tùy chọn"
+
+msgid "More KPI, other details..."
+msgstr "Thêm KPI, chi tiết khác..."
+
+msgid "Submit"
+msgstr "Gửi"
+
+msgid "Thanks for feedback!"
+msgstr "Cảm ơn phản hồi của bạn!"
+
+msgid "More customer data..."
+msgstr "Thêm dữ liệu khách hàng..."
+
+msgid "Add field xxx ; More RFIs..."
+msgstr "Thêm trường xxx ; Thêm yêu cầu thông tin..."
+
+msgid "More/less fields if the new client form ; display other details in the list..."
+msgstr "Thêm/bớt các trường trong mẫu khách hàng mới ; hiển thị các chi tiết khác trong danh sách..."
+
+msgid "Modify fields for RFI/RFQ..."
+msgstr "Chỉnh sửa các trường cho yêu cầu thông tin/yêu cầu báo giá..."
+
+msgid "Password modified successfully"
+msgstr "Mật khẩu đã được thay đổi thành công"
+
+msgid "Data to generate invoices..."
+msgstr "Dữ liệu để tạo hóa đơn..."
+
+msgid "Username/password is incorrect"
+msgstr "Tên người dùng/mật khẩu không đúng"
+
+msgid "Please enter your username and password"
+msgstr "Vui lòng nhập tên người dùng và mật khẩu của bạn"
+
+msgid "Total Number of Projects"
+msgstr "Tổng số dự án"
+
+msgid "Total Number of suppliers"
+msgstr "Tổng số nhà cung cấp"
+
+msgid "Total Number of Customers"
+msgstr "Tổng số khách hàng"
+
+msgid "Total Number of RFIs"
+msgstr "Tổng số yêu cầu thông tin"
+
+msgid "Total Number of RFQs"
+msgstr "Tổng số yêu cầu báo giá"
+
+msgid "Create New Project"
+msgstr "Tạo dự án mới"
+
+msgid "Loading Form..."
+msgstr "Đang tải biểu mẫu..."
+
+msgid "Project Title"
+msgstr "Tiêu đề dự án"
+
+msgid "Select RFI"
+msgstr "Chọn yêu cầu thông tin"
+
+msgid "Select RFQ:"
+msgstr "Chọn yêu cầu báo giá:"
+
+msgid "Chose Suppliers"
+msgstr "Chọn nhà cung cấp"
+
+msgid "Customer Onboarding"
+msgstr "Hội nhập khách hàng"
+
+msgid "Company"
+msgstr "Công ty"
+
+msgid "Notes"
+msgstr "Ghi chú"
+
+msgid "Save"
+msgstr "Lưu"
+
+msgid "Customer Successfully Added"
+msgstr "Khách hàng đã được thêm thành công"
+
+msgid "Customer List"
+msgstr "Danh sách khách hàng"
+
+msgid "Title:"
+msgstr "Tiêu đề:"
+
+msgid "Customer:"
+msgstr "Khách hàng:"
+
+msgid "Customer Data:"
+msgstr "Dữ liệu khách hàng:"
+
+msgid "RFI Data :"
+msgstr "Dữ liệu yêu cầu thông tin:"
+
+msgid "No RFI Selected"
+msgstr "Không có yêu cầu thông tin nào được chọn"
+
+msgid "RFQ Data:"
+msgstr "Dữ liệu yêu cầu báo giá:"
+
+msgid "No RFQ Selected"
+msgstr "Không có yêu cầu báo giá nào được chọn"
+
+msgid "Final Supplier:"
+msgstr "Nhà cung cấp cuối cùng:"
+
+msgid "Project Successfully Updated"
+msgstr "Dự án đã được cập nhật thành công"
+
+msgid "Select Document Type"
+msgstr "Chọn loại tài liệu"
+
+msgid "Projects"
+msgstr "Dự án"
+
+msgid "New Project"
+msgstr "Dự án mới"
+
+msgid "Projects Management"
+msgstr "Quản lý dự án"
+
+msgid "Existing Project"
+msgstr "Dự án hiện có"
+
+msgid "Select a Project"
+msgstr "Chọn một dự án"
+
+msgid "No Project Created"
+msgstr "Chưa có dự án nào được tạo"
+
+msgid "RFI/RFQ Management"
+msgstr "Quản lý yêu cầu thông tin/yêu cầu báo giá"
+
+msgid "Chose a type of document"
+msgstr "Chọn một loại tài liệu"
+
+msgid "RFI Title"
+msgstr "Tiêu đề yêu cầu thông tin"
+
+msgid "Reference"
+msgstr "Tham chiếu"
+
+msgid "Location"
+msgstr "Vị trí"
+
+msgid "Select a Client:"
+msgstr "Chọn một khách hàng:"
+
+msgid "Requesting Party"
+msgstr "Bên yêu cầu"
+
+msgid "Position"
+msgstr "Vị trí"
+
+msgid "Requesting Date"
+msgstr "Ngày yêu cầu"
+
+msgid "Deadline"
+msgstr "Hạn chót"
+
+msgid "Requesting Information"
+msgstr "Yêu cầu thông tin"
+
+msgid "Select Suppliers"
+msgstr "Chọn nhà cung cấp"
+
+msgid "Additional Comments"
+msgstr "Bình luận thêm"
+
+msgid "Submit RFI"
+msgstr "Gửi yêu cầu thông tin"
+
+msgid "Added New RFI"
+msgstr "Đã thêm yêu cầu thông tin mới"
+
+msgid "RFIs List"
+msgstr "Danh sách yêu cầu thông tin"
+
+msgid "Loading RFIs..."
+msgstr "Đang tải yêu cầu thông tin..."
+
+msgid "Download"
+msgstr "Tải xuống"
+
+msgid "RFQ Title"
+msgstr "Tiêu đề yêu cầu báo giá"
+
+msgid "Select Customer:"
+msgstr "Chọn khách hàng:"
+
+msgid "Select RFI:"
+msgstr "Chọn yêu cầu thông tin:"
+
+msgid "Quotation Content"
+msgstr "Nội dung báo giá"
+
+msgid "Submit RFQ"
+msgstr "Gửi yêu cầu báo giá"
+
+msgid "RFQ Successfully Added!"
+msgstr "Yêu cầu báo giá đã được thêm thành công!"
+
+msgid "RFQs List"
+msgstr "Danh sách yêu cầu báo giá"
+
+msgid "RFQs Loading..."
+msgstr "Đang tải yêu cầu báo giá..."
+
+msgid "Download RFQ"
+msgstr "Tải xuống yêu cầu báo giá"
+
+msgid "Download PDF"
+msgstr "Tải xuống PDF"
+
+msgid "Suppliers Management"
+msgstr "Quản lý nhà cung cấp"
+
+msgid "Select Type of Document"
+msgstr "Chọn loại tài liệu"
+
+msgid "List"
+msgstr "Danh sách"
+
+msgid "New Supplier"
+msgstr "Nhà cung cấp mới"
+
+msgid "Suppliers List"
+msgstr "Danh sách nhà cung cấp"
+
+msgid "Filter by Product Category"
+msgstr "Lọc theo loại sản phẩm"
+
+msgid "Filter by Field of Activity"
+msgstr "Lọc theo lĩnh vực hoạt động"
+
+msgid "Loading Suppliers..."
+msgstr "Đang tải nhà cung cấp..."
+
+msgid "Save edits"
+msgstr "Lưu chỉnh sửa"
+
+msgid "Successfully Saved Edits!"
+msgstr "Đã lưu chỉnh sửa thành công!"
+
+msgid "Export List"
+msgstr "Xuất danh sách"
+
+msgid "Add Suppliers"
+msgstr "Thêm nhà cung cấp"
+
+msgid "Company Name"
+msgstr "Tên công ty"
+
+msgid "Contact Name"
+msgstr "Tên liên lạc"
+
+msgid "Categories (Garments, Accessories, Home Textiles...)"
+msgstr "Danh mục (Quần áo, Phụ kiện, Dệt may gia đình...)"
+
+msgid "Add new Categories (separated by ,)"
+msgstr "Thêm danh mục mới (tách bằng ,)"
+
+msgid "Fields of Activity (Dyeing, Importing, Knitting...)"
+msgstr "Lĩnh vực hoạt động (Nhuộm, Nhập khẩu, Đan...)"
+
+msgid "Add now fields of activity (separated by ,)"
+msgstr "Thêm lĩnh vực hoạt động (tách bằng ,)"
+
+msgid "Supplier Successfully Added!"
+msgstr "Nhà cung cấp đã được thêm thành công!"
+
+msgid "Download CSV"
+msgstr "Tải xuống CSV"
