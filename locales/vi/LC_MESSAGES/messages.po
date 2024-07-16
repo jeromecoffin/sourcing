@@ -335,3 +335,6 @@ msgstr "Nhà cung cấp đã được thêm thành công!"
 
 msgid "Download CSV"
 msgstr "Tải xuống CSV"
+
+msgid "Create Project"
+msgstr "Tạo dự án"

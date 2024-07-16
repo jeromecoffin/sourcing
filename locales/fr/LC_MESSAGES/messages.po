@@ -335,3 +335,6 @@ msgstr "Fournisseur ajouté avec succès!"
 
 msgid "Download CSV"
 msgstr "Télécharger CSV"
+
+msgid "Create Project"
+msgstr "Créer Projet"

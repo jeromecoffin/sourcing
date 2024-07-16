@@ -23,7 +23,13 @@ def show_profile():
         email = col1.text_input(_("Email"), value=agent.to_dict()["email"], disabled=True)
         phone = col2.text_input(_("Phone"), value=agent.to_dict()["phone"])
         company = col1.text_input(_("Company"), value=agent.to_dict()["company"])
-        language = col2.selectbox(_("Language"), ['en', 'fr', 'vi'])
+        language_select = col2.selectbox(_("Language"), ['English', 'Français', 'Tiếng Việt'])
+        if language_select == 'Français':
+            language = 'fr'
+        elif language_select == 'Tiếng Việt':
+            language = 'vi'
+        else:
+            language = 'en'
         address = st.text_input(_("Address"), value=agent.to_dict()["address"])
         sourcing = st.text_area(_("Sourcing preferences"), value=agent.to_dict()["sourcing"])
         experience = st.number_input(_("Years of Experiences"), step=1, value=agent.to_dict()["experience"])

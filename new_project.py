@@ -44,15 +44,15 @@ def new_projects():
             rfi_options = utils.get_rfis()
             rfq_options = utils.get_rfqs()
             fournisseurs = utils.get_suppliers()
-            rfi_options.insert(0, "vide")
-            rfq_options.insert(0, "vide")
+            rfi_options.insert(0, _("empty"))
+            rfq_options.insert(0, _("empty"))
             
             title = st.text_input(_("Project Title"))
             client = st.selectbox(_("Select Customer:"), clients)
             rfi = st.selectbox(_("Select RFI"), rfi_options)
             rfq = st.selectbox(_("Select RFQ:"), rfq_options)
-            fournisseursProject = st.multiselect(_("Chose Suppliers"), fournisseurs)
-            fournisseursProject.insert(0, "vide")
+            fournisseursProject = st.multiselect(_("Choose Suppliers"), fournisseurs)
+            fournisseursProject.insert(0, _("empty"))
             
             submit_button = st.form_submit_button(label=_('Create Project'))
         
