@@ -1,0 +1,115 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Logout"
+msgstr "Đăng xuất"
+
+msgid "Welcome"
+msgstr "Chào mừng"
+
+msgid "Dashboard"
+msgstr "Bảng điều khiển"
+
+msgid "Onboarding"
+msgstr "Hội nhập"
+
+msgid "Project Management"
+msgstr "Quản lý dự án"
+
+msgid "Suppliers Management"
+msgstr "Quản lý nhà cung cấp"
+
+msgid "RFI/RFQ"
+msgstr "Yêu cầu thông tin/Yêu cầu báo giá"
+
+msgid "Account"
+msgstr "Tài khoản"
+
+msgid "Select an option"
+msgstr "Chọn một tùy chọn"
+
+msgid "More KPI, other details..."
+msgstr "Thêm KPI, các chi tiết khác..."
+
+msgid "Submit"
+msgstr "Gửi"
+
+msgid "Thanks for feedback!"
+msgstr "Cảm ơn phản hồi của bạn!"
+
+msgid "More customer data..."
+msgstr "Thêm dữ liệu khách hàng..."
+
+msgid "Add field xxx ; More RFIs..."
+msgstr "Thêm trường xxx ; Thêm RFIs..."
+
+msgid "More/less fields if the new client form ; display other details in the list..."
+msgstr "Thêm/bớt trường nếu mẫu khách hàng mới; hiển thị các chi tiết khác trong danh sách..."
+
+msgid "Modify fields for RFI/RFQ..."
+msgstr "Sửa đổi các trường cho RFI/RFQ..."
+
+msgid "Password modified successfully"
+msgstr "Mật khẩu đã được thay đổi thành công"
+
+msgid "Data to generate invoices..."
+msgstr "Dữ liệu để tạo hóa đơn..."
+
+msgid "Username/password is incorrect"
+msgstr "Tên đăng nhập/mật khẩu không chính xác"
+
+msgid "Please enter your username and password"
+msgstr "Vui lòng nhập tên đăng nhập và mật khẩu của bạn"
+
+msgid "Total Number of Project"
+msgstr "Tổng số dự án"
+
+msgid "Total Number of suppliers"
+msgstr "Tổng số nhà cung cấp"
+
+msgid "Total Number of Customers"
+msgstr "Tổng số khách hàng"
+
+msgid "Total Number of RFIs"
+msgstr "Tổng số yêu cầu thông tin (RFIs)"
+
+msgid "Total Number of RFQs"
+msgstr "Tổng số yêu cầu báo giá (RFQs)"
+
+msgid "Your Profile"
+msgstr "Hồ sơ của bạn"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Lastname"
+msgstr "Họ"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Điện thoại"
+
+msgid "Company"
+msgstr "Công ty"
+
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+msgid "Address"
+msgstr "Địa chỉ"
+
+msgid "Sourcing preferences"
+msgstr "Sở thích tìm nguồn cung ứng"
+
+msgid "Years of Experiences"
+msgstr "Số năm kinh nghiệm"
+
+msgid "Submit changes"
+msgstr "Gửi thay đổi"
+
+msgid "Data successfully modified!"
+msgstr "Dữ liệu đã được sửa đổi thành công!"

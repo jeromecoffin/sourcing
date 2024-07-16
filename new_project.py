@@ -32,7 +32,9 @@ def new_projects():
     
     utils.initialize_firebase()
     
-    st.header("Créer un Nouveau Projet")
+    st.header(_("Create New Project"))
+
+    _ = utils.translate('Vi')
 
     with st.spinner("Chargement du Formulaire..."):
     

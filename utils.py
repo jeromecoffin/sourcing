@@ -9,6 +9,8 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from io import BytesIO
 import streamlit as st
+import gettext
+import os
 
 def initialize_firebase():
     if not _apps:
@@ -248,3 +250,25 @@ def log_event(event_type, details=None):
     }
     db = firestore.client()
     db.collection("event_logs").add(event_data)
+
+def translate():
+
+    db = firestore.client()
+    agent_ref = db.collection("agents").document("user")
+    agent = agent_ref.get()
+
+    try: 
+        language = agent.to_dict()["language"]
+    except:
+        language = 'en'
+
+    # Configurer le chemin des fichiers de traduction
+    locales_dir = os.path.join(os.path.dirname(__file__), 'locales')
+
+    # Configurer gettext pour utiliser les traductions françaises
+    lang = language  # 'en' pour anglais, 'vi' pour vietnamien, 'fr' pour français
+    gettext.bindtextdomain('messages', locales_dir)
+    gettext.textdomain('messages')
+    language = gettext.translation('messages', locales_dir, languages=[lang])
+    language.install()
+    return language.gettext

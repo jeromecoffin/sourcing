@@ -1,0 +1,64 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Welcome"
+msgstr "Welcome"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Onboarding"
+msgstr "Onboarding"
+
+msgid "Project Management"
+msgstr "Project Management"
+
+msgid "Suppliers Management"
+msgstr "Suppliers Management"
+
+msgid "RFI/RFQ"
+msgstr "RFI/RFQ"
+
+msgid "Account"
+msgstr "Account"
+
+msgid "Select an option"
+msgstr "Select an option"
+
+msgid "More KPI, other details..."
+msgstr "More KPI, other details..."
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Thanks for feedback!"
+msgstr "Thanks for feedback!"
+
+msgid "More customer data..."
+msgstr "More customer data..."
+
+msgid "Add field xxx ; More RFIs..."
+msgstr "Add field xxx ; More RFIs..."
+
+msgid "More/less fields if the new client form ; display other details in the list..."
+msgstr "More/less fields if the new client form ; display other details in the list..."
+
+msgid "Modify fields for RFI/RFQ..."
+msgstr "Modify fields for RFI/RFQ..."
+
+msgid "Password modified successfully"
+msgstr "Password modified successfully"
+
+msgid "Data to generate invoices..."
+msgstr "Data to generate invoices..."
+
+msgid "Username/password is incorrect"
+msgstr "Username/password is incorrect"
+
+msgid "Please enter your username and password"
+msgstr "Please enter your username and password"

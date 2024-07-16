@@ -5,5 +5,111 @@ msgstr ""
 
 msgid "Logout"
 msgstr "Déconnexion"
+
 msgid "Welcome"
 msgstr "Bienvenue"
+
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+msgid "Onboarding"
+msgstr "Intégration"
+
+msgid "Project Management"
+msgstr "Gestion de projets"
+
+msgid "Suppliers Management"
+msgstr "Gestion des fournisseurs"
+
+msgid "RFI/RFQ"
+msgstr "RFI/RFQ"
+
+msgid "Account"
+msgstr "Compte"
+
+msgid "Select an option"
+msgstr "Sélectionnez une option"
+
+msgid "More KPI, other details..."
+msgstr "Plus de KPI, autres détails..."
+
+msgid "Submit"
+msgstr "Soumettre"
+
+msgid "Thanks for feedback!"
+msgstr "Merci pour votre retour!"
+
+msgid "More customer data..."
+msgstr "Plus de données clients..."
+
+msgid "Add field xxx ; More RFIs..."
+msgstr "Ajouter le champ xxx ; Plus de RFIs..."
+
+msgid "More/less fields if the new client form ; display other details in the list..."
+msgstr "Plus/moins de champs dans le formulaire de nouveau client ; afficher d'autres détails dans la liste..."
+
+msgid "Modify fields for RFI/RFQ..."
+msgstr "Modifier les champs pour RFI/RFQ..."
+
+msgid "Password modified successfully"
+msgstr "Mot de passe modifié avec succès"
+
+msgid "Data to generate invoices..."
+msgstr "Données pour générer des factures..."
+
+msgid "Username/password is incorrect"
+msgstr "Nom d'utilisateur/mot de passe incorrect"
+
+msgid "Please enter your username and password"
+msgstr "Veuillez entrer votre nom d'utilisateur et votre mot de passe"
+
+msgid "Total Number of Project"
+msgstr "Nombre Total de projets"
+
+msgid "Total Number of suppliers"
+msgstr "Nombre Total de fournisseurs"
+
+msgid "Total Number of Customers"
+msgstr "Nombre Total du clients"
+
+msgid "Total Number of RFIs"
+msgstr "Nombre Total de RFIs"
+
+msgid "Total Number of RFQs"
+msgstr "Nombre Total de RFQs"
+
+msgid "Your Profile"
+msgstr "Votre Profil"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Lastname"
+msgstr "Prénom"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "Company"
+msgstr "Entreprise"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Sourcing preferences"
+msgstr "Préférences d'approvisionnement"
+
+msgid "Years of Experiences"
+msgstr "Années d'expérience"
+
+msgid "Submit changes"
+msgstr "Soumettre les modifications"
+
+msgid "Data successfully modified!"
+msgstr "Données modifiées avec succès!"

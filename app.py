@@ -10,8 +10,12 @@ import rfi_rfq_management
 import kpi_dashboard
 import project_management
 from utils import initialize_firebase
-import gettext
-import os
+import utils
+
+# install gettext
+#msgfmt locales/en/LC_MESSAGES/messages.po -o locales/en/LC_MESSAGES/messages.mo
+#msgfmt locales/fr/LC_MESSAGES/messages.po -o locales/fr/LC_MESSAGES/messages.mo
+#msgfmt locales/vi/LC_MESSAGES/messages.po -o locales/vi/LC_MESSAGES/messages.mo
 
 # Initialize Firebase
 initialize_firebase()
@@ -30,30 +34,19 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
-# Configurer le chemin des fichiers de traduction
-locales_dir = os.path.join(os.path.dirname(__file__), 'locales')
-
-# Configurer gettext pour utiliser les traductions françaises
-lang = 'fr'  # 'en' pour anglais, 'vi' pour vietnamien
-gettext.bindtextdomain('messages', locales_dir)
-gettext.textdomain('messages')
-language = gettext.translation('messages', locales_dir, languages=[lang])
-language.install()
-_ = language.gettext
-
 user, authentication_status, username = authenticator.login('main', fields = {'Form name': 'login'})
-
+_ = utils.translate()
 if authentication_status:
 
     authenticator.logout(_('Logout'), 'sidebar')
     st.sidebar.title(f"{_('Welcome')} {user}")
 
     def main():
-
-        menu = [_("Dasboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Account")]
+        
+        menu = [_("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Account")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
-        if choice == _("Dasboard"):
+        if choice == _("Dashboard"):
             kpi_dashboard.show_dashboard()
             st.divider()
             with st.form("kpi_feedback_form", clear_on_submit=True):
