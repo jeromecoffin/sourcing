@@ -27,7 +27,7 @@ def manage_rfi_rfq():
             rp_company = st.text_input(_("Company"))
             rp_position = st.text_input(_("Position"))
             rp_mail = st.text_input(_("email"))
-            rp_phone = st.text_input(_("TéléphPhoneone"))
+            rp_phone = st.text_input(_("Phone"))
             st.divider()
 
             requestDate = st.text_input(_("Requesting Date"))
@@ -35,7 +35,7 @@ def manage_rfi_rfq():
             information = st.text_area(_("Requesting Information"))
             
             suppliers = utils.get_suppliers()
-            selected_suppliers = st.multiselect(_("Select Suppliers", suppliers))
+            selected_suppliers = st.multiselect(_("Select Suppliers"), suppliers)
             
             comments = st.text_area(_("Additional Comments"))
             submit = st.form_submit_button(_("Submit RFI"))

@@ -16,7 +16,7 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Phone"
-msgstr "Điện thoại"
+msgstr "Số điện thoại"
 
 msgid "Language"
 msgstr "Ngôn ngữ"
@@ -31,10 +31,10 @@ msgid "Years of Experiences"
 msgstr "Số năm kinh nghiệm"
 
 msgid "Submit changes"
-msgstr "Gửi thay đổi"
+msgstr "Cập nhật"
 
 msgid "Data successfully modified!"
-msgstr "Dữ liệu đã được sửa đổi thành công!"
+msgstr "Dữ liệu đã được cập nhật thành công!"
 
 msgid "Logout"
 msgstr "Đăng xuất"
@@ -52,7 +52,7 @@ msgid "Project Management"
 msgstr "Quản lý dự án"
 
 msgid "RFI/RFQ"
-msgstr "Yêu cầu thông tin/Yêu cầu báo giá"
+msgstr "RFI/RFQ"
 
 msgid "Account"
 msgstr "Tài khoản"
@@ -103,10 +103,10 @@ msgid "Total Number of Customers"
 msgstr "Tổng số khách hàng"
 
 msgid "Total Number of RFIs"
-msgstr "Tổng số yêu cầu thông tin"
+msgstr "Tổng số RFIs"
 
 msgid "Total Number of RFQs"
-msgstr "Tổng số yêu cầu báo giá"
+msgstr "Tổng số RFQs"
 
 msgid "Create New Project"
 msgstr "Tạo dự án mới"
@@ -118,16 +118,16 @@ msgid "Project Title"
 msgstr "Tiêu đề dự án"
 
 msgid "Select RFI"
-msgstr "Chọn yêu cầu thông tin"
+msgstr "Chọn RFI"
 
 msgid "Select RFQ:"
-msgstr "Chọn yêu cầu báo giá:"
+msgstr "Chọn RFQ:"
 
 msgid "Chose Suppliers"
 msgstr "Chọn nhà cung cấp"
 
 msgid "Customer Onboarding"
-msgstr "Hội nhập khách hàng"
+msgstr "Khách hàng mới"
 
 msgid "Company"
 msgstr "Công ty"
@@ -154,19 +154,19 @@ msgid "Customer Data:"
 msgstr "Dữ liệu khách hàng:"
 
 msgid "RFI Data :"
-msgstr "Dữ liệu yêu cầu thông tin:"
+msgstr "Dữ liệu RFI:"
 
 msgid "No RFI Selected"
-msgstr "Không có yêu cầu thông tin nào được chọn"
+msgstr "Không có RFI tin nào được chọn"
 
 msgid "RFQ Data:"
-msgstr "Dữ liệu yêu cầu báo giá:"
+msgstr "Dữ liệu RFQ:"
 
 msgid "No RFQ Selected"
-msgstr "Không có yêu cầu báo giá nào được chọn"
+msgstr "Không có RFQ nào được chọn"
 
 msgid "Final Supplier:"
-msgstr "Nhà cung cấp cuối cùng:"
+msgstr "Nhà cung cấp được chọn:"
 
 msgid "Project Successfully Updated"
 msgstr "Dự án đã được cập nhật thành công"
@@ -193,16 +193,16 @@ msgid "No Project Created"
 msgstr "Chưa có dự án nào được tạo"
 
 msgid "RFI/RFQ Management"
-msgstr "Quản lý yêu cầu thông tin/yêu cầu báo giá"
+msgstr "Quản lý RFI/RFQ"
 
 msgid "Chose a type of document"
 msgstr "Chọn một loại tài liệu"
 
 msgid "RFI Title"
-msgstr "Tiêu đề yêu cầu thông tin"
+msgstr "Tiêu đề RFI"
 
 msgid "Reference"
-msgstr "Tham chiếu"
+msgstr "Tài liệu tham khảo"
 
 msgid "Location"
 msgstr "Vị trí"
@@ -214,13 +214,13 @@ msgid "Requesting Party"
 msgstr "Bên yêu cầu"
 
 msgid "Position"
-msgstr "Vị trí"
+msgstr "Vị trí công việc"
 
 msgid "Requesting Date"
 msgstr "Ngày yêu cầu"
 
 msgid "Deadline"
-msgstr "Hạn chót"
+msgstr "Thời hạn"
 
 msgid "Requesting Information"
 msgstr "Yêu cầu thông tin"
@@ -232,46 +232,46 @@ msgid "Additional Comments"
 msgstr "Bình luận thêm"
 
 msgid "Submit RFI"
-msgstr "Gửi yêu cầu thông tin"
+msgstr "Gửi RFI"
 
 msgid "Added New RFI"
-msgstr "Đã thêm yêu cầu thông tin mới"
+msgstr "Đã thêm RFI mới"
 
 msgid "RFIs List"
-msgstr "Danh sách yêu cầu thông tin"
+msgstr "Danh sách RFIs"
 
 msgid "Loading RFIs..."
-msgstr "Đang tải yêu cầu thông tin..."
+msgstr "Đang tải RFIs..."
 
 msgid "Download"
 msgstr "Tải xuống"
 
 msgid "RFQ Title"
-msgstr "Tiêu đề yêu cầu báo giá"
+msgstr "Tiêu đề RFQ"
 
 msgid "Select Customer:"
 msgstr "Chọn khách hàng:"
 
 msgid "Select RFI:"
-msgstr "Chọn yêu cầu thông tin:"
+msgstr "Chọn RFI:"
 
 msgid "Quotation Content"
 msgstr "Nội dung báo giá"
 
 msgid "Submit RFQ"
-msgstr "Gửi yêu cầu báo giá"
+msgstr "Gửi RFQ"
 
 msgid "RFQ Successfully Added!"
-msgstr "Yêu cầu báo giá đã được thêm thành công!"
+msgstr "RFQ đã được thêm thành công!"
 
 msgid "RFQs List"
-msgstr "Danh sách yêu cầu báo giá"
+msgstr "Danh sách RFQ"
 
 msgid "RFQs Loading..."
-msgstr "Đang tải yêu cầu báo giá..."
+msgstr "Đang tải RFQ..."
 
 msgid "Download RFQ"
-msgstr "Tải xuống yêu cầu báo giá"
+msgstr "Tải xuống RFQ"
 
 msgid "Download PDF"
 msgstr "Tải xuống PDF"
@@ -319,16 +319,16 @@ msgid "Contact Name"
 msgstr "Tên liên lạc"
 
 msgid "Categories (Garments, Accessories, Home Textiles...)"
-msgstr "Danh mục (Quần áo, Phụ kiện, Dệt may gia đình...)"
+msgstr "Danh mục (Quần áo, Phụ kiện...)"
 
 msgid "Add new Categories (separated by ,)"
-msgstr "Thêm danh mục mới (tách bằng ,)"
+msgstr "Thêm danh mục mới (chia ra bằng)"
 
 msgid "Fields of Activity (Dyeing, Importing, Knitting...)"
 msgstr "Lĩnh vực hoạt động (Nhuộm, Nhập khẩu, Đan...)"
 
 msgid "Add now fields of activity (separated by ,)"
-msgstr "Thêm lĩnh vực hoạt động (tách bằng ,)"
+msgstr "Thêm lĩnh vực hoạt động (chia ra bằng)"
 
 msgid "Supplier Successfully Added!"
 msgstr "Nhà cung cấp đã được thêm thành công!"

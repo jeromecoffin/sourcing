@@ -39,7 +39,8 @@ _ = utils.translate()
 if authentication_status:
 
     authenticator.logout(_('Logout'), 'sidebar')
-    st.sidebar.title(_("Welcome") + " " + user)
+    st.sidebar.title("AVANTA SOURCING")
+    st.sidebar.write(_("Welcome") + " " + user)
 
     def main():
         
