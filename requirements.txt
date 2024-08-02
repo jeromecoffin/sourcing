@@ -1,5 +1,6 @@
-streamlit 
-firebase-admin
-reportlab
-streamlit-authenticator
-python-gettext
+streamlit==1.36.0
+firebase-admin==6.5.0
+reportlab==4.2.2
+streamlit-authenticator==0.3.2
+python-gettext==5.0
+google-cloud-firestore==2.16.0

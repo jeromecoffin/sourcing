@@ -33,14 +33,7 @@ def show_onboarding():
             st.success(_("Customer Successfully Added"))
             st.cache_data.clear()
 
-    clients = get_clients()
+    clients = utils.get_clients_onboarding()
     st.subheader(_("Customer List"))
     for client in clients:
         st.write(client)
-
-@st.cache_data(ttl=3600)
-def get_clients():
-    db = firestore.client()
-    clients_ref = db.collection("clients")
-    clients = [doc.to_dict() for doc in clients_ref.stream()]
-    return clients

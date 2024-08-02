@@ -1,5 +1,5 @@
 import streamlit as st
-from firebase_admin import credentials, firestore, initialize_app
+from firebase_admin import firestore
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader

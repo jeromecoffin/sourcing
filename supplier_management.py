@@ -1,8 +1,7 @@
 import streamlit as st
-from firebase_admin import firestore, initialize_app
+from firebase_admin import firestore
 import pandas as pd
 from datetime import datetime
-from io import StringIO
 import utils
 
 def manage_suppliers():
@@ -16,11 +15,11 @@ def manage_suppliers():
         # Display list of suppliers
         st.subheader(_("Suppliers List"))
         col1, col2 = st.columns(2)
-        selected_categories = col1.multiselect(_("Filter by Product Category"), options=get_distinct_values("category"))
-        selected_fields = col2.multiselect(_("Filter by Field of Activity"), options=get_distinct_values("fields"))
+        selected_categories = col1.multiselect(_("Filter by Product Category"), options=utils.get_distinct_values_management("category"))
+        selected_fields = col2.multiselect(_("Filter by Field of Activity"), options=utils.get_distinct_values_management("fields"))
 
         with st.spinner(_("Loading Suppliers...")):
-            suppliers = get_suppliers(selected_categories, selected_fields)
+            suppliers = utils.get_suppliers_management(selected_categories, selected_fields)
         
         if suppliers:
             suppliers_df = pd.DataFrame(suppliers)
@@ -38,13 +37,13 @@ def manage_suppliers():
                 for index, row in edited_df.iterrows():
                     supplier_id = suppliers[index]['id']  # Get id from original suppliers list
                     updated_data = row.to_dict()
-                    update_supplier(supplier_id, updated_data)
+                    utils.update_supplier_management(supplier_id, updated_data)
                 st.success(_("Successfully Saved Edits!"))
         
         # Export functionality
         if st.button(_("Export List")):
             utils.log_event("Exporter la Liste de Fournisseurs")
-            export_suppliers_to_csv(suppliers)
+            utils.export_suppliers_to_csv_management(suppliers)
 
     elif doc_type == _("Add Suppliers"):
         # Form to add a new supplier
@@ -54,12 +53,12 @@ def manage_suppliers():
                 name = st.text_input(_("Contact Name"))
                 email = st.text_input("Email")
                 address = st.text_input(_("Address"))
-                categories = st.multiselect(_("Categories (Garments, Accessoiries, Home Textiles...)"), options=get_distinct_values("category"))
+                categories = st.multiselect(_("Categories (Garments, Accessoiries, Home Textiles...)"), options=utils.get_distinct_values_management("category"))
                 new_category = st.text_input(_("Add new Categories (separated by ,)"))
                 if new_category:
                     categories.append(new_category)
 
-                fields = st.multiselect(_("Fields of Activity (Dyeing, Importing, Knitting...)"), options=get_distinct_values("fields"))
+                fields = st.multiselect(_("Fields of Activity (Dyeing, Importing, Knitting...)"), options=utils.get_distinct_values_management("fields"))
                 new_field = st.text_input(_("Add now fields of activity (separated by ,)"))
                 if new_field:
                     fields.append(new_field)
@@ -87,42 +86,6 @@ def manage_suppliers():
 
                     utils.detect_and_split_comma_in_lists()
                     st.cache_data.clear()
-
-def update_supplier(supplier_id, supplier_data):
-    db = firestore.client()
-    supplier_ref = db.collection("suppliers").document(supplier_id)
-    supplier_ref.update(supplier_data)
-
-@st.cache_data(ttl=3600)
-def get_suppliers(selected_categories, selected_fields):
-    db = firestore.client()
-    suppliers_ref = db.collection("suppliers")
-    suppliers = []
-    for doc in suppliers_ref.stream():
-        supplier = doc.to_dict()
-        supplier['id'] = doc.id  # Ajout de l'ID du document
-        if (not selected_categories or set(supplier.get('category', [])).intersection(set(selected_categories))) and \
-           (not selected_fields or set(supplier.get('fields', [])).intersection(set(selected_fields))):
-            suppliers.append(supplier)
-    return suppliers
-
-def export_suppliers_to_csv(suppliers):
-    _ = utils.translate()
-    df = pd.DataFrame(suppliers)
-    csv = df.to_csv(index=False)
-    st.download_button(label=_("Download CSV"), data=csv, file_name="suppliers_export.csv", mime="text/csv")
-
-@st.cache_data(ttl=3600)
-def get_distinct_values(field_name):
-    db = firestore.client()
-    suppliers_ref = db.collection("suppliers")
-    values = set()
-    for doc in suppliers_ref.stream():
-        supplier = doc.to_dict()
-        if field_name in supplier:
-            for value in supplier[field_name]:
-                values.add(value)
-    return list(values)
 
 if __name__ == "__main__":
     manage_suppliers()

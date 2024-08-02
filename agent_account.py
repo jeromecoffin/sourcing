@@ -1,8 +1,5 @@
 import streamlit as st
 from firebase_admin import firestore
-import yaml
-from yaml.loader import SafeLoader
-from streamlit_authenticator.utilities.hasher import Hasher
 import utils
 
 

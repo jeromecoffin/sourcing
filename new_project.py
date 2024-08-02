@@ -30,8 +30,6 @@ def create_project(title, client, fournisseurs, rfi, rfq):
 
 def new_projects():
     
-    utils.initialize_firebase()
-
     _ = utils.translate()
     
     st.header(_("Create New Project"))

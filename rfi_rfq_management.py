@@ -1,5 +1,4 @@
 import streamlit as st
-import datetime
 from firebase_admin import firestore
 import utils
 
@@ -66,7 +65,7 @@ def manage_rfi_rfq():
 
         st.subheader(_("RFIs List"))
         with st.spinner(_("Loading RFIs...")):
-            rfis = get_rfis()
+            rfis = utils.get_rfis_management()
         for rfi in rfis:
             st.write(rfi)
             if st.button(_("Download") + " " + rfi['title'] + _(" in PDF")):
@@ -139,7 +138,7 @@ def manage_rfi_rfq():
 
         st.subheader(_("RFQs List"))
         with st.spinner(_("RFQs Loading...")):
-            rfqs = get_rfqs()
+            rfqs = utils.get_rfqs_management()
         for rfq in rfqs:
             st.write(rfq)
             if st.button(_("Download") + " " + rfq['title'] + _(" in PDF")):
@@ -151,17 +150,3 @@ def manage_rfi_rfq():
                     file_name=f"RFQ_{rfq['title']}.pdf",
                     mime="application/pdf"
                 )
-
-@st.cache_data(ttl=3600)
-def get_rfis():
-    db = firestore.client()
-    rfis_ref = db.collection("rfis")
-    rfis = [doc.to_dict() for doc in rfis_ref.stream()]
-    return rfis
-
-@st.cache_data(ttl=3600)
-def get_rfqs():
-    db = firestore.client()
-    rfqs_ref = db.collection("rfqs")
-    rfqs = [doc.to_dict() for doc in rfqs_ref.stream()]
-    return rfqs

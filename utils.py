@@ -1,7 +1,6 @@
 from datetime import datetime, timezone, timedelta
 from firebase_admin import credentials, firestore, initialize_app, _apps
 from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.lib import colors
@@ -11,6 +10,9 @@ from io import BytesIO
 import streamlit as st
 import gettext
 import os
+from google.cloud.firestore_v1.base_query import FieldFilter
+import pandas as pd
+
 
 def initialize_firebase():
     if not _apps:
@@ -272,3 +274,97 @@ def translate():
     language = gettext.translation('messages', locales_dir, languages=[lang])
     language.install()
     return language.gettext
+
+@st.cache_data(ttl=3600)
+def get_projects():
+    db = firestore.client()
+    projects_ref = db.collection("projects")
+    projects = []
+    for doc in projects_ref.stream():
+        project = doc.to_dict()
+        project['doc_id'] = doc.id  # Add the document ID
+        projects.append(project)
+    return projects
+
+@st.cache_data(ttl=3600)
+def get_rfi_details(rfi_id):
+    db = firestore.client()
+    rfi_ref = db.collection("rfis").where(filter=FieldFilter("title", "==", rfi_id))
+    rfi = rfi_ref.get()
+    return rfi[0].to_dict() if rfi else {}
+
+@st.cache_data(ttl=3600)
+def get_rfq_details(rfq_id):
+    db = firestore.client()
+    rfq_ref = db.collection("rfqs").where(filter=FieldFilter("title", "==", rfq_id))
+    rfq = rfq_ref.get()
+    return rfq[0].to_dict() if rfq else {}
+
+@st.cache_data(ttl=3600)
+def get_clients_details(client_name):
+    db = firestore.client()
+    client_ref = db.collection("clients").where(filter=FieldFilter("name", "==", client_name))
+    client = client_ref.get()
+    return client[0].to_dict() if client else {}
+
+def update_project(doc_id, project_data):
+    db = firestore.client()
+    project_ref = db.collection("projects").document(doc_id)
+    project_ref.update(project_data)
+
+@st.cache_data(ttl=3600)
+def get_clients_onboarding():
+    db = firestore.client()
+    clients_ref = db.collection("clients")
+    clients = [doc.to_dict() for doc in clients_ref.stream()]
+    return clients
+
+@st.cache_data(ttl=3600)
+def get_rfis_management():
+    db = firestore.client()
+    rfis_ref = db.collection("rfis")
+    rfis = [doc.to_dict() for doc in rfis_ref.stream()]
+    return rfis
+
+@st.cache_data(ttl=3600)
+def get_rfqs_management():
+    db = firestore.client()
+    rfqs_ref = db.collection("rfqs")
+    rfqs = [doc.to_dict() for doc in rfqs_ref.stream()]
+    return rfqs
+
+def update_supplier_management(supplier_id, supplier_data):
+    db = firestore.client()
+    supplier_ref = db.collection("suppliers").document(supplier_id)
+    supplier_ref.update(supplier_data)
+
+@st.cache_data(ttl=3600)
+def get_suppliers_management(selected_categories, selected_fields):
+    db = firestore.client()
+    suppliers_ref = db.collection("suppliers")
+    suppliers = []
+    for doc in suppliers_ref.stream():
+        supplier = doc.to_dict()
+        supplier['id'] = doc.id  # Ajout de l'ID du document
+        if (not selected_categories or set(supplier.get('category', [])).intersection(set(selected_categories))) and \
+           (not selected_fields or set(supplier.get('fields', [])).intersection(set(selected_fields))):
+            suppliers.append(supplier)
+    return suppliers
+
+def export_suppliers_to_csv_management(suppliers):
+    _ = translate()
+    df = pd.DataFrame(suppliers)
+    csv = df.to_csv(index=False)
+    st.download_button(label=_("Download CSV"), data=csv, file_name="suppliers_export.csv", mime="text/csv")
+
+@st.cache_data(ttl=3600)
+def get_distinct_values_management(field_name):
+    db = firestore.client()
+    suppliers_ref = db.collection("suppliers")
+    values = set()
+    for doc in suppliers_ref.stream():
+        supplier = doc.to_dict()
+        if field_name in supplier:
+            for value in supplier[field_name]:
+                values.add(value)
+    return list(values)

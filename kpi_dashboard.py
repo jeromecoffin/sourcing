@@ -1,7 +1,5 @@
 import streamlit as st
 from utils import calculate_kpis
-import gettext
-import os
 import utils
 
 def show_dashboard():
