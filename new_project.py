@@ -4,31 +4,6 @@ from datetime import datetime
 from firebase_admin import firestore
 import get
 
-def create_project(title, client, suppliers, rfi, rfq):
-
-    db = firestore.client()
-
-    project_id = f"project_{datetime.now().strftime('%Y%m%d%H%M%S')}"
-
-    project_data = {
-        "title": title,
-        "client": client,
-        "suppliers": suppliers,
-        "rfi": rfi,
-        "rfq": rfq,
-        "kpis": {
-            "response_time": 0,
-            "cost": 0,
-            "performance": 0,
-            "on_time_deliveries": 0,
-            "late_deliveries": 0
-        }
-    }
-
-    db.collection("projects").document(project_id).set(project_data)
-
-    return project_data
-
 def new_projects():
     
     _ = utils.translate()
@@ -60,10 +35,28 @@ def new_projects():
             submit_button = st.form_submit_button(label=_('Create Project'))
         
             if submit_button:
-                project = create_project(title, client, suppliersProject, rfi, rfq)
+                db = firestore.client()
+
+                project_id = f"project_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+
+                project_data = {
+                    "title": title,
+                    "client": client,
+                    "suppliers": suppliersProject,
+                    "rfi": rfi,
+                    "rfq": rfq,
+                    "kpis": {
+                        "response_time": 0,
+                        "cost": 0,
+                        "performance": 0,
+                        "on_time_deliveries": 0,
+                        "late_deliveries": 0
+                    }
+                }
+
+                db.collection("projects").document(project_id).set(project_data)
                 st.success(_("Data successfully modified!"))
                 utils.log_event("Nouveau Projet", details=title)
                 st.cache_data.clear()
-                st.write(project)
 
         

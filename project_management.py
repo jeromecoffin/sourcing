@@ -67,10 +67,13 @@ def show_project_details(project):
 
     st.divider()
 
-    suppliers = []
-    suppliers = project['fournisseurs']
-    supplier = st.selectbox(_("Final Supplier:"), project['fournisseurs'])
-    st.write(_("Final Supplier:"), supplier)
+    try:
+        suppliers = []
+        suppliers = project['suppliers']
+        supplier = st.selectbox(_("Final Supplier:"), project['suppliers'])
+        st.write(_("Final Supplier:"), supplier)
+    except:
+        print("error suppliers project management" )
 
     submit = st.button(_("Save"))
 
@@ -78,8 +81,8 @@ def show_project_details(project):
         project_data = {
             "title": project['title'],
             "client": project['client'],
-            "fournisseurs": suppliers,
-            "fournisseur_final": supplier,  
+            "suppliers": suppliers,
+            "supplier_final": supplier,  
             "rfi": rfi,
             "rfq": rfq,
             "kpis": {
@@ -121,5 +124,3 @@ def manage_projects():
     elif doc_type == _("New Project"):
         new_project.new_projects()
 
-if __name__ == "__main__":
-    manage_projects()

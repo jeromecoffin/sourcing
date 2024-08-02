@@ -39,6 +39,7 @@ def manage_suppliers():
                     supplier_id = suppliers[index]['id']  # Get id from original suppliers list
                     updated_data = row.to_dict()
                     utils.update_supplier_management(supplier_id, updated_data)
+                st.cache_data.clear()
                 st.success(_("Successfully Saved Edits!"))
         
         # Export functionality
@@ -87,6 +88,3 @@ def manage_suppliers():
 
                     utils.detect_and_split_comma_in_lists()
                     st.cache_data.clear()
-
-if __name__ == "__main__":
-    manage_suppliers()
