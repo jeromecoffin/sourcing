@@ -3,23 +3,24 @@ from firebase_admin import firestore
 import pandas as pd
 from datetime import datetime
 import utils
+import get
 
 def manage_suppliers():
 
     _ = utils.translate()
 
     st.sidebar.title(_("Suppliers Management"))
-    doc_type = st.sidebar.radio(_("Select Type of Document"), (_("List"), _("New Supplier")), label_visibility="hidden")
+    doc_type = st.sidebar.radio(_("Select Type of Document"), (_("List"), _("Add Supplier")), label_visibility="hidden")
 
     if doc_type == _("List"):
         # Display list of suppliers
         st.subheader(_("Suppliers List"))
         col1, col2 = st.columns(2)
-        selected_categories = col1.multiselect(_("Filter by Product Category"), options=utils.get_distinct_values_management("category"))
-        selected_fields = col2.multiselect(_("Filter by Field of Activity"), options=utils.get_distinct_values_management("fields"))
+        selected_categories = col1.multiselect(_("Filter by Product Category"), options=get.get_distinct_values_management("category"))
+        selected_fields = col2.multiselect(_("Filter by Field of Activity"), options=get.get_distinct_values_management("fields"))
 
         with st.spinner(_("Loading Suppliers...")):
-            suppliers = utils.get_suppliers(selected_categories, selected_fields)
+            suppliers = get.get_suppliers(selected_categories, selected_fields)
         
         if suppliers:
             suppliers_df = pd.DataFrame(suppliers)
@@ -45,7 +46,7 @@ def manage_suppliers():
             utils.log_event("Exporter la Liste de Fournisseurs")
             utils.export_suppliers_to_csv_management(suppliers)
 
-    elif doc_type == _("Add Suppliers"):
+    elif doc_type == _("Add Supplier"):
         # Form to add a new supplier
         with st.spinner(_("Loading Suppliers...")):
             with st.form("add_supplier_form", clear_on_submit=True):
@@ -53,12 +54,12 @@ def manage_suppliers():
                 name = st.text_input(_("Contact Name"))
                 email = st.text_input("Email")
                 address = st.text_input(_("Address"))
-                categories = st.multiselect(_("Categories (Garments, Accessoiries, Home Textiles...)"), options=utils.get_distinct_values_management("category"))
+                categories = st.multiselect(_("Categories (Garments, Accessoiries, Home Textiles...)"), options=get.get_distinct_values_management("category"))
                 new_category = st.text_input(_("Add new Categories (separated by ,)"))
                 if new_category:
                     categories.append(new_category)
 
-                fields = st.multiselect(_("Fields of Activity (Dyeing, Importing, Knitting...)"), options=utils.get_distinct_values_management("fields"))
+                fields = st.multiselect(_("Fields of Activity (Dyeing, Importing, Knitting...)"), options=get.get_distinct_values_management("fields"))
                 new_field = st.text_input(_("Add now fields of activity (separated by ,)"))
                 if new_field:
                     fields.append(new_field)
