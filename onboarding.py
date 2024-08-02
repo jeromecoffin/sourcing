@@ -33,7 +33,7 @@ def show_onboarding():
             st.success(_("Customer Successfully Added"))
             st.cache_data.clear()
 
-    clients = utils.get_clients_onboarding()
+    clients = utils.get_clients()
     st.subheader(_("Customer List"))
     for client in clients:
         st.write(client)

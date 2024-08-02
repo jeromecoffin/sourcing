@@ -338,3 +338,6 @@ msgstr "Télécharger CSV"
 
 msgid "Create Project"
 msgstr "Créer Projet"
+
+msgid "empty"
+msgstr "vide"

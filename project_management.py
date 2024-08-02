@@ -1,6 +1,7 @@
 import streamlit as st
 import utils
 import new_project
+import get
 
 
 def show_project_details(project):
@@ -12,23 +13,29 @@ def show_project_details(project):
     st.write(_("Title:"), project['title'])
 
     st.write(_("Customer:"), project['client'])
-    client_details = utils.get_clients_details(project['client'])
-    if client_details:
+    clients = get.get_clients()
+    client = [d for d in clients if d["name"] == project['client']]
+    client = client[0] if client else None
+    if client:
         with st.expander(_("Customer Data:")):
-            for key, value in client_details.items():
+            for key, value in client.items():
                 st.code(f"{key}: {value}")
 
     st.divider()
 
     st.write("RFI:", project['rfi'])
-    rfi = project['rfi']
     if project['rfi'] == _("empty"):
-        rfi_options = utils.get_rfis()
-        rfi_options.insert(0, _("empty"))
-        rfi = st.selectbox(_("Chose one RFI:"), rfi_options)
-        rfi_details = utils.get_rfi_details(rfi)
+        rfis = get.get_rfis()
+        rfistitle = [rfi["title"] for rfi in rfis]
+        rfistitle.insert(0, _("empty"))
+        rfi = st.selectbox(_("Chose one RFI:"), rfistitle)
+        rfis = get.get_rfis()
+        rfi_details = [d for d in rfis if d["title"] == project['rfi']]
+        rfi_details = rfi_details[0] if rfi_details else None
     else:
-        rfi_details = utils.get_rfi_details(project['rfi'])
+        rfis = get.get_rfis()
+        rfi_details = [d for d in rfis if d["title"] == project['rfi']]
+        rfi_details = rfi_details[0] if rfi_details else None
     if rfi_details:
         with st.expander(_("RFI Data :")):
             for key, value in rfi_details.items():
@@ -39,14 +46,18 @@ def show_project_details(project):
     st.divider()
 
     st.write("RFQ:", project['rfq'])
-    rfq = project['rfq']
     if project['rfq'] == _("empty"):
-        rfq_options = utils.get_rfqs()
-        rfq_options.insert(0, _("empty"))
-        rfq = st.selectbox(_("Chose one RFQ:"), rfq_options)
-        rfq_details = utils.get_rfq_details(rfq)
+        rfqs = get.get_rfqs()
+        rfqstitle = [rfq["title"] for rfq in rfqs]
+        rfqstitle.insert(0, _("empty"))
+        rfq = st.selectbox(_("Chose one RFQ:"), rfqstitle)
+        rfqs = get.get_rfqs()
+        rfq_details = [d for d in rfqs if d["title"] == project['rfq']]
+        rfq_details = rfq_details[0] if rfq_details else None
     else:
-        rfq_details = utils.get_rfq_details(project['rfq'])
+        rfqs = get.get_rfqs()
+        rfq_details = [d for d in rfqs if d["title"] == project['rfq']]
+        rfq_details = rfq_details[0] if rfq_details else None
     if rfq_details:
         with st.expander(_("RFQ Data:")):
             for key, value in rfq_details.items():
@@ -96,7 +107,7 @@ def manage_projects():
         st.header(_("Projects Management"))
         
         st.header(_("Existing Project"))
-        projects = utils.get_projects()
+        projects = get.get_projects()
         
         if projects:
             project_names = [project['title'] for project in projects]

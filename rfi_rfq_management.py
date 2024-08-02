@@ -1,7 +1,7 @@
 import streamlit as st
 from firebase_admin import firestore
 import utils
-
+import get
 
 def manage_rfi_rfq():
 
@@ -17,8 +17,9 @@ def manage_rfi_rfq():
             title = st.text_input(_("RFI Title"))
             reference = st.text_input(_("Reference"))
             location = st.text_input(_("Location"))
-            clients = utils.get_clients()
-            selected_client = st.selectbox(_("Select a Client:"), clients)
+            clients = get.get_clients()
+            clientsname = [client["name"] for client in clients]
+            selected_client = st.selectbox(_("Select a Client:"), clientsname)
 
             st.divider()
             st.write(_("Requesting Party"))
@@ -33,8 +34,9 @@ def manage_rfi_rfq():
             requestDueDate = st.text_input(_("Deadline"))
             information = st.text_area(_("Requesting Information"))
             
-            suppliers = utils.get_suppliers()
-            selected_suppliers = st.multiselect(_("Select Suppliers"), suppliers)
+            suppliers = get.get_suppliers(None, None)
+            suppliersCompany = [supplier["company"] for supplier in suppliers]
+            selected_suppliers = st.multiselect(_("Select Suppliers"), suppliersCompany)
             
             comments = st.text_area(_("Additional Comments"))
             submit = st.form_submit_button(_("Submit RFI"))
@@ -65,7 +67,7 @@ def manage_rfi_rfq():
 
         st.subheader(_("RFIs List"))
         with st.spinner(_("Loading RFIs...")):
-            rfis = utils.get_rfis_management()
+            rfis = get.get_rfis()
         for rfi in rfis:
             st.write(rfi)
             if st.button(_("Download") + " " + rfi['title'] + _(" in PDF")):
@@ -85,11 +87,13 @@ def manage_rfi_rfq():
             reference = st.text_input(_("Reference"))
             location = st.text_input(_("Location"))
 
-            clients = utils.get_clients()
-            selected_client = st.selectbox(_("Select Customer:"), clients)
+            clients = get.get_clients()
+            clientsname = [client["name"] for client in clients]
+            selected_client = st.selectbox(_("Select Customer:"), clientsname)
 
-            rfis = utils.get_rfis()
-            selected_rfis = st.selectbox(_("Select RFI:"), rfis)
+            rfis = get.get_rfis()
+            rfistitle = [rfi["title"] for rfi in rfis]
+            selected_rfis = st.selectbox(_("Select RFI:"), rfistitle)
             
             st.divider()
             st.write(_("Requesting Party"))
@@ -104,8 +108,9 @@ def manage_rfi_rfq():
             requestDueDate = st.text_input(_("Deadline"))
             quotationContent = st.text_area(_("Quotation Content"))
             
-            suppliers = utils.get_suppliers()
-            selected_suppliers = st.multiselect(_("Select Suppliers:"), suppliers)
+            suppliers = get.get_suppliers(None, None)
+            suppliersCompany = [supplier["company"] for supplier in suppliers]
+            selected_suppliers = st.multiselect(_("Select Suppliers:"), suppliersCompany)
             
             comments = st.text_area(_("Comments"))
             submit = st.form_submit_button(_("Submit RFQ"))
@@ -138,7 +143,7 @@ def manage_rfi_rfq():
 
         st.subheader(_("RFQs List"))
         with st.spinner(_("RFQs Loading...")):
-            rfqs = utils.get_rfqs_management()
+            rfqs = get.get_rfqs()
         for rfq in rfqs:
             st.write(rfq)
             if st.button(_("Download") + " " + rfq['title'] + _(" in PDF")):

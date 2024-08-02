@@ -19,7 +19,7 @@ def manage_suppliers():
         selected_fields = col2.multiselect(_("Filter by Field of Activity"), options=utils.get_distinct_values_management("fields"))
 
         with st.spinner(_("Loading Suppliers...")):
-            suppliers = utils.get_suppliers_management(selected_categories, selected_fields)
+            suppliers = utils.get_suppliers(selected_categories, selected_fields)
         
         if suppliers:
             suppliers_df = pd.DataFrame(suppliers)

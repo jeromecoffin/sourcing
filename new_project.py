@@ -2,8 +2,9 @@ import streamlit as st
 import utils
 from datetime import datetime
 from firebase_admin import firestore
+import get
 
-def create_project(title, client, fournisseurs, rfi, rfq):
+def create_project(title, client, suppliers, rfi, rfq):
 
     db = firestore.client()
 
@@ -12,7 +13,7 @@ def create_project(title, client, fournisseurs, rfi, rfq):
     project_data = {
         "title": title,
         "client": client,
-        "fournisseurs": fournisseurs,
+        "suppliers": suppliers,
         "rfi": rfi,
         "rfq": rfq,
         "kpis": {
@@ -38,24 +39,28 @@ def new_projects():
     
         with st.form(key='create_project_form', clear_on_submit=True):
             
-            clients = utils.get_clients()
-            rfi_options = utils.get_rfis()
-            rfq_options = utils.get_rfqs()
-            fournisseurs = utils.get_suppliers()
-            rfi_options.insert(0, _("empty"))
-            rfq_options.insert(0, _("empty"))
+            clients = get.get_clients()
+            clientsname = [client["name"] for client in clients]
+            rfis = get.get_rfis()
+            rfistitle = [rfi["title"] for rfi in rfis]
+            rfqs = get.get_rfqs()
+            rfqstitle = [rfq["title"] for rfq in rfqs]
+            suppliers = get.get_suppliers(None, None)
+            suppliersCompany = [supplier["company"] for supplier in suppliers]
+            rfistitle.insert(0, _("empty"))
+            rfqstitle.insert(0, _("empty"))
             
             title = st.text_input(_("Project Title"))
-            client = st.selectbox(_("Select Customer:"), clients)
-            rfi = st.selectbox(_("Select RFI"), rfi_options)
-            rfq = st.selectbox(_("Select RFQ:"), rfq_options)
-            fournisseursProject = st.multiselect(_("Choose Suppliers"), fournisseurs)
-            fournisseursProject.insert(0, _("empty"))
+            client = st.selectbox(_("Select Customer:"), clientsname)
+            rfi = st.selectbox(_("Select RFI"), rfistitle)
+            rfq = st.selectbox(_("Select RFQ:"), rfqstitle)
+            suppliersProject = st.multiselect(_("Choose Suppliers"), suppliersCompany)
+            suppliersProject.insert(0, _("empty"))
             
             submit_button = st.form_submit_button(label=_('Create Project'))
         
             if submit_button:
-                project = create_project(title, client, fournisseursProject, rfi, rfq)
+                project = create_project(title, client, suppliersProject, rfi, rfq)
                 st.success(_("Data successfully modified!"))
                 utils.log_event("Nouveau Projet", details=title)
                 st.cache_data.clear()
