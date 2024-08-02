@@ -14,6 +14,8 @@ from google.cloud.firestore_v1.base_query import FieldFilter
 import pandas as pd
 
 
+# Initializes Firebase using configuration from Streamlit secrets.
+# Rnn only once at start up
 def initialize_firebase():
     if not _apps:
         firebase_config = st.secrets["firebase"]
@@ -32,6 +34,8 @@ def initialize_firebase():
         })
         initialize_app(cred)
 
+# Calculates various KPIs from Firestore collections.
+# Output dict (e.g kpis["total_projects"])
 @st.cache_data(ttl=3600)
 def calculate_kpis():
     db = firestore.client()
@@ -78,6 +82,7 @@ def calculate_kpis():
         "samples_required": samples_required
     }
 
+# Generates a PDF document (RFI or RFQ) based on provided data.
 def generate_pdf(doc_type, doc_data):
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
@@ -176,6 +181,8 @@ def generate_pdf(doc_type, doc_data):
     buffer.seek(0)
     return buffer
 
+# Retrieves a list of supplier names from the Firestore 'suppliers' collection.
+# Output : List of all suppliers name
 @st.cache_data(ttl=3600)
 def get_suppliers():
     db = firestore.client()
@@ -183,6 +190,8 @@ def get_suppliers():
     suppliers = suppliers_ref.get()
     return [supplier.to_dict()["name"] for supplier in suppliers]
 
+# Retrieves a list of RFI titles from the Firestore 'rfis' collection.
+# Output : Liste of all RFI titles
 @st.cache_data(ttl=3600)
 def get_rfis():
     db = firestore.client()
@@ -190,6 +199,8 @@ def get_rfis():
     rfis = rfis_ref.get()
     return [rfi.to_dict()["title"] for rfi in rfis]
 
+# Retrieves a list of RFQ titles from the Firestore 'rfqs' collection.
+# Output : Liste of all RFQ titles
 @st.cache_data(ttl=3600)
 def get_rfqs():
     db = firestore.client()
@@ -197,6 +208,8 @@ def get_rfqs():
     rfqs = rfqs_ref.get()
     return [rfq.to_dict()["title"] for rfq in rfqs]
 
+# Retrieves a list of client names from the Firestore 'clients' collection.
+# Output : List of all Client name
 @st.cache_data(ttl=3600)
 def get_clients():
     db = firestore.client()
@@ -204,6 +217,8 @@ def get_clients():
     clients = clients_ref.get()
     return [client.to_dict()["name"] for client in clients]
 
+# Detects and splits comma-separated values in 'category' and 'fields' fields for suppliers.
+# Update the firestore documents
 def detect_and_split_comma_in_lists():
     db = firestore.client()
     suppliers_ref = db.collection("suppliers")
@@ -243,6 +258,7 @@ def detect_and_split_comma_in_lists():
             print(f"Document {doc.id} updated successfully.")
     return changed
 
+# Logs an event with a specific type and details to the Firestore 'event_logs' collection.
 def log_event(event_type, details=None):
     utc_plus_7 = timezone(timedelta(hours=7))
     event_data = {
@@ -253,6 +269,8 @@ def log_event(event_type, details=None):
     db = firestore.client()
     db.collection("event_logs").add(event_data)
 
+# Retrieves the language preference for the user from the Firestore 'agents' collection.
+# Output : en, vi ou fr
 @st.cache_data(ttl=3600)
 def get_language():
     db = firestore.client()
@@ -260,6 +278,7 @@ def get_language():
     agent = agent_ref.get()
     return agent.to_dict()["language"]
 
+# Configures gettext for translations based on the user's language preference.
 def translate():
 
     language = get_language()
@@ -275,6 +294,8 @@ def translate():
     language.install()
     return language.gettext
 
+# Retrieves all projects from the Firestore 'projects' collection.
+# Output : List of dict of all projects
 @st.cache_data(ttl=3600)
 def get_projects():
     db = firestore.client()
@@ -286,6 +307,9 @@ def get_projects():
         projects.append(project)
     return projects
 
+# Retrieves detailed information for a specific RFI from the Firestore 'rfis' collection.
+# Input : RFI "title"
+# Output : dict RFI
 @st.cache_data(ttl=3600)
 def get_rfi_details(rfi_id):
     db = firestore.client()
@@ -293,6 +317,9 @@ def get_rfi_details(rfi_id):
     rfi = rfi_ref.get()
     return rfi[0].to_dict() if rfi else {}
 
+# Retrieves detailed information for a specific RFQ from the Firestore 'rfqs' collection.
+# Input : RFQ "title"
+# Output : dict RFQ
 @st.cache_data(ttl=3600)
 def get_rfq_details(rfq_id):
     db = firestore.client()
@@ -300,6 +327,9 @@ def get_rfq_details(rfq_id):
     rfq = rfq_ref.get()
     return rfq[0].to_dict() if rfq else {}
 
+# Retrieves detailed information for a specific client from the Firestore 'clients' collection.
+# Input : client "name"
+# Output : dict client
 @st.cache_data(ttl=3600)
 def get_clients_details(client_name):
     db = firestore.client()
@@ -307,11 +337,15 @@ def get_clients_details(client_name):
     client = client_ref.get()
     return client[0].to_dict() if client else {}
 
+# Updates a project's data in the Firestore 'projects' collection.
+# Input : Project "id" and Project dict 
 def update_project(doc_id, project_data):
     db = firestore.client()
     project_ref = db.collection("projects").document(doc_id)
     project_ref.update(project_data)
 
+# Retrieves onboarding information for clients from the Firestore 'clients' collection.
+# Output : List of dict of all clients
 @st.cache_data(ttl=3600)
 def get_clients_onboarding():
     db = firestore.client()
@@ -319,6 +353,8 @@ def get_clients_onboarding():
     clients = [doc.to_dict() for doc in clients_ref.stream()]
     return clients
 
+# Retrieves all RFIs from the Firestore 'rfis' collection.
+# Output : List dict all RFI 
 @st.cache_data(ttl=3600)
 def get_rfis_management():
     db = firestore.client()
@@ -326,6 +362,8 @@ def get_rfis_management():
     rfis = [doc.to_dict() for doc in rfis_ref.stream()]
     return rfis
 
+# Retrieves all RFQs from the Firestore 'rfqs' collection.
+# Output : List dict all RFQ 
 @st.cache_data(ttl=3600)
 def get_rfqs_management():
     db = firestore.client()
@@ -333,11 +371,16 @@ def get_rfqs_management():
     rfqs = [doc.to_dict() for doc in rfqs_ref.stream()]
     return rfqs
 
+# Updates supplier data in the Firestore 'suppliers' collection.
+# Input : supplier id and supplier dict 
 def update_supplier_management(supplier_id, supplier_data):
     db = firestore.client()
     supplier_ref = db.collection("suppliers").document(supplier_id)
     supplier_ref.update(supplier_data)
 
+# Retrieves suppliers from Firestore 'suppliers' collection based on selected categories and fields.
+# Input : List categories and list fields
+# Output : List dict supplier filtered
 @st.cache_data(ttl=3600)
 def get_suppliers_management(selected_categories, selected_fields):
     db = firestore.client()
@@ -351,12 +394,14 @@ def get_suppliers_management(selected_categories, selected_fields):
             suppliers.append(supplier)
     return suppliers
 
+# Exports a list of suppliers to a CSV file for download.
 def export_suppliers_to_csv_management(suppliers):
     _ = translate()
     df = pd.DataFrame(suppliers)
     csv = df.to_csv(index=False)
     st.download_button(label=_("Download CSV"), data=csv, file_name="suppliers_export.csv", mime="text/csv")
 
+# Retrieves distinct values for a specific field from the Firestore 'suppliers' collection.
 @st.cache_data(ttl=3600)
 def get_distinct_values_management(field_name):
     db = firestore.client()
