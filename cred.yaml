@@ -15,7 +15,7 @@ credentials:
       failed_login_attempts: 0
       logged_in: false
       name: Theo Fleury
-      password: $2b$12$gvhKf7rCXlFzlCgKFhIZuOz.LSkdYCTzF9tPnF6W3ldvUdHHQGjXO
+      password: abc
 preauthorized:
   emails:
   - user1@example.com
