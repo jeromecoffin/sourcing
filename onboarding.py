@@ -2,6 +2,7 @@ import streamlit as st
 from firebase_admin import firestore
 import utils
 import get 
+import pandas as pd
 
 def show_onboarding():
     
@@ -34,7 +35,12 @@ def show_onboarding():
             st.success(_("Customer Successfully Added"))
             st.cache_data.clear()
 
+    # Assuming get_clients() returns a list of dictionaries with client data
     clients = get.get_clients()
+
+    # Extracting the client data into a pandas DataFrame
+    df = pd.DataFrame(clients)
+
+    # Displaying the DataFrame as an interactive table
     st.subheader(_("Customer List"))
-    for client in clients:
-        st.write(client)
+    st.dataframe(df, hide_index=True, use_container_width=True)

@@ -21,6 +21,12 @@ import utils
 initialize_firebase()
 
 st.set_page_config(layout="wide")
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 # Load config.yaml for authentication
 with open('cred.yaml') as file:

@@ -69,16 +69,19 @@ def manage_rfi_rfq():
         with st.spinner(_("Loading RFIs...")):
             rfis = get.get_rfis()
         for rfi in rfis:
-            st.write(rfi)
-            if st.button(_("Download") + " " + rfi['title'] + _(" in PDF")):
-                pdf = utils.generate_pdf("RFI", rfi)
-                utils.log_event("Télécharger RFI", details=rfi['title'])
-                st.download_button(
-                    label=_("Download PDF"),
-                    data=pdf,
-                    file_name=f"RFI_{rfi['title']}.pdf",
-                    mime="application/pdf"
-                )
+            titleExpender = rfi['title'] + " - " + rfi['reference']
+            with st.expander(titleExpender):
+                for key, value in rfi.items():
+                    st.code(f"{key}: {value}")
+                if st.button(_("Download") + " " + rfi['title'] + _(" in PDF")):
+                    pdf = utils.generate_pdf("RFI", rfi)
+                    utils.log_event("Télécharger RFI", details=rfi['title'])
+                    st.download_button(
+                        label=_("Download PDF"),
+                        data=pdf,
+                        file_name=f"RFI_{rfi['title']}.pdf",
+                        mime="application/pdf"
+                    )
     elif doc_type == "RFQ":
 
         with st.form("add_rfq_form", clear_on_submit=True):
@@ -145,13 +148,18 @@ def manage_rfi_rfq():
         with st.spinner(_("RFQs Loading...")):
             rfqs = get.get_rfqs()
         for rfq in rfqs:
-            st.write(rfq)
-            if st.button(_("Download") + " " + rfq['title'] + _(" in PDF")):
-                pdf = utils.generate_pdf("RFQ", rfq)
-                utils.log_event(_("Download RFQ"), details=rfq['title'])
-                st.download_button(
-                    label=_("Download PDF"),
-                    data=pdf,
-                    file_name=f"RFQ_{rfq['title']}.pdf",
-                    mime="application/pdf"
-                )
+            titleExpender = rfq['title'] + " - " + rfq['reference']
+            with st.expander(titleExpender):
+                for key, value in rfq.items():
+                    st.code(f"{key}: {value}")
+                if st.button(_("Download") + " " + rfq['title'] + _(" in PDF")):
+                    pdf = utils.generate_pdf("RFQ", rfq)
+                    utils.log_event(_("Download RFQ"), details=rfq['title'])
+                    st.download_button(
+                        label=_("Download PDF"),
+                        data=pdf,
+                        file_name=f"RFQ_{rfq['title']}.pdf",
+                        mime="application/pdf"
+                    )
+
+
