@@ -36,6 +36,7 @@ def show_project_details(project):
         rfis = get.get_rfis()
         rfi_details = [d for d in rfis if d["title"] == project['rfi']]
         rfi_details = rfi_details[0] if rfi_details else None
+        rfi = project['rfi']
     if rfi_details:
         with st.expander(_("RFI Data :")):
             for key, value in rfi_details.items():
@@ -58,6 +59,7 @@ def show_project_details(project):
         rfqs = get.get_rfqs()
         rfq_details = [d for d in rfqs if d["title"] == project['rfq']]
         rfq_details = rfq_details[0] if rfq_details else None
+        rfq = project['rfq']
     if rfq_details:
         with st.expander(_("RFQ Data:")):
             for key, value in rfq_details.items():
