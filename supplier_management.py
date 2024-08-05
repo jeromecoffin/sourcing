@@ -47,7 +47,7 @@ def manage_suppliers():
             utils.log_event("Exporter la Liste de Fournisseurs")
             utils.export_suppliers_to_csv_management(suppliers)
 
-    elif doc_type == _("Add Supplier"):
+    elif doc_type == _("New Supplier"):
         # Form to add a new supplier
         with st.spinner(_("Loading Suppliers...")):
             with st.form("add_supplier_form", clear_on_submit=True):
