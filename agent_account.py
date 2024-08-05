@@ -42,7 +42,8 @@ def show_profile():
                 "address": address,
                 "sourcing": sourcing,
                 "experience": experience,
-                "language": language
+                "language": language,
+                "isFirstLogin": "1"
             }
 
             db = firestore.client()

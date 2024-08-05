@@ -28,6 +28,12 @@ def get_language():
     agent = agent_ref.get()
     return agent.to_dict()["language"]
 
+def get_isFirstLogin():
+    db = firestore.client()
+    agent_ref = db.collection("agents").document("user")
+    agent = agent_ref.get()
+    return agent.to_dict()["isFirstLogin"]
+
 # Retrieves all projects from the Firestore 'projects' collection.
 # Output : List of dict of all projects
 @st.cache_data(ttl=3600)

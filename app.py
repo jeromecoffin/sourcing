@@ -11,6 +11,7 @@ import kpi_dashboard
 import project_management
 from utils import initialize_firebase
 import utils
+import get
 
 # install gettext
 #msgfmt locales/en/LC_MESSAGES/messages.po -o locales/en/LC_MESSAGES/messages.mo
@@ -49,8 +50,13 @@ if authentication_status:
     st.sidebar.write(_("Welcome") + " " + user)
 
     def main():
-        
-        menu = [_("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Account")]
+        firstLogin = get.get_isFirstLogin()
+
+        if firstLogin == "0":
+            st.warning(_('Please update your settings on first login'))
+            menu = [_("Account"), _("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ")]
+        else:
+            menu = [_("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Account")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
         if choice == _("Dashboard"):
