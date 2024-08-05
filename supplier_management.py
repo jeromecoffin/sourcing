@@ -10,7 +10,7 @@ def manage_suppliers():
     _ = utils.translate()
 
     st.sidebar.title(_("Suppliers Management"))
-    doc_type = st.sidebar.radio(_("Select Type of Document"), (_("List"), _("Add Supplier")), label_visibility="hidden")
+    doc_type = st.sidebar.radio(_("Select Type of Document"), (_("List"), _("New Supplier")), label_visibility="hidden")
 
     if doc_type == _("List"):
         # Display list of suppliers
