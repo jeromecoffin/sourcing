@@ -61,7 +61,7 @@ def get_suppliers(selected_categories, selected_fields):
     for doc in suppliers_ref.stream():
         supplier = doc.to_dict()
         supplier['id'] = doc.id  # Ajout de l'ID du document
-        if (not selected_categories or set(supplier.get('category', [])).intersection(set(selected_categories))) and \
+        if (not selected_categories or set(supplier.get('categories', [])).intersection(set(selected_categories))) and \
            (not selected_fields or set(supplier.get('fields', [])).intersection(set(selected_fields))):
             suppliers.append(supplier)
     return suppliers

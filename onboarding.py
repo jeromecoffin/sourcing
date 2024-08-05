@@ -1,6 +1,7 @@
 import streamlit as st
 from firebase_admin import firestore
 import utils
+import get 
 
 def show_onboarding():
     
@@ -33,7 +34,7 @@ def show_onboarding():
             st.success(_("Customer Successfully Added"))
             st.cache_data.clear()
 
-    clients = utils.get_clients()
+    clients = get.get_clients()
     st.subheader(_("Customer List"))
     for client in clients:
         st.write(client)

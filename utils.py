@@ -181,7 +181,7 @@ def generate_pdf(doc_type, doc_data):
     buffer.seek(0)
     return buffer
 
-# Detects and splits comma-separated values in 'category' and 'fields' fields for suppliers.
+# Detects and splits comma-separated values in 'categories' and 'fields' fields for suppliers.
 # Update the firestore documents
 def detect_and_split_comma_in_lists():
     db = firestore.client()
@@ -192,18 +192,18 @@ def detect_and_split_comma_in_lists():
         supplier_data = doc.to_dict()
         changed = False
         
-        # Check and split 'category' field if it contains comma
-        if 'category' in supplier_data and isinstance(supplier_data['category'], list):
+        # Check and split 'categories' field if it contains comma
+        if 'categories' in supplier_data and isinstance(supplier_data['categories'], list):
             updated_categories = []
-            for category in supplier_data['category']:
-                if ',' in category:
-                    updated_categories.extend([c.strip() for c in category.split(',')])
+            for categories in supplier_data['categories']:
+                if ',' in categories:
+                    updated_categories.extend([c.strip() for c in categories.split(',')])
                     changed = True
                 else:
-                    updated_categories.append(category)
+                    updated_categories.append(categories)
             if changed:
-                supplier_data['category'] = updated_categories
-                doc.reference.update({'category': updated_categories})
+                supplier_data['categories'] = updated_categories
+                doc.reference.update({'categories': updated_categories})
         
         # Check and split 'fields' field if it contains comma
         if 'fields' in supplier_data and isinstance(supplier_data['fields'], list):

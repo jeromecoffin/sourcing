@@ -16,7 +16,7 @@ def manage_suppliers():
         # Display list of suppliers
         st.subheader(_("Suppliers List"))
         col1, col2 = st.columns(2)
-        selected_categories = col1.multiselect(_("Filter by Product Category"), options=get.get_distinct_values_management("category"))
+        selected_categories = col1.multiselect(_("Filter by Product Category"), options=get.get_distinct_values_management("categories"))
         selected_fields = col2.multiselect(_("Filter by Field of Activity"), options=get.get_distinct_values_management("fields"))
 
         with st.spinner(_("Loading Suppliers...")):
@@ -27,7 +27,7 @@ def manage_suppliers():
             suppliers_df = suppliers_df.sort_values(by=['company', 'name'])
 
             # Define columns to display, excluding 'id'
-            columns_to_display = ['company', 'name', 'email', 'address', 'category', 'fields', 'rate']
+            columns_to_display = ['company', 'name', 'email', 'address', 'categories', 'fields', 'rate']
             suppliers_df = suppliers_df[columns_to_display]
 
             # Display the data editor
@@ -55,10 +55,10 @@ def manage_suppliers():
                 name = st.text_input(_("Contact Name"))
                 email = st.text_input("Email")
                 address = st.text_input(_("Address"))
-                categories = st.multiselect(_("Categories (Garments, Accessoiries, Home Textiles...)"), options=get.get_distinct_values_management("category"))
-                new_category = st.text_input(_("Add new Categories (separated by ,)"))
-                if new_category:
-                    categories.append(new_category)
+                categories = st.multiselect(_("Categories (Garments, Accessoiries, Home Textiles...)"), options=get.get_distinct_values_management("categories"))
+                new_categories = st.text_input(_("Add new Categories (separated by ,)"))
+                if new_categories:
+                    categories.append(new_categories)
 
                 fields = st.multiselect(_("Fields of Activity (Dyeing, Importing, Knitting...)"), options=get.get_distinct_values_management("fields"))
                 new_field = st.text_input(_("Add now fields of activity (separated by ,)"))
@@ -75,7 +75,7 @@ def manage_suppliers():
                         "name": name,
                         "email": email,
                         "address": address,
-                        "category": categories,
+                        "categories": categories,
                         "fields": fields,
                         "rate": rate,
                         "created_at": datetime.now()
