@@ -99,6 +99,7 @@ def show_project_details(project):
         # Update the project in Firestore
         utils.update_project(project['doc_id'], project_data)
         utils.log_event("Mettre à jour projet", project['title'])
+        st.cache_data.clear()
         st.success(_("Project Successfully Updated"))
 
 def manage_projects():
