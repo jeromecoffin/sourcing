@@ -49,7 +49,7 @@ msgid "Dashboard"
 msgstr "Tableau de bord"
 
 msgid "Onboarding"
-msgstr "Intégration"
+msgstr "Onboarding"
 
 msgid "Project Management"
 msgstr "Gestion de projets"
@@ -133,7 +133,7 @@ msgid "Chose Suppliers"
 msgstr "Choisir les fournisseurs"
 
 msgid "Customer Onboarding"
-msgstr "Intégration des clients"
+msgstr "Onboarding des clients"
 
 msgid "Notes"
 msgstr "Remarques"
