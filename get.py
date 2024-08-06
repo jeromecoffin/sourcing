@@ -23,10 +23,26 @@ def get_rfqs():
 # Output : en, vi ou fr
 @st.cache_data(ttl=3600)
 def get_language():
-    db = firestore.client()
-    agent_ref = db.collection("agents").document("user")
-    agent = agent_ref.get()
-    return agent.to_dict()["language"]
+    try:
+        print("1: Initializing Firestore client")
+        db = firestore.client()
+        print("2: Firestore client initialized")
+
+        agent_ref = db.collection("agents").document("user")
+        print("3: Reference to document created")
+
+        agent = agent_ref.get()
+        print("4: Document retrieved")
+
+        if agent.exists:
+            print("5: Document exists")
+            return agent.to_dict()["language"]
+        else:
+            print("5: Document does not exist")
+            return "en"
+    except Exception as e:
+        print(f"Error: {e}")
+        return "en"
 
 def get_isFirstLogin():
     db = firestore.client()
@@ -69,7 +85,9 @@ def get_suppliers(selected_categories, selected_fields):
         supplier['id'] = doc.id  # Ajout de l'ID du document
         if (not selected_categories or set(supplier.get('categories', [])).intersection(set(selected_categories))) and \
            (not selected_fields or set(supplier.get('fields', [])).intersection(set(selected_fields))):
-            suppliers.append(supplier)
+            print(supplier['remove'])
+            if supplier['remove'] == False:
+                suppliers.append(supplier)
     return suppliers
 
 # Retrieves distinct values for a specific field from the Firestore 'suppliers' collection.

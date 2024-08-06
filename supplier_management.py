@@ -5,6 +5,7 @@ from datetime import datetime
 import utils
 import get
 
+
 def manage_suppliers():
 
     _ = utils.translate()
@@ -27,12 +28,12 @@ def manage_suppliers():
             suppliers_df = suppliers_df.sort_values(by=['company', 'name'])
 
             # Define columns to display, excluding 'id'
-            columns_to_display = ['company', 'name', 'email', 'address', 'categories', 'fields', 'rate']
+            columns_to_display = ['company', 'name', 'email', 'address', 'categories', 'fields', 'rate', 'remove']
             suppliers_df = suppliers_df[columns_to_display]
 
             # Display the data editor
             edited_df = st.data_editor(suppliers_df, hide_index=True, use_container_width=True)
-
+            
             if st.button(_("Save edits")):
                 utils.log_event("modifier fournisseur")
                 for index, row in edited_df.iterrows():
@@ -41,6 +42,8 @@ def manage_suppliers():
                     utils.update_supplier_management(supplier_id, updated_data)
                 st.cache_data.clear()
                 st.success(_("Successfully Saved Edits!"))
+                st.rerun()
+
         
         # Export functionality
         if st.button(_("Export List")):

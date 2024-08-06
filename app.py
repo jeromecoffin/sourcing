@@ -42,7 +42,9 @@ authenticator = stauth.Authenticate(
 )
 
 user, authentication_status, username = authenticator.login('main', fields = {'Form name': 'login'})
+
 _ = utils.translate()
+
 if authentication_status:
 
     authenticator.logout(_('Logout'), 'sidebar')
