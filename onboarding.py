@@ -31,8 +31,7 @@ def show_onboarding():
             }
             # Connect to MongoDB
             db = utils.initialize_mongodb()
-
-
+            
             db.clients.insert_one(client_data)
             utils.log_event("Nouveau Client", details=email)
             st.success(_("Customer Successfully Added"))

@@ -18,8 +18,7 @@ import get
 #msgfmt locales/vi/LC_MESSAGES/messages.po -o locales/vi/LC_MESSAGES/messages.mo
 
 # Initialize MongoDB client
-client = MongoClient("mongodb://localhost:27017/")
-db = client.sourcingmain
+db = utils.initialize_mongodb()
 
 st.set_page_config(layout="wide")
 hide_menu_style = """
