@@ -1,5 +1,5 @@
 import streamlit as st
-from firebase_admin import firestore
+from pymongo import MongoClient
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
@@ -9,7 +9,6 @@ import supplier_management
 import rfi_rfq_management
 import kpi_dashboard
 import project_management
-from utils import initialize_firebase
 import utils
 import get
 
@@ -18,8 +17,9 @@ import get
 #msgfmt locales/fr/LC_MESSAGES/messages.po -o locales/fr/LC_MESSAGES/messages.mo
 #msgfmt locales/vi/LC_MESSAGES/messages.po -o locales/vi/LC_MESSAGES/messages.mo
 
-# Initialize Firebase
-initialize_firebase()
+# Initialize MongoDB client
+client = MongoClient("mongodb://localhost:27017/")
+db = client.sourcingmain
 
 st.set_page_config(layout="wide")
 hide_menu_style = """
@@ -72,8 +72,7 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
+                    db.feedbacks.insert_one(user_feedback)
                     st.success(_("Thanks for feedback!"))
         elif choice == _("Onboarding"):
             onboarding.show_onboarding()
@@ -86,13 +85,12 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
+                    db.feedbacks.insert_one(user_feedback)
                     st.success(_("Thanks for feedback!"))
         elif choice == _("Project Management"):
             project_management.manage_projects()
             st.divider()
-            with st.form("projets_feedback_form", clear_on_submit=True):
+            with st.form("projects_feedback_form", clear_on_submit=True):
                 feedback = st.text_area("feedback", placeholder=_("Add field xxx ; More RFIs..."))
                 submit = st.form_submit_button(_("Submit"))
                 if submit:
@@ -100,22 +98,20 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
+                    db.feedbacks.insert_one(user_feedback)
                     st.success(_("Thanks for feedback!"))
         elif choice == _("Suppliers Management"):
             supplier_management.manage_suppliers()
             st.divider()
             with st.form("suppliers_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder=_("More/less fields if the new client form ; display other details in the list..."))
+                feedback = st.text_area("feedback", placeholder=_("More/less fields in the new client form ; display other details in the list..."))
                 submit = st.form_submit_button(_("Submit"))
                 if submit:
                     user_feedback = {
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
+                    db.feedbacks.insert_one(user_feedback)
                     st.success(_("Thanks for feedback!"))
         elif choice == "RFI/RFQ":
             rfi_rfq_management.manage_rfi_rfq()
@@ -128,8 +124,7 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
+                    db.feedbacks.insert_one(user_feedback)
                     st.success(_("Thanks for feedback!"))
         elif choice == _("Account"):
             agent_account.show_profile()
@@ -150,11 +145,8 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
+                    db.feedbacks.insert_one(user_feedback)
                     st.success(_("Thanks for feedback!"))
-
-
 
     if __name__ == "__main__":
         main()

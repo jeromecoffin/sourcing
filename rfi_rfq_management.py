@@ -1,14 +1,18 @@
 import streamlit as st
-from firebase_admin import firestore
+from pymongo import MongoClient
 import utils
 import get
+
 
 def manage_rfi_rfq():
 
     _ = utils.translate()
 
     st.sidebar.title(_("RFI/RFQ Management"))
-    doc_type = st.sidebar.radio(_("Chose a type of document"), ("RFI", "RFQ"))
+    doc_type = st.sidebar.radio(_("Choose a type of document"), ("RFI", "RFQ"))
+
+    # Connect to MongoDB
+    db = utils.initialize_mongodb()
 
     if doc_type == "RFI":
 
@@ -26,7 +30,7 @@ def manage_rfi_rfq():
             rp_name = st.text_input(_("Name"))
             rp_company = st.text_input(_("Company"))
             rp_position = st.text_input(_("Position"))
-            rp_mail = st.text_input(_("email"))
+            rp_mail = st.text_input(_("Email"))
             rp_phone = st.text_input(_("Phone"))
             st.divider()
 
@@ -59,8 +63,7 @@ def manage_rfi_rfq():
                     "comments": comments
                 }
 
-                db = firestore.client()
-                db.collection("rfis").add(rfi_data)
+                db.rfis.insert_one(rfi_data)
                 utils.log_event("Nouveau RFI", details=title)
                 st.success(_("Added New RFI"))
                 st.cache_data.clear()
@@ -82,6 +85,7 @@ def manage_rfi_rfq():
                         file_name=f"RFI_{rfi['title']}.pdf",
                         mime="application/pdf"
                     )
+
     elif doc_type == "RFQ":
 
         with st.form("add_rfq_form", clear_on_submit=True):
@@ -103,7 +107,7 @@ def manage_rfi_rfq():
             rp_name = st.text_input(_("Name"))
             rp_company = st.text_input(_("Company"))
             rp_position = st.text_input(_("Position"))
-            rp_mail = st.text_input(_("email"))
+            rp_mail = st.text_input(_("Email"))
             rp_phone = st.text_input(_("Phone"))
             st.divider()
 
@@ -137,9 +141,7 @@ def manage_rfi_rfq():
                     "comments": comments
                 }
 
-                db = firestore.client()
-                db.collection("rfqs").add(rfq_data)
-
+                db.rfqs.insert_one(rfq_data)
                 utils.log_event("Ajouter RFQ", details=title)
                 st.success(_("RFQ Successfully Added!"))
                 st.cache_data.clear()
@@ -161,5 +163,3 @@ def manage_rfi_rfq():
                         file_name=f"RFQ_{rfq['title']}.pdf",
                         mime="application/pdf"
                     )
-
-

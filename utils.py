@@ -13,43 +13,42 @@ import os
 import pandas as pd
 import get
 
+from datetime import datetime, timezone, timedelta
+from pymongo import MongoClient
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.units import inch
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from io import BytesIO
+import streamlit as st
+import gettext
+import os
+import pandas as pd
+import get
 
-# Initializes Firebase using configuration from Streamlit secrets.
-# Rnn only once at start up
-def initialize_firebase():
-    if not _apps:
-        firebase_config = st.secrets["firebase"]
-        cred = credentials.Certificate({
-            "type": firebase_config["type"],
-            "project_id": firebase_config["project_id"],
-            "private_key_id": firebase_config["private_key_id"],
-            "private_key": firebase_config["private_key"].replace("\\n", "\n"),
-            "client_email": firebase_config["client_email"],
-            "client_id": firebase_config["client_id"],
-            "auth_uri": firebase_config["auth_uri"],
-            "token_uri": firebase_config["token_uri"],
-            "auth_provider_x509_cert_url": firebase_config["auth_provider_x509_cert_url"],
-            "client_x509_cert_url": firebase_config["client_x509_cert_url"],
-            "universe_domain": firebase_config["universe_domain"]
-        })
-        initialize_app(cred)
+# Initializes MongoDB using configuration from Streamlit secrets.
+def initialize_mongodb():
+    client = MongoClient("mongodb://localhost:27017/")
+    return client.sourcingmain
 
-# Calculates various KPIs from Firestore collections.
+# Calculates various KPIs from MongoDB collections.
 # Output dict (e.g kpis["total_projects"])
 @st.cache_data(ttl=3600)
 def calculate_kpis():
-    db = firestore.client()
+    db = initialize_mongodb()
 
-    total_projects = db.collection("projects").get()
-    total_suppliers = db.collection("suppliers").get()
-    total_clients = db.collection("clients").get()
-    total_rfis = db.collection("rfis").get()
-    total_rfqs = db.collection("rfqs").get()
+    total_projects = list(db.projects.find())
+    total_suppliers = list(db.suppliers.find())
+    total_clients = list(db.clients.find())
+    total_rfis = list(db.rfis.find())
+    total_rfqs = list(db.rfqs.find())
 
     now = datetime.now(timezone.utc)
 
     def get_date_safe(doc, field):
-        date_str = doc.to_dict().get(field)
+        date_str = doc.get(field)
         if isinstance(date_str, str):
             return datetime.fromisoformat(date_str).replace(tzinfo=timezone.utc)
         elif isinstance(date_str, datetime):
@@ -59,13 +58,13 @@ def calculate_kpis():
     average_response_time_rfis = sum([(now - get_date_safe(rfi, "due_date")).days for rfi in total_rfis]) / len(total_rfis) if total_rfis else 0
     average_response_time_rfqs = sum([(now - get_date_safe(rfq, "due_date")).days for rfq in total_rfqs]) / len(total_rfqs) if total_rfqs else 0
 
-    total_project_costs = sum([rfq.to_dict().get("budget", 0) for rfq in total_rfqs])
-    average_supplier_performance = sum([supplier.to_dict().get("rating", 0) for supplier in total_suppliers]) / len(total_suppliers) if total_suppliers else 0
+    total_project_costs = sum([rfq.get("budget", 0) for rfq in total_rfqs])
+    average_supplier_performance = sum([supplier.get("rating", 0) for supplier in total_suppliers]) / len(total_suppliers) if total_suppliers else 0
 
     on_time_deliveries = len([rfq for rfq in total_rfqs if get_date_safe(rfq, "delivery_date") <= get_date_safe(rfq, "due_date")])
     late_deliveries = len(total_rfqs) - on_time_deliveries
 
-    samples_required = len([rfi for rfi in total_rfis if rfi.to_dict().get("samples_required", False)])
+    samples_required = len([rfi for rfi in total_rfis if rfi.get("samples_required", False)])
 
     return {
         "total_projects": len(total_projects),
@@ -81,6 +80,93 @@ def calculate_kpis():
         "late_deliveries": late_deliveries,
         "samples_required": samples_required
     }
+
+# Detects and splits comma-separated values in 'categories' and 'fields' fields for suppliers.
+# Update the MongoDB documents
+def detect_and_split_comma_in_lists():
+    db = initialize_mongodb()
+    suppliers = db.suppliers.find()
+
+    for supplier in suppliers:
+        supplier_data = supplier
+        changed = False
+        
+        # Check and split 'categories' field if it contains comma
+        if 'categories' in supplier_data and isinstance(supplier_data['categories'], list):
+            updated_categories = []
+            for categories in supplier_data['categories']:
+                if ',' in categories:
+                    updated_categories.extend([c.strip() for c in categories.split(',')])
+                    changed = True
+                else:
+                    updated_categories.append(categories)
+            if changed:
+                supplier_data['categories'] = updated_categories
+                db.suppliers.update_one({'_id': supplier['_id']}, {'$set': {'categories': updated_categories}})
+        
+        # Check and split 'fields' field if it contains comma
+        if 'fields' in supplier_data and isinstance(supplier_data['fields'], list):
+            updated_fields = []
+            for field in supplier_data['fields']:
+                if ',' in field:
+                    updated_fields.extend([f.strip() for f in field.split(',')])
+                    changed = True
+                else:
+                    updated_fields.append(field)
+            if changed:
+                supplier_data['fields'] = updated_fields
+                db.suppliers.update_one({'_id': supplier['_id']}, {'$set': {'fields': updated_fields}})
+
+        if changed:
+            print(f"Document {supplier['_id']} updated successfully.")
+    return changed
+
+# Logs an event with a specific type and details to the MongoDB 'event_logs' collection.
+def log_event(event_type, details=None):
+    db = initialize_mongodb()
+    utc_plus_7 = timezone(timedelta(hours=7))
+    event_data = {
+        "event_type": event_type,
+        "timestamp": datetime.now(utc_plus_7).strftime('%Y%m%d%H%M%S'),
+        "details": details
+    }
+    db.event_logs.insert_one(event_data)
+
+# Configures gettext for translations based on the user's language preference.
+def translate():
+
+    language = get.get_language()
+
+    # Configurer le chemin des fichiers de traduction
+    locales_dir = os.path.join(os.path.dirname(__file__), 'locales')
+
+    # Configurer gettext pour utiliser les traductions françaises
+    lang = language  # 'en' pour anglais, 'vi' pour vietnamien, 'fr' pour français
+    gettext.bindtextdomain('messages', locales_dir)
+    gettext.textdomain('messages')
+    language = gettext.translation('messages', locales_dir, languages=[lang])
+    language.install()
+    return language.gettext
+
+# Updates a project's data in the MongoDB 'projects' collection.
+# Input : Project "id" and Project dict 
+def update_project(doc_id, project_data):
+    db = initialize_mongodb()
+    db.projects.update_one({'_id': doc_id}, {'$set': project_data})
+
+# Updates supplier data in the MongoDB 'suppliers' collection.
+# Input : supplier id and supplier dict 
+def update_supplier_management(supplier_id, supplier_data):
+    db = initialize_mongodb()
+    db.suppliers.update_one({'_id': supplier_id}, {'$set': supplier_data})
+
+# Exports a list of suppliers to a CSV file for download.
+def export_suppliers_to_csv_management(suppliers):
+    _ = translate()
+    df = pd.DataFrame(suppliers)
+    csv = df.to_csv(index=False)
+    st.download_button(label=_("Download CSV"), data=csv, file_name="suppliers_export.csv", mime="text/csv")
+
 
 # Generates a PDF document (RFI or RFQ) based on provided data.
 def generate_pdf(doc_type, doc_data):
@@ -180,94 +266,3 @@ def generate_pdf(doc_type, doc_data):
     doc.build(elements)
     buffer.seek(0)
     return buffer
-
-# Detects and splits comma-separated values in 'categories' and 'fields' fields for suppliers.
-# Update the firestore documents
-def detect_and_split_comma_in_lists():
-    db = firestore.client()
-    suppliers_ref = db.collection("suppliers")
-    docs = suppliers_ref.stream()
-
-    for doc in docs:
-        supplier_data = doc.to_dict()
-        changed = False
-        
-        # Check and split 'categories' field if it contains comma
-        if 'categories' in supplier_data and isinstance(supplier_data['categories'], list):
-            updated_categories = []
-            for categories in supplier_data['categories']:
-                if ',' in categories:
-                    updated_categories.extend([c.strip() for c in categories.split(',')])
-                    changed = True
-                else:
-                    updated_categories.append(categories)
-            if changed:
-                supplier_data['categories'] = updated_categories
-                doc.reference.update({'categories': updated_categories})
-        
-        # Check and split 'fields' field if it contains comma
-        if 'fields' in supplier_data and isinstance(supplier_data['fields'], list):
-            updated_fields = []
-            for field in supplier_data['fields']:
-                if ',' in field:
-                    updated_fields.extend([f.strip() for f in field.split(',')])
-                    changed = True
-                else:
-                    updated_fields.append(field)
-            if changed:
-                supplier_data['fields'] = updated_fields
-                doc.reference.update({'fields': updated_fields})
-
-        if changed:
-            print(f"Document {doc.id} updated successfully.")
-    return changed
-
-# Logs an event with a specific type and details to the Firestore 'event_logs' collection.
-def log_event(event_type, details=None):
-    utc_plus_7 = timezone(timedelta(hours=7))
-    event_data = {
-        "event_type": event_type,
-        "timestamp": datetime.now(utc_plus_7).strftime('%Y%m%d%H%M%S'),
-        "details": details
-    }
-    db = firestore.client()
-    db.collection("event_logs").add(event_data)
-
-# Configures gettext for translations based on the user's language preference.
-def translate():
-
-    language = get.get_language()
-
-    # Configurer le chemin des fichiers de traduction
-    locales_dir = os.path.join(os.path.dirname(__file__), 'locales')
-
-    # Configurer gettext pour utiliser les traductions françaises
-    lang = language  # 'en' pour anglais, 'vi' pour vietnamien, 'fr' pour français
-    gettext.bindtextdomain('messages', locales_dir)
-    gettext.textdomain('messages')
-    language = gettext.translation('messages', locales_dir, languages=[lang])
-    language.install()
-    return language.gettext
-
-# Updates a project's data in the Firestore 'projects' collection.
-# Input : Project "id" and Project dict 
-def update_project(doc_id, project_data):
-    db = firestore.client()
-    project_ref = db.collection("projects").document(doc_id)
-    project_ref.update(project_data)
-
-# Updates supplier data in the Firestore 'suppliers' collection.
-# Input : supplier id and supplier dict 
-def update_supplier_management(supplier_id, supplier_data):
-    db = firestore.client()
-    supplier_ref = db.collection("suppliers").document(supplier_id)
-    supplier_ref.update(supplier_data)
-
-
-# Exports a list of suppliers to a CSV file for download.
-def export_suppliers_to_csv_management(suppliers):
-    _ = translate()
-    df = pd.DataFrame(suppliers)
-    csv = df.to_csv(index=False)
-    st.download_button(label=_("Download CSV"), data=csv, file_name="suppliers_export.csv", mime="text/csv")
-

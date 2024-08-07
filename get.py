@@ -1,104 +1,76 @@
-from firebase_admin import firestore
+from pymongo import MongoClient
 import streamlit as st
 
-# Retrieves all RFIs from the Firestore 'rfis' collection.
-# Output : List dict all RFI 
+# Initialize MongoDB client
+client = MongoClient("mongodb://localhost:27017/")
+db = client.sourcingmain
+
+# Retrieves all RFIs from the MongoDB 'rfis' collection.
+# Output: List of dicts of all RFI
 @st.cache_data(ttl=3600)
 def get_rfis():
-    db = firestore.client()
-    rfis_ref = db.collection("rfis")
-    rfis = [doc.to_dict() for doc in rfis_ref.stream()]
+    rfis = list(db.rfis.find({}, {'_id': 0}))
     return rfis
 
-# Retrieves all RFQs from the Firestore 'rfqs' collection.
-# Output : List dict all RFQ 
+# Retrieves all RFQs from the MongoDB 'rfqs' collection.
+# Output: List of dicts of all RFQ
 @st.cache_data(ttl=3600)
 def get_rfqs():
-    db = firestore.client()
-    rfqs_ref = db.collection("rfqs")
-    rfqs = [doc.to_dict() for doc in rfqs_ref.stream()]
+    rfqs = list(db.rfqs.find({}, {'_id': 0}))
     return rfqs
 
-# Retrieves the language preference for the user from the Firestore 'agents' collection.
-# Output : en, vi ou fr
+# Retrieves the language preference for the user from the MongoDB 'agents' collection.
+# Output: 'en', 'vi' or 'fr'
 @st.cache_data(ttl=3600)
 def get_language():
     try:
-        print("1: Initializing Firestore client")
-        db = firestore.client()
-        print("2: Firestore client initialized")
-
-        agent_ref = db.collection("agents").document("user")
-        print("3: Reference to document created")
-
-        agent = agent_ref.get()
-        print("4: Document retrieved")
-
-        if agent.exists:
-            print("5: Document exists")
-            return agent.to_dict()["language"]
+        agent = db.agents.find_one({'_id': 'user'}, {'_id': 0, 'language': 1})
+        if agent and 'language' in agent:
+            return agent['language']
         else:
-            print("5: Document does not exist")
             return "en"
     except Exception as e:
         print(f"Error: {e}")
         return "en"
 
+# Retrieves the isFirstLogin status for the user from the MongoDB 'agents' collection.
 def get_isFirstLogin():
-    db = firestore.client()
-    agent_ref = db.collection("agents").document("user")
-    agent = agent_ref.get()
-    return agent.to_dict()["isFirstLogin"]
+    agent = db.agents.find_one({'_id': 'user'}, {'_id': 0, 'isFirstLogin': 1})
+    return agent['isFirstLogin'] if agent else None
 
-# Retrieves all projects from the Firestore 'projects' collection.
-# Output : List of dict of all projects
+# Retrieves all projects from the MongoDB 'projects' collection.
+# Output: List of dicts of all projects
 @st.cache_data(ttl=3600)
 def get_projects():
-    db = firestore.client()
-    projects_ref = db.collection("projects")
-    projects = []
-    for doc in projects_ref.stream():
-        project = doc.to_dict()
-        project['doc_id'] = doc.id  # Add the document ID
-        projects.append(project)
+    projects = list(db.projects.find({}, {'_id': 1}))
+    for project in projects:
+        project['doc_id'] = str(project['_id'])  # Add the document ID
+        del project['_id']
     return projects
 
-# Retrieves onboarding information for clients from the Firestore 'clients' collection.
-# Output : List of dict of all clients
+# Retrieves onboarding information for clients from the MongoDB 'clients' collection.
+# Output: List of dicts of all clients
 @st.cache_data(ttl=3600)
 def get_clients():
-    db = firestore.client()
-    clients_ref = db.collection("clients")
-    clients = [doc.to_dict() for doc in clients_ref.stream()]
+    clients = list(db.clients.find({}, {'_id': 0}))
     return clients
 
-# Retrieves suppliers from Firestore 'suppliers' collection based on selected categories and fields.
-# Input : List categories and list fields
-# Output : List dict supplier filtered
+# Retrieves suppliers from MongoDB 'suppliers' collection based on selected categories and fields.
+# Input: List of categories and list of fields
+# Output: List of dicts of filtered suppliers
 @st.cache_data(ttl=3600)
 def get_suppliers(selected_categories, selected_fields):
-    db = firestore.client()
-    suppliers_ref = db.collection("suppliers")
-    suppliers = []
-    for doc in suppliers_ref.stream():
-        supplier = doc.to_dict()
-        supplier['id'] = doc.id  # Ajout de l'ID du document
-        if (not selected_categories or set(supplier.get('categories', [])).intersection(set(selected_categories))) and \
-           (not selected_fields or set(supplier.get('fields', [])).intersection(set(selected_fields))):
-            print(supplier['remove'])
-            if supplier['remove'] == False:
-                suppliers.append(supplier)
+    query = {}
+    if selected_categories:
+        query['categories'] = {'$in': selected_categories}
+    if selected_fields:
+        query['fields'] = {'$in': selected_fields}
+    query['remove'] = False
+    suppliers = list(db.suppliers.find(query, {'_id': 0}))
     return suppliers
 
-# Retrieves distinct values for a specific field from the Firestore 'suppliers' collection.
+# Retrieves distinct values for a specific field from the MongoDB 'suppliers' collection.
 @st.cache_data(ttl=3600)
 def get_distinct_values_management(field_name):
-    db = firestore.client()
-    suppliers_ref = db.collection("suppliers")
-    values = set()
-    for doc in suppliers_ref.stream():
-        supplier = doc.to_dict()
-        if field_name in supplier:
-            for value in supplier[field_name]:
-                values.add(value)
-    return list(values)
+    values = db.suppliers.distinct(field_name)
+    return values

@@ -1,10 +1,9 @@
 import streamlit as st
-from firebase_admin import firestore
+from pymongo import MongoClient
 import pandas as pd
 from datetime import datetime
 import utils
 import get
-
 
 def manage_suppliers():
 
@@ -12,6 +11,9 @@ def manage_suppliers():
 
     st.sidebar.title(_("Suppliers Management"))
     doc_type = st.sidebar.radio(_("Select Type of Document"), (_("List"), _("New Supplier")), label_visibility="hidden")
+
+    # Connect to MongoDB
+    db = utils.initialize_mongodb()
 
     if doc_type == _("List"):
         # Display list of suppliers
@@ -37,9 +39,9 @@ def manage_suppliers():
             if st.button(_("Save edits")):
                 utils.log_event("modifier fournisseur")
                 for index, row in edited_df.iterrows():
-                    supplier_id = suppliers[index]['id']  # Get id from original suppliers list
+                    supplier_id = suppliers[index]['_id']  # Get id from original suppliers list
                     updated_data = row.to_dict()
-                    utils.update_supplier_management(supplier_id, updated_data)
+                    db.suppliers.update_one({'_id': supplier_id}, {'$set': updated_data})
                 st.cache_data.clear()
                 st.success(_("Successfully Saved Edits!"))
                 st.rerun()
@@ -58,15 +60,15 @@ def manage_suppliers():
                 name = st.text_input(_("Contact Name"))
                 email = st.text_input("Email")
                 address = st.text_input(_("Address"))
-                categories = st.multiselect(_("Categories (Garments, Accessoiries, Home Textiles...)"), options=get.get_distinct_values_management("categories"))
+                categories = st.multiselect(_("Categories (Garments, Accessories, Home Textiles...)"), options=get.get_distinct_values_management("categories"))
                 new_categories = st.text_input(_("Add new Categories (separated by ,)"))
                 if new_categories:
-                    categories.append(new_categories)
+                    categories.extend([cat.strip() for cat in new_categories.split(',')])
 
                 fields = st.multiselect(_("Fields of Activity (Dyeing, Importing, Knitting...)"), options=get.get_distinct_values_management("fields"))
-                new_field = st.text_input(_("Add now fields of activity (separated by ,)"))
+                new_field = st.text_input(_("Add new fields of activity (separated by ,)"))
                 if new_field:
-                    fields.append(new_field)
+                    fields.extend([field.strip() for field in new_field.split(',')])
 
                 rate = st.slider("Évaluation", 0, 10, 5)
                 submit = st.form_submit_button(_("Add Supplier"))
@@ -84,8 +86,7 @@ def manage_suppliers():
                         "created_at": datetime.now()
                     }
 
-                    db = firestore.client()
-                    db.collection("suppliers").add(supplier_data)
+                    db.suppliers.insert_one(supplier_data)
 
                     st.success(_("Supplier Successfully Added!"))
 

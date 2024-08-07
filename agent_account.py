@@ -1,7 +1,6 @@
 import streamlit as st
-from firebase_admin import firestore
+from pymongo import MongoClient
 import utils
-
 
 def show_profile():
 
@@ -9,17 +8,24 @@ def show_profile():
 
     st.header(_("Your Profile"))
 
-    db = firestore.client()
-    agent_ref = db.collection("agents").document("user")
-    agent = agent_ref.get()
+    # Initialize MongoDB client
+    db = utils.initialize_mongodb()
+    collection = db.agents
+
+    # Retrieve the user profile
+    agent = collection.find_one({"_id": "user"})  # Assuming "user" is the user ID
+
+    if agent is None:
+        st.error(_("User not found"))
+        return
 
     with st.form("profile_form", clear_on_submit=True):
         col1, col2 = st.columns(2)
-        name = col1.text_input(_("Name"), value=agent.to_dict()["name"])
-        lastname = col2.text_input(_("Lastname"), value=agent.to_dict()["lastname"])
-        email = col1.text_input(_("Email"), value=agent.to_dict()["email"], disabled=True)
-        phone = col2.text_input(_("Phone"), value=agent.to_dict()["phone"])
-        company = col1.text_input(_("Company"), value=agent.to_dict()["company"])
+        name = col1.text_input(_("Name"), value=agent["name"])
+        lastname = col2.text_input(_("Lastname"), value=agent["lastname"])
+        email = col1.text_input(_("Email"), value=agent["email"], disabled=True)
+        phone = col2.text_input(_("Phone"), value=agent["phone"])
+        company = col1.text_input(_("Company"), value=agent["company"])
         language_select = col2.selectbox(_("Language"), ['English', 'Français', 'Tiếng Việt'])
         if language_select == 'Français':
             language = 'fr'
@@ -27,9 +33,9 @@ def show_profile():
             language = 'vi'
         else:
             language = 'en'
-        address = st.text_input(_("Address"), value=agent.to_dict()["address"])
-        sourcing = st.text_area(_("Sourcing preferences"), value=agent.to_dict()["sourcing"])
-        experience = st.number_input(_("Years of Experiences"), step=1, value=agent.to_dict()["experience"])
+        address = st.text_input(_("Address"), value=agent["address"])
+        sourcing = st.text_area(_("Sourcing preferences"), value=agent["sourcing"])
+        experience = st.number_input(_("Years of Experiences"), step=1, value=agent["experience"])
         submit = st.form_submit_button(_("Submit changes"))
 
         if submit:
@@ -46,9 +52,8 @@ def show_profile():
                 "isFirstLogin": "1"
             }
 
-            db = firestore.client()
-            agent_ref.update(agent_data)            
+            # Update the user profile in MongoDB
+            collection.update_one({"user_id": "user"}, {"$set": agent_data})            
             st.success(_("Data successfully modified!"))
-            st.cache_data.clear() #pour la langue
-            st.rerun()
-        
+            st.cache_data.clear() # clear cache for language
+            st.experimental_rerun()

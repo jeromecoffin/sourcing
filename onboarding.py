@@ -1,7 +1,7 @@
 import streamlit as st
-from firebase_admin import firestore
+from pymongo import MongoClient
 import utils
-import get 
+import get
 import pandas as pd
 
 def show_onboarding():
@@ -29,8 +29,11 @@ def show_onboarding():
                 "company": company,
                 "notes": notes
             }
-            db = firestore.client()
-            db.collection("clients").add(client_data)
+            # Connect to MongoDB
+            db = utils.initialize_mongodb()
+
+
+            db.clients.insert_one(client_data)
             utils.log_event("Nouveau Client", details=email)
             st.success(_("Customer Successfully Added"))
             st.cache_data.clear()

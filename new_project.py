@@ -1,7 +1,7 @@
 import streamlit as st
 import utils
 from datetime import datetime
-from firebase_admin import firestore
+from pymongo import MongoClient
 import get
 
 def new_projects():
@@ -35,7 +35,7 @@ def new_projects():
             submit_button = st.form_submit_button(label=_('Create Project'))
         
             if submit_button:
-                db = firestore.client()
+                db = utils.initialize_mongodb()
 
                 project_id = f"project_{datetime.now().strftime('%Y%m%d%H%M%S')}"
 
@@ -54,9 +54,7 @@ def new_projects():
                     }
                 }
 
-                db.collection("projects").document(project_id).set(project_data)
+                db.projects.insert_one({"_id": project_id, **project_data})
                 st.success(_("Data successfully modified!"))
                 utils.log_event("Nouveau Projet", details=title)
                 st.cache_data.clear()
-
-        

@@ -1,9 +1,12 @@
 import streamlit as st
+from pymongo import MongoClient
 import utils
 import new_project
 import get
+import pandas as pd
 
 
+# Function to show project details
 def show_project_details(project):
 
     _ = utils.translate()
@@ -11,8 +14,8 @@ def show_project_details(project):
     st.divider()
 
     st.write(_("Title:"), project['title'])
-
     st.write(_("Customer:"), project['client'])
+
     clients = get.get_clients()
     client = [d for d in clients if d["name"] == project['client']]
     client = client[0] if client else None
@@ -70,12 +73,11 @@ def show_project_details(project):
     st.divider()
 
     try:
-        suppliers = []
-        suppliers = project['suppliers']
-        supplier = st.selectbox(_("Final Supplier:"), project['suppliers'])
+        suppliers = project.get('suppliers', [])
+        supplier = st.selectbox(_("Final Supplier:"), suppliers)
         st.write(_("Final Supplier:"), supplier)
     except:
-        print("error suppliers project management" )
+        st.error(_("Error in supplier project management"))
 
     submit = st.button(_("Save"))
 
@@ -84,7 +86,7 @@ def show_project_details(project):
             "title": project['title'],
             "client": project['client'],
             "suppliers": suppliers,
-            "supplier_final": supplier,  
+            "supplier_final": supplier,
             "rfi": rfi,
             "rfq": rfq,
             "kpis": {
@@ -96,12 +98,16 @@ def show_project_details(project):
             }
         }
 
-        # Update the project in Firestore
-        utils.update_project(project['doc_id'], project_data)
+        # Connect to MongoDB
+        db = utils.initialize_mongodb()
+
+        # Update the project in MongoDB
+        db.projects.update_one({'_id': project['_id']}, {'$set': project_data})
         utils.log_event("Mettre à jour projet", project['title'])
         st.cache_data.clear()
         st.success(_("Project Successfully Updated"))
 
+# Function to manage projects
 def manage_projects():
 
     _ = utils.translate()
@@ -127,3 +133,10 @@ def manage_projects():
     elif doc_type == _("New Project"):
         new_project.new_projects()
 
+# Define other necessary utility functions here
+def update_project(project_id, project_data):
+    # Connect to MongoDB
+    db = utils.initialize_mongodb()
+
+    # Update the project in MongoDB
+    db.projects.update_one({'_id': project_id}, {'$set': project_data})

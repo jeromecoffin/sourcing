@@ -7,7 +7,7 @@ credentials:
     jcoffin:
       email: jcoffin@gmail.com
       failed_login_attempts: 0
-      logged_in: false
+      logged_in: true
       name: Jerome Coffin
       password: $2b$12$.a5b.bh8DEXvlow7jIfveeTAuXcFhGUymJnT4bfWTctrWL083fTi.
     tfleury:
