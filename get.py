@@ -42,7 +42,7 @@ def get_isFirstLogin():
 # Output: List of dicts of all projects
 @st.cache_data(ttl=3600)
 def get_projects():
-    projects = list(db.projects.find({}, {'_id': 1}))
+    projects = list(db.projects.find())
     for project in projects:
         project['doc_id'] = str(project['_id'])  # Add the document ID
         del project['_id']

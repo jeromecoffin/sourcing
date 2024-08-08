@@ -21,12 +21,12 @@ import get
 db = utils.initialize_mongodb()
 
 st.set_page_config(layout="wide")
-hide_menu_style = """
+'''hide_menu_style = """
         <style>
         div[data-testid="stToolbar"] {display: none;}
         </style>
         """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
+st.markdown(hide_menu_style, unsafe_allow_html=True)'''
 
 # Load config.yaml for authentication
 with open('cred.yaml') as file:
