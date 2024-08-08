@@ -4,7 +4,6 @@ import new_project
 import read
 import update
 
-
 # Function to show project details
 def show_project_details(project):
 

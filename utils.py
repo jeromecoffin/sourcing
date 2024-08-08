@@ -12,6 +12,8 @@ import gettext
 import os
 import pandas as pd
 import read
+import update
+import create
 
 # Initializes MongoDB using configuration from Streamlit secrets.
 def initialize_mongodb():
@@ -22,13 +24,12 @@ def initialize_mongodb():
 # Output dict (e.g kpis["total_projects"])
 @st.cache_data(ttl=3600)
 def calculate_kpis():
-    db = initialize_mongodb()
 
-    total_projects = list(db.projects.find())
-    total_suppliers = list(db.suppliers.find())
-    total_clients = list(db.clients.find())
-    total_rfis = list(db.rfis.find())
-    total_rfqs = list(db.rfqs.find())
+    total_projects = read.projects
+    total_suppliers = read.suppliers
+    total_clients = read.clients
+    total_rfis = read.rfis
+    total_rfqs = read.rfqs
 
     now = datetime.now(timezone.utc)
 
@@ -69,8 +70,8 @@ def calculate_kpis():
 # Detects and splits comma-separated values in 'categories' and 'fields' fields for suppliers.
 # Update the MongoDB documents
 def detect_and_split_comma_in_lists():
-    db = initialize_mongodb()
-    suppliers = db.suppliers.find()
+
+    suppliers = read.suppliers
 
     for supplier in suppliers:
         supplier_data = supplier
@@ -87,7 +88,7 @@ def detect_and_split_comma_in_lists():
                     updated_categories.append(categories)
             if changed:
                 supplier_data['categories'] = updated_categories
-                db.suppliers.update_one({'_id': supplier['_id']}, {'$set': {'categories': updated_categories}})
+                update.categories(supplier, updated_categories)
         
         # Check and split 'fields' field if it contains comma
         if 'fields' in supplier_data and isinstance(supplier_data['fields'], list):
@@ -100,7 +101,7 @@ def detect_and_split_comma_in_lists():
                     updated_fields.append(field)
             if changed:
                 supplier_data['fields'] = updated_fields
-                db.suppliers.update_one({'_id': supplier['_id']}, {'$set': {'fields': updated_fields}})
+                update.fields(supplier, updated_fields)
 
         if changed:
             print(f"Document {supplier['_id']} updated successfully.")
@@ -108,14 +109,13 @@ def detect_and_split_comma_in_lists():
 
 # Logs an event with a specific type and details to the MongoDB 'event_logs' collection.
 def log_event(event_type, details=None):
-    db = initialize_mongodb()
     utc_plus_7 = timezone(timedelta(hours=7))
     event_data = {
         "event_type": event_type,
         "timestamp": datetime.now(utc_plus_7).strftime('%Y%m%d%H%M%S'),
         "details": details
     }
-    db.event_logs.insert_one(event_data)
+    create.log(event_data)
 
 # Configures gettext for translations based on the user's language preference.
 def translate():
@@ -133,17 +133,6 @@ def translate():
     language.install()
     return language.gettext
 
-# Updates a project's data in the MongoDB 'projects' collection.
-# Input : Project "id" and Project dict 
-def update_project(doc_id, project_data):
-    db = initialize_mongodb()
-    db.projects.update_one({'_id': doc_id}, {'$set': project_data})
-
-# Updates supplier data in the MongoDB 'suppliers' collection.
-# Input : supplier id and supplier dict 
-def update_supplier_management(supplier_id, supplier_data):
-    db = initialize_mongodb()
-    db.suppliers.update_one({'_id': supplier_id}, {'$set': supplier_data})
 
 # Exports a list of suppliers to a CSV file for download.
 def export_suppliers_to_csv_management(suppliers):

@@ -46,3 +46,7 @@ def supplier(supplier_data):
     st.success(_("Supplier Successfully Added!"))
     utils.detect_and_split_comma_in_lists()
     st.cache_data.clear()
+
+def log(event_data):
+    db = utils.initialize_mongodb()
+    db.event_logs.insert_one(event_data)

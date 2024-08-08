@@ -16,3 +16,11 @@ def project(project_data):
     utils.log_event("Mettre à jour projet", project['title'])
     st.cache_data.clear()
     st.success(_("Project Successfully Updated"))
+
+def categories(supplier, updated_categories):
+    db = utils.initialize_mongodb()
+    db.suppliers.update_one({'_id': supplier['_id']}, {'$set': {'categories': updated_categories}})
+
+def fields(supplier, updated_fields):
+    db = utils.initialize_mongodb()
+    db.suppliers.update_one({'_id': supplier['_id']}, {'$set': {'fields': updated_fields}})

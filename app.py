@@ -10,7 +10,6 @@ import kpi_dashboard
 import project_management
 import utils
 import read
-import update
 import create
 
 # install gettext
