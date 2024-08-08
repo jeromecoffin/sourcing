@@ -1,9 +1,8 @@
 import streamlit as st
-from pymongo import MongoClient
 import utils
 import new_project
-import get
-import pandas as pd
+import read
+import update
 
 
 # Function to show project details
@@ -16,7 +15,7 @@ def show_project_details(project):
     st.write(_("Title:"), project['title'])
     st.write(_("Customer:"), project['client'])
 
-    clients = get.get_clients()
+    clients = read.clients()
     client = [d for d in clients if d["name"] == project['client']]
     client = client[0] if client else None
     if client:
@@ -28,15 +27,15 @@ def show_project_details(project):
 
     st.write("RFI:", project['rfi'])
     if project['rfi'] == _("empty"):
-        rfis = get.get_rfis()
+        rfis = read.rfis()
         rfistitle = [rfi["title"] for rfi in rfis]
         rfistitle.insert(0, _("empty"))
         rfi = st.selectbox(_("Chose one RFI:"), rfistitle)
-        rfis = get.get_rfis()
+        rfis = read.rfis()
         rfi_details = [d for d in rfis if d["title"] == project['rfi']]
         rfi_details = rfi_details[0] if rfi_details else None
     else:
-        rfis = get.get_rfis()
+        rfis = read.rfis()
         rfi_details = [d for d in rfis if d["title"] == project['rfi']]
         rfi_details = rfi_details[0] if rfi_details else None
         rfi = project['rfi']
@@ -51,15 +50,15 @@ def show_project_details(project):
 
     st.write("RFQ:", project['rfq'])
     if project['rfq'] == _("empty"):
-        rfqs = get.get_rfqs()
+        rfqs = read.rfqs()
         rfqstitle = [rfq["title"] for rfq in rfqs]
         rfqstitle.insert(0, _("empty"))
         rfq = st.selectbox(_("Chose one RFQ:"), rfqstitle)
-        rfqs = get.get_rfqs()
+        rfqs = read.rfqs()
         rfq_details = [d for d in rfqs if d["title"] == project['rfq']]
         rfq_details = rfq_details[0] if rfq_details else None
     else:
-        rfqs = get.get_rfqs()
+        rfqs = read.rfqs()
         rfq_details = [d for d in rfqs if d["title"] == project['rfq']]
         rfq_details = rfq_details[0] if rfq_details else None
         rfq = project['rfq']
@@ -97,15 +96,8 @@ def show_project_details(project):
                 "late_deliveries": 0
             }
         }
-
-        # Connect to MongoDB
-        db = utils.initialize_mongodb()
-
-        # Update the project in MongoDB
-        db.projects.update_one({'_id': project['_id']}, {'$set': project_data})
-        utils.log_event("Mettre à jour projet", project['title'])
-        st.cache_data.clear()
-        st.success(_("Project Successfully Updated"))
+        update.project(project_data)
+        
 
 # Function to manage projects
 def manage_projects():
@@ -119,7 +111,7 @@ def manage_projects():
         st.header(_("Projects Management"))
         
         st.header(_("Existing Project"))
-        projects = get.get_projects()
+        projects = read.projects()
         
         if projects:
             project_names = [project['title'] for project in projects]
@@ -133,10 +125,3 @@ def manage_projects():
     elif doc_type == _("New Project"):
         new_project.new_projects()
 
-# Define other necessary utility functions here
-def update_project(project_id, project_data):
-    # Connect to MongoDB
-    db = utils.initialize_mongodb()
-
-    # Update the project in MongoDB
-    db.projects.update_one({'_id': project_id}, {'$set': project_data})

@@ -1,8 +1,8 @@
 import streamlit as st
 import utils
 from datetime import datetime
-from pymongo import MongoClient
-import get
+import read
+import create
 
 def new_projects():
     
@@ -14,13 +14,13 @@ def new_projects():
     
         with st.form(key='create_project_form', clear_on_submit=True):
             
-            clients = get.get_clients()
+            clients = read.clients()
             clientsname = [client["name"] for client in clients]
-            rfis = get.get_rfis()
+            rfis = read.rfis()
             rfistitle = [rfi["title"] for rfi in rfis]
-            rfqs = get.get_rfqs()
+            rfqs = read.rfqs()
             rfqstitle = [rfq["title"] for rfq in rfqs]
-            suppliers = get.get_suppliers(None, None)
+            suppliers = read.suppliers(None, None)
             suppliersCompany = [supplier["company"] for supplier in suppliers]
             rfistitle.insert(0, _("empty"))
             rfqstitle.insert(0, _("empty"))
@@ -35,7 +35,6 @@ def new_projects():
             submit_button = st.form_submit_button(label=_('Create Project'))
         
             if submit_button:
-                db = utils.initialize_mongodb()
 
                 project_id = f"project_{datetime.now().strftime('%Y%m%d%H%M%S')}"
 
@@ -53,8 +52,6 @@ def new_projects():
                         "late_deliveries": 0
                     }
                 }
+                create.project(project_id, project_data)
 
-                db.projects.insert_one({"_id": project_id, **project_data})
-                st.success(_("Data successfully modified!"))
-                utils.log_event("Nouveau Projet", details=title)
-                st.cache_data.clear()
+                

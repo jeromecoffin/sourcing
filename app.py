@@ -1,5 +1,4 @@
 import streamlit as st
-from pymongo import MongoClient
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
@@ -10,15 +9,14 @@ import rfi_rfq_management
 import kpi_dashboard
 import project_management
 import utils
-import get
+import read
+import update
+import create
 
 # install gettext
 #msgfmt locales/en/LC_MESSAGES/messages.po -o locales/en/LC_MESSAGES/messages.mo
 #msgfmt locales/fr/LC_MESSAGES/messages.po -o locales/fr/LC_MESSAGES/messages.mo
 #msgfmt locales/vi/LC_MESSAGES/messages.po -o locales/vi/LC_MESSAGES/messages.mo
-
-# Initialize MongoDB client
-db = utils.initialize_mongodb()
 
 st.set_page_config(layout="wide")
 '''hide_menu_style = """
@@ -51,7 +49,7 @@ if authentication_status:
     st.sidebar.write(_("Welcome") + " " + user)
 
     def main():
-        firstLogin = get.get_isFirstLogin()
+        firstLogin = read.isFirstLogin()
 
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
@@ -71,8 +69,8 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db.feedbacks.insert_one(user_feedback)
-                    st.success(_("Thanks for feedback!"))
+                    create.feedback(user_feedback)
+
         elif choice == _("Onboarding"):
             onboarding.show_onboarding()
             st.divider()
@@ -84,8 +82,8 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db.feedbacks.insert_one(user_feedback)
-                    st.success(_("Thanks for feedback!"))
+                    create.feedback(user_feedback)
+
         elif choice == _("Project Management"):
             project_management.manage_projects()
             st.divider()
@@ -97,8 +95,8 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db.feedbacks.insert_one(user_feedback)
-                    st.success(_("Thanks for feedback!"))
+                    create.feedback(user_feedback)
+
         elif choice == _("Suppliers Management"):
             supplier_management.manage_suppliers()
             st.divider()
@@ -110,8 +108,8 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db.feedbacks.insert_one(user_feedback)
-                    st.success(_("Thanks for feedback!"))
+                    create.feedback(user_feedback)
+
         elif choice == "RFI/RFQ":
             rfi_rfq_management.manage_rfi_rfq()
             st.divider()
@@ -123,8 +121,8 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db.feedbacks.insert_one(user_feedback)
-                    st.success(_("Thanks for feedback!"))
+                    create.feedback(user_feedback)
+
         elif choice == _("Account"):
             agent_account.show_profile()
             if st.session_state["authentication_status"]:
@@ -144,8 +142,7 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db.feedbacks.insert_one(user_feedback)
-                    st.success(_("Thanks for feedback!"))
+                    create.feedback(user_feedback)
 
     if __name__ == "__main__":
         main()

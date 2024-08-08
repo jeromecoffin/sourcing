@@ -1,6 +1,7 @@
 import streamlit as st
-from pymongo import MongoClient
 import utils
+import read
+import update
 
 def show_profile():
 
@@ -8,12 +9,7 @@ def show_profile():
 
     st.header(_("Your Profile"))
 
-    # Initialize MongoDB client
-    db = utils.initialize_mongodb()
-    collection = db.agents
-
-    # Retrieve the user profile
-    agent = collection.find_one({"_id": "user"})  # Assuming "user" is the user ID
+    agent = read.agent()
 
     if agent is None:
         st.error(_("User not found"))
@@ -50,10 +46,5 @@ def show_profile():
                 "experience": experience,
                 "language": language,
                 "isFirstLogin": "1"
-            }
-
-            # Update the user profile in MongoDB
-            collection.update_one({"user_id": "user"}, {"$set": agent_data})            
-            st.success(_("Data successfully modified!"))
-            st.cache_data.clear() # clear cache for language
-            st.experimental_rerun()
+            }           
+            update.agent(agent_data)

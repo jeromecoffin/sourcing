@@ -1,8 +1,7 @@
 import streamlit as st
-from pymongo import MongoClient
 import utils
-import get
-
+import read
+import create
 
 def manage_rfi_rfq():
 
@@ -21,7 +20,7 @@ def manage_rfi_rfq():
             title = st.text_input(_("RFI Title"))
             reference = st.text_input(_("Reference"))
             location = st.text_input(_("Location"))
-            clients = get.get_clients()
+            clients = read.clients()
             clientsname = [client["name"] for client in clients]
             selected_client = st.selectbox(_("Select a Client:"), clientsname)
 
@@ -38,7 +37,7 @@ def manage_rfi_rfq():
             requestDueDate = st.text_input(_("Deadline"))
             information = st.text_area(_("Requesting Information"))
             
-            suppliers = get.get_suppliers(None, None)
+            suppliers = read.suppliers(None, None)
             suppliersCompany = [supplier["company"] for supplier in suppliers]
             selected_suppliers = st.multiselect(_("Select Suppliers"), suppliersCompany)
             
@@ -62,15 +61,11 @@ def manage_rfi_rfq():
                     "suppliers": selected_suppliers,
                     "comments": comments
                 }
-
-                db.rfis.insert_one(rfi_data)
-                utils.log_event("Nouveau RFI", details=title)
-                st.success(_("Added New RFI"))
-                st.cache_data.clear()
+                create.rfi(rfi_data)
 
         st.subheader(_("RFIs List"))
         with st.spinner(_("Loading RFIs...")):
-            rfis = get.get_rfis()
+            rfis = read.rfis()
         for rfi in rfis:
             titleExpender = rfi['title'] + " - " + rfi['reference']
             with st.expander(titleExpender):
@@ -94,11 +89,11 @@ def manage_rfi_rfq():
             reference = st.text_input(_("Reference"))
             location = st.text_input(_("Location"))
 
-            clients = get.get_clients()
+            clients = read.clients()
             clientsname = [client["name"] for client in clients]
             selected_client = st.selectbox(_("Select Customer:"), clientsname)
 
-            rfis = get.get_rfis()
+            rfis = read.rfis()
             rfistitle = [rfi["title"] for rfi in rfis]
             selected_rfis = st.selectbox(_("Select RFI:"), rfistitle)
             
@@ -115,7 +110,7 @@ def manage_rfi_rfq():
             requestDueDate = st.text_input(_("Deadline"))
             quotationContent = st.text_area(_("Quotation Content"))
             
-            suppliers = get.get_suppliers(None, None)
+            suppliers = read.suppliers(None, None)
             suppliersCompany = [supplier["company"] for supplier in suppliers]
             selected_suppliers = st.multiselect(_("Select Suppliers:"), suppliersCompany)
             
@@ -140,15 +135,11 @@ def manage_rfi_rfq():
                     "suppliers": selected_suppliers,
                     "comments": comments
                 }
-
-                db.rfqs.insert_one(rfq_data)
-                utils.log_event("Ajouter RFQ", details=title)
-                st.success(_("RFQ Successfully Added!"))
-                st.cache_data.clear()
+                create.rfq(rfq_data)
 
         st.subheader(_("RFQs List"))
         with st.spinner(_("RFQs Loading...")):
-            rfqs = get.get_rfqs()
+            rfqs = read.rfqs()
         for rfq in rfqs:
             titleExpender = rfq['title'] + " - " + rfq['reference']
             with st.expander(titleExpender):

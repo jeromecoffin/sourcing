@@ -1,19 +1,4 @@
 from datetime import datetime, timezone, timedelta
-from firebase_admin import credentials, firestore, initialize_app, _apps
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.units import inch
-from reportlab.lib import colors
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
-from io import BytesIO
-import streamlit as st
-import gettext
-import os
-import pandas as pd
-import get
-
-from datetime import datetime, timezone, timedelta
 from pymongo import MongoClient
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.pagesizes import letter
@@ -26,11 +11,11 @@ import streamlit as st
 import gettext
 import os
 import pandas as pd
-import get
+import read
 
 # Initializes MongoDB using configuration from Streamlit secrets.
 def initialize_mongodb():
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient("mongodb://avanta:88888888@localhost:27017/sourcingmain")
     return client.sourcingmain
 
 # Calculates various KPIs from MongoDB collections.
@@ -47,7 +32,7 @@ def calculate_kpis():
 
     now = datetime.now(timezone.utc)
 
-    def get_date_safe(doc, field):
+    def date_safe(doc, field):
         date_str = doc.get(field)
         if isinstance(date_str, str):
             return datetime.fromisoformat(date_str).replace(tzinfo=timezone.utc)
@@ -55,13 +40,13 @@ def calculate_kpis():
             return date_str
         return now
 
-    average_response_time_rfis = sum([(now - get_date_safe(rfi, "due_date")).days for rfi in total_rfis]) / len(total_rfis) if total_rfis else 0
-    average_response_time_rfqs = sum([(now - get_date_safe(rfq, "due_date")).days for rfq in total_rfqs]) / len(total_rfqs) if total_rfqs else 0
+    average_response_time_rfis = sum([(now - date_safe(rfi, "due_date")).days for rfi in total_rfis]) / len(total_rfis) if total_rfis else 0
+    average_response_time_rfqs = sum([(now - date_safe(rfq, "due_date")).days for rfq in total_rfqs]) / len(total_rfqs) if total_rfqs else 0
 
     total_project_costs = sum([rfq.get("budget", 0) for rfq in total_rfqs])
     average_supplier_performance = sum([supplier.get("rating", 0) for supplier in total_suppliers]) / len(total_suppliers) if total_suppliers else 0
 
-    on_time_deliveries = len([rfq for rfq in total_rfqs if get_date_safe(rfq, "delivery_date") <= get_date_safe(rfq, "due_date")])
+    on_time_deliveries = len([rfq for rfq in total_rfqs if date_safe(rfq, "delivery_date") <= date_safe(rfq, "due_date")])
     late_deliveries = len(total_rfqs) - on_time_deliveries
 
     samples_required = len([rfi for rfi in total_rfis if rfi.get("samples_required", False)])
@@ -135,7 +120,7 @@ def log_event(event_type, details=None):
 # Configures gettext for translations based on the user's language preference.
 def translate():
 
-    language = get.get_language()
+    language = read.language()
 
     # Configurer le chemin des fichiers de traduction
     locales_dir = os.path.join(os.path.dirname(__file__), 'locales')

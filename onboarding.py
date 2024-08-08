@@ -1,8 +1,8 @@
 import streamlit as st
-from pymongo import MongoClient
 import utils
-import get
+import read
 import pandas as pd
+import create
 
 def show_onboarding():
     
@@ -29,19 +29,10 @@ def show_onboarding():
                 "company": company,
                 "notes": notes
             }
-            # Connect to MongoDB
-            db = utils.initialize_mongodb()
-            
-            db.clients.insert_one(client_data)
-            utils.log_event("Nouveau Client", details=email)
-            st.success(_("Customer Successfully Added"))
-            st.cache_data.clear()
-
-    # Assuming get_clients() returns a list of dictionaries with client data
-    clients = get.get_clients()
+            create.client(client_data)
 
     # Extracting the client data into a pandas DataFrame
-    df = pd.DataFrame(clients)
+    df = pd.DataFrame(read.clients())
 
     # Displaying the DataFrame as an interactive table
     st.subheader(_("Customer List"))
