@@ -1,91 +1,91 @@
-# Plateforme SaaS pour les Agents de Sourcing
+# SaaS Platform for Sourcing Agents
 
 ## Description
 
-Cette plateforme SaaS permet aux agents de sourcing freelance de gérer leurs contacts fournisseurs, de créer et gérer des documents RFI/RFQ, et de suivre des indicateurs clés de performance (KPI) via un tableau de bord. Le MVP utilise Streamlit pour l'interface utilisateur et Firebase pour la gestion des données.
+This SaaS platform enables freelance sourcing agents to manage their supplier contacts, create and manage RFI/RFQ documents, and track key performance indicators (KPIs) through a dashboard. The MVP uses Streamlit for the user interface and Firebase for data management (MongoDB on the mongo branch).
 
-## Fonctionnalités
+## Features
 
-1. **Gestion des Contacts Fournisseurs**
-   - Ajouter, modifier, supprimer et afficher les fournisseurs.
-2. **Gestion des Documents RFI/RFQ**
-   - Créer, modifier, supprimer et afficher des documents RFI (Request for Information) et RFQ (Request for Quotation).
-3. **Tableau de Bord - KPI**
-   - Afficher des KPI clés comme le nombre total de fournisseurs, RFIs, et RFQs.
+1. **Supplier Contact Management**
+   - Add, edit, delete, and view suppliers.
+2. **RFI/RFQ Document Management**
+   - Create, edit, delete, and view RFI (Request for Information) and RFQ (Request for Quotation) documents.
+3. **Dashboard - KPI**
+   - Display key KPIs such as the total number of suppliers, RFIs, and RFQs.
 
-## Technologies Utilisées
+## Technologies Used
 
-- [Streamlit](https://streamlit.io/) : Pour la création de l'interface utilisateur.
-- [Firebase](https://firebase.google.com/) : Pour la gestion de la base de données.
-- [Python](https://www.python.org/) : Langage de programmation principal.
+- [Streamlit](https://streamlit.io/): For building the user interface.
+- [Firebase](https://firebase.google.com/): For database management (MongoDB on the mongo branch).
+- [Python](https://www.python.org/): The main programming language.
 
-## Prérequis
+## Prerequisites
 
-- Python 3.x installé sur votre machine.
-- Un compte Firebase et un projet configuré avec l'Admin SDK.
-- Les bibliothèques Python requises (voir ci-dessous).
+- Python 3.x installed on your machine.
+- A Firebase account and a project configured with the Admin SDK.
+- The required Python libraries (see below).
 
 ## Installation
 
-1. Clonez le dépôt :
+1. Clone the repository:
 
     ```bash
-    git clone https://github.com/votre-utilisateur/votre-repo.git
-    cd votre-repo
+    git clone https://github.com/your-username/your-repo.git
+    cd your-repo
     ```
 
-2. Installez les dépendances requises :
+2. Install the required dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Configurez Firebase :
+3. Configure Firebase:
 
-    - Ajoutez votre fichier de configuration `firebase_config.json` dans le répertoire du projet.
+    - Add your `firebase_config.json` configuration file to the project directory.
 
-4. Exécutez l'application Streamlit :
+4. Run the Streamlit application:
 
     ```bash
     streamlit run app.py
     ```
 
-## Utilisation
+## Usage
 
-### Accueil
+### Home
 
-Sur la page d'accueil, vous trouverez une brève introduction et description de la plateforme.
+On the homepage, you will find a brief introduction and description of the platform.
 
-### Gestion des Contacts
+### Contact Management
 
-- Accédez à la section "Gestion des Contacts" dans le menu de navigation.
-- Utilisez le formulaire pour ajouter de nouveaux fournisseurs.
-- Affichez la liste des fournisseurs enregistrés.
+- Navigate to the "Contact Management" section in the navigation menu.
+- Use the form to add new suppliers.
+- View the list of registered suppliers.
 
-### Documents RFI/RFQ
+### RFI/RFQ Documents
 
-- Accédez à la section "Documents RFI/RFQ" dans le menu de navigation.
-- Sélectionnez le type de document (RFI ou RFQ).
-- Utilisez le formulaire pour ajouter de nouveaux documents.
-- Affichez la liste des documents enregistrés.
+- Navigate to the "RFI/RFQ Documents" section in the navigation menu.
+- Select the document type (RFI or RFQ).
+- Use the form to add new documents.
+- View the list of registered documents.
 
-### Tableau de Bord - KPI
+### Dashboard - KPI
 
-- Accédez à la section "Tableau de Bord" dans le menu de navigation.
-- Consultez les KPI clés pour suivre la performance des activités de sourcing.
+- Navigate to the "Dashboard" section in the navigation menu.
+- Review key KPIs to monitor the performance of sourcing activities.
 
-## Contribuer
+## Contributing
 
-Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou ouvrir une issue pour toute suggestion ou amélioration.
+Contributions are welcome! Please submit a pull request or open an issue for any suggestions or improvements.
 
 ## License
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## Auteurs
+## Authors
 
 - Jérôme COFFIN -
 
-## Remerciements
+## Acknowledgments
 
-- Merci à la communauté Streamlit et Firebase pour leurs excellentes documentations et supports.
+- Thanks to the Streamlit and Firebase communities for their excellent documentation and support.
