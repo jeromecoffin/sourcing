@@ -11,6 +11,7 @@ import project_management
 import utils
 import read
 import create
+import manage_rfi
 
 # install gettext
 #msgfmt locales/en/LC_MESSAGES/messages.po -o locales/en/LC_MESSAGES/messages.mo
@@ -52,9 +53,9 @@ if authentication_status:
 
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
-            menu = [_("Account"), _("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ")]
+            menu = [_("Account"), _("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Manage RFI")]
         else:
-            menu = [_("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Account")]
+            menu = [_("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Manage RFI"), _("Account")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
         if choice == _("Dashboard"):
@@ -142,6 +143,9 @@ if authentication_status:
                         "feedback": feedback,
                     }
                     create.feedback(user_feedback)
+        elif choice == _("Manage RFI"):
+            manage_rfi.manage()
+
 
     if __name__ == "__main__":
         main()

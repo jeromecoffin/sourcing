@@ -25,11 +25,11 @@ def initialize_mongodb():
 @st.cache_data(ttl=3600)
 def calculate_kpis():
 
-    total_projects = read.projects
-    total_suppliers = read.suppliers
-    total_clients = read.clients
-    total_rfis = read.rfis
-    total_rfqs = read.rfqs
+    total_projects = read.projects()
+    total_suppliers = read.suppliers(None, None)
+    total_clients = read.clients()
+    total_rfis = read.rfis()
+    total_rfqs = read.rfqs()
 
     now = datetime.now(timezone.utc)
 
@@ -148,6 +148,8 @@ def generate_pdf(doc_type, doc_data):
     doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
     elements = []
 
+    agent = read.agent()
+
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name='Justify', alignment=2))
     
@@ -177,11 +179,11 @@ def generate_pdf(doc_type, doc_data):
     elements.append(Spacer(1, 6))
 
     requestingData = [
-        ["Requesting Party Name:", Paragraph(doc_data['rp_name'], styles['Normal'])],
-        ["Requesting Party Company:", Paragraph(doc_data['rp_company'], styles['Normal'])],
-        ["Requesting Party Position:", Paragraph(doc_data['rp_position'], styles['Normal'])],
-        ["Requesting Party Email:", Paragraph(doc_data['rp_mail'], styles['Normal'])],
-        ["Requesting Party Phone:", Paragraph(doc_data['rp_phone'], styles['Normal'])],
+        ["Requesting Party Name:", Paragraph(agent['name'], styles['Normal'])],
+        ["Requesting Party Lastname:", Paragraph(agent['lastname'], styles['Normal'])],
+        ["Requesting Party Address:", Paragraph(agent['address'], styles['Normal'])],
+        ["Requesting Party Email:", Paragraph(agent['email'], styles['Normal'])],
+        ["Requesting Party Phone:", Paragraph(agent['phone'], styles['Normal'])],
     ]
 
     requestingTable = Table(requestingData, colWidths=[2.5 * inch, 4 * inch])
