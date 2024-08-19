@@ -38,7 +38,6 @@ def send_rfi():
     if send:
         
         rfi_details["suppliers"].append(supplierMail)
-        update.rfi(rfi_details)
 
         # Email components
         recipient = supplierMail
@@ -55,4 +54,4 @@ def send_rfi():
         # Open the default mail client with the mailto link
         webbrowser.open(mailto_link)
 
-        st.cache_data.clear()
+        update.rfi(rfi_details) #a mettre à la fin à cause du rerun

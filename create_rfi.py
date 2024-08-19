@@ -3,6 +3,16 @@ import utils
 import read
 import create
 
+def add_text_input_field():
+    """Function to add a new text input field."""
+    st.session_state.additional_fields.append("")
+
+def remove_text_input_field():
+    """Function to remove the last text input field."""
+    if st.session_state.additional_fields:
+        st.session_state.additional_fields.pop()
+
+
 def create_rfi():
 
     _ = utils.translate()
@@ -21,21 +31,19 @@ def create_rfi():
         requestDueDate = st.text_input(_("Deadline"))
 
         st.divider()
-        
-        productName = st.text_input(_("Product Name"))
-        quantity = st.text_input(_("Quantity"))
-        material = st.text_input(_("Material"))
-        size = st.text_input(_("Size"))
-        color = st.text_input(_("Color"))
-        accessory = st.text_area(_("Accessory"))
-        packaging = st.text_input(_("Packaging"))
-        cartonSize = st.text_input(_("CartonSize"))
-
-        st.divider()
 
         information = st.text_area(_("Information"))
 
         comment =  st.text_area(_("Comment"))
+
+        st.divider()
+
+        # Dynamic input fields section
+        st.subheader("Additional Information")
+        
+        # Display current dynamic input fields
+        for idx, value in enumerate(st.session_state.additional_fields):
+            st.session_state.additional_fields[idx] = st.text_input(f"Additional Field {idx+1}", value=value, key=f"input_{idx}")
 
         suppliers = []
 
@@ -48,16 +56,13 @@ def create_rfi():
                 "location": location,
                 "requestDate": requestDate,
                 "requestDueDate": requestDueDate,
-                "productName": productName,
-                "quantity": quantity,
-                "material": material,
-                "size": size,
-                "color": color,
-                "accessory": accessory,
-                "packaging": packaging,
-                "cartonSize": cartonSize,
+                "additional_fields": st.session_state.additional_fields,
                 "information": information,
                 "comment": comment,
                 "suppliers": suppliers
             }
             create.rfi(rfi_data)
+    col1, col2, col3 = st.columns(3)
+    # Add and Remove buttons to manage dynamic inputs (outside the form)
+    col1.button("Add Another Field", on_click=add_text_input_field)
+    col2.button("Remove Last Field", on_click=remove_text_input_field)

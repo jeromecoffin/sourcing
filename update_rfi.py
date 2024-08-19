@@ -17,6 +17,8 @@ def update_rfi():
     rfi_details = [d for d in rfis if d["title"] == rfi]
     rfi_details = rfi_details[0] if rfi_details else None
 
+    additional_fields = []
+
     with st.form("add_rfi_form", clear_on_submit=True):
 
         title = st.text_input(_("RFI Title"), value=rfi_details["title"])
@@ -38,6 +40,10 @@ def update_rfi():
         accessory = st.text_area(_("Accessory"), value=rfi_details["accessory"])
         packaging = st.text_input(_("Packaging"), value=rfi_details["packaging"])
         cartonSize = st.text_input(_("CartonSize"), value=rfi_details["cartonSize"])
+        
+        for idx, x in enumerate(rfi_details["additional_fields"]):
+            field = st.text_input(_("field{}".format(idx)), value=x)
+            additional_fields.append(field)
 
         st.divider()
 
@@ -62,6 +68,7 @@ def update_rfi():
                 "accessory": accessory,
                 "packaging": packaging,
                 "cartonSize": cartonSize,
+                "additional_fields": additional_fields,
                 "information": information,
                 "comment": comment
             }

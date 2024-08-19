@@ -56,6 +56,9 @@ if authentication_status:
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
         if choice == "Create RFI":
+            # Initialize session state for dynamic input fields
+            if "additional_fields" not in st.session_state:
+                st.session_state.additional_fields = []
             create_rfi.create_rfi()
         
         elif choice == _("Edit RFI"):
@@ -66,7 +69,8 @@ if authentication_status:
 
         elif choice == _("Dashboard"):
             manage_rfi.show_dashboard()
-            manage_rfi.manage()
+            manage_rfi.list_rfis()
+            manage_rfi.list_suppliers()
 
         elif choice == _("Account"):
             agent_account.show_profile()

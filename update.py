@@ -30,5 +30,5 @@ def rfi(rfi_data):
     db = utils.initialize_mongodb()
     db.rfis.update_one({"title": rfi_data["title"]}, {"$set": rfi_data})            
     st.success(_("Data successfully modified!"))
-    st.cache_data.clear() # clear cache for language
+    st.cache_data.clear()
     st.rerun()
