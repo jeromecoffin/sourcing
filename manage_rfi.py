@@ -3,6 +3,15 @@ import pandas as pd
 import read
 import utils
 
+def show_dashboard():
+    
+    _ = utils.translate()
+
+    st.header(_("Dashboard"))
+    kpis = utils.calculate_kpis()
+    col1, col2, col3 = st.columns(3)
+    col1.metric(label=_("Total Number of RFIs"), value=kpis["total_rfis"])
+
 def manage():
     _ = utils.translate()
     st.subheader(_("RFIs List"))
@@ -44,28 +53,3 @@ def manage():
 
     # Optionally log event
     # utils.log_event("RFI Dataframe Viewed")
-
-
-
-
-'''
-{
-  "_id": "9i91d384nNixRcxB3S0L",
-  "title": "Request for Accessory Components",
-  "reference": "RFI-2024-002",
-  "location": "Hanoi, Vietnam",
-  "rp_name": "Tran Thi B",
-  "rp_company": "XYZ Accessories Co.",
-  "rp_position": "Head of Design",
-  "rp_mail": "tranthib@xyzaccessories.vn",
-  "rp_phone": "+84 987 654 321",
-  "requestDate": "2024-08-02",
-  "requestDueDate": "2024-08-16",
-  "information": "Seeking information on the availability and pricing of accessory components like zippers and buttons.",
-  "client": "ABC Garments Ltd.",
-  "suppliers": [
-    "Home Textiles VN"
-  ],
-  "comments": "Interested in bulk purchasing options."
-}
-'''
