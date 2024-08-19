@@ -2,15 +2,10 @@ import streamlit as st
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
-import onboarding
 import agent_account
-import supplier_management
 import create_rfi
-import kpi_dashboard
-import project_management
 import utils
 import read
-import create
 import manage_rfi
 import update_rfi
 
@@ -54,35 +49,16 @@ if authentication_status:
 
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
-            menu = [_("Account"), _("Create RFI"), _("Edit RFI"), _("Share RFI")]
+            menu = [_("Settings"), _("Create RFI"), _("Edit RFI"), _("Share RFI")]
         else:
-            menu = [_("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Account")]
+            menu = [_("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Settings")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
         if choice == "Create RFI":
             create_rfi.create_rfi_rfq()
-            st.divider()
-            with st.form("documents_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder=_("Modify fields for RFI/RFQ..."))
-                submit = st.form_submit_button(_("Submit"))
-                if submit:
-                    user_feedback = {
-                        "module": choice,
-                        "feedback": feedback,
-                    }
-                    create.feedback(user_feedback)
         
         elif choice == _("Edit RFI"):
             update_rfi.update_rfi_rfq()
-            with st.form("documents_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder=_("Modify fields for RFI/RFQ..."))
-                submit = st.form_submit_button(_("Submit"))
-                if submit:
-                    user_feedback = {
-                        "module": choice,
-                        "feedback": feedback,
-                    }
-                    create.feedback(user_feedback)
 
         elif choice == _("Share RFI"):
             manage_rfi.show_dashboard()
@@ -98,17 +74,6 @@ if authentication_status:
                     st.error(e)
             with open('cred.yaml', 'w') as file:
                 yaml.dump(config, file, default_flow_style=False)
-            st.divider()
-            with st.form("documents_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder=_("Data to generate invoices..."))
-                submit = st.form_submit_button(_("Submit"))
-                if submit:
-                    user_feedback = {
-                        "module": choice,
-                        "feedback": feedback,
-                    }
-                    create.feedback(user_feedback)
-
 
     if __name__ == "__main__":
         main()
