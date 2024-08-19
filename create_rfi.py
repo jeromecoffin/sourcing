@@ -3,7 +3,7 @@ import utils
 import read
 import create
 
-def create_rfi_rfq():
+def create_rfi():
 
     _ = utils.translate()
 
@@ -37,6 +37,8 @@ def create_rfi_rfq():
 
         comment =  st.text_area(_("Comment"))
 
+        suppliers = []
+
         submit = st.form_submit_button(_("Submit RFI"))
 
         if submit:
@@ -55,6 +57,7 @@ def create_rfi_rfq():
                 "packaging": packaging,
                 "cartonSize": cartonSize,
                 "information": information,
-                "comment": comment
+                "comment": comment,
+                "suppliers": suppliers
             }
             create.rfi(rfi_data)

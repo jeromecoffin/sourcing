@@ -11,6 +11,7 @@ def show_dashboard():
     kpis = utils.calculate_kpis()
     col1, col2, col3 = st.columns(3)
     col1.metric(label=_("Total Number of RFIs"), value=kpis["total_rfis"])
+    col2.metric(label=_("RFIs Sent"), value=kpis["total_sent_rfis"])
 
 def manage():
     _ = utils.translate()
@@ -27,6 +28,7 @@ def manage():
         "Title": [],
         "Reference": [],
         "Due Date": [],
+        "Suppliers Contacted": [],
         "PDF Link": []
     }
 
@@ -34,6 +36,7 @@ def manage():
     for rfi in rfis_sorted:
         title = rfi.get('title', 'Untitled RFI')
         reference = rfi.get('reference', 'No Reference')
+        suppliersContacted = rfi.get('suppliers')
         request_date = rfi.get('requestDueDate', 'No Due Date')
         
         # Create a link to the PDF file for each RFI (this is a placeholder link)
@@ -43,6 +46,7 @@ def manage():
         data["Title"].append(title)
         data["Reference"].append(reference)
         data["Due Date"].append(request_date)
+        data["Suppliers Contacted"].append(len(suppliersContacted))
         data["PDF Link"].append(pdf_url)
 
     # Convert data to a pandas DataFrame

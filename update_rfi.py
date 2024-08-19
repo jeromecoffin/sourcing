@@ -3,8 +3,9 @@ import utils
 import read
 import create
 import update
+import generateXlsx
 
-def update_rfi_rfq():
+def update_rfi():
 
     _ = utils.translate()
 

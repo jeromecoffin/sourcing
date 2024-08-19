@@ -8,6 +8,7 @@ import utils
 import read
 import manage_rfi
 import update_rfi
+import send_rfi
 
 # install gettext
 #msgfmt locales/en/LC_MESSAGES/messages.po -o locales/en/LC_MESSAGES/messages.mo
@@ -49,18 +50,21 @@ if authentication_status:
 
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
-            menu = [_("Settings"), _("Create RFI"), _("Edit RFI"), _("Share RFI")]
+            menu = [_("Settings"), _("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI")]
         else:
-            menu = [_("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Settings")]
+            menu = [_("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Settings")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
         if choice == "Create RFI":
-            create_rfi.create_rfi_rfq()
+            create_rfi.create_rfi()
         
         elif choice == _("Edit RFI"):
-            update_rfi.update_rfi_rfq()
+            update_rfi.update_rfi()
 
         elif choice == _("Share RFI"):
+            send_rfi.send_rfi()
+
+        elif choice == _("Dashboard"):
             manage_rfi.show_dashboard()
             manage_rfi.manage()
 

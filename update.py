@@ -7,7 +7,7 @@ def agent(agent_data):
     db.agents.update_one({"_id": "user"}, {"$set": agent_data})            
     st.success(_("Data successfully modified!"))
     st.cache_data.clear() # clear cache for language
-    st.experimental_rerun()
+    st.rerun()
 
 def project(project_data):
     _ = utils.translate()
@@ -31,4 +31,4 @@ def rfi(rfi_data):
     db.rfis.update_one({"title": rfi_data["title"]}, {"$set": rfi_data})            
     st.success(_("Data successfully modified!"))
     st.cache_data.clear() # clear cache for language
-    st.experimental_rerun()
+    st.rerun()

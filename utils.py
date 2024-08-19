@@ -31,6 +31,13 @@ def calculate_kpis():
     total_rfis = read.rfis()
     total_rfqs = read.rfqs()
 
+    total_sent_rfis = 0
+    suppliersContacted = []
+
+    for rfi in total_rfis:
+        suppliersContacted = rfi["suppliers"]
+        total_sent_rfis += len(suppliersContacted)
+
     now = datetime.now(timezone.utc)
 
     def date_safe(doc, field):
@@ -64,7 +71,8 @@ def calculate_kpis():
         "average_supplier_performance": average_supplier_performance,
         "on_time_deliveries": on_time_deliveries,
         "late_deliveries": late_deliveries,
-        "samples_required": samples_required
+        "samples_required": samples_required,
+        "total_sent_rfis": total_sent_rfis
     }
 
 # Detects and splits comma-separated values in 'categories' and 'fields' fields for suppliers.
