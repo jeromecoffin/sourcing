@@ -1,9 +1,12 @@
 import streamlit as st
 import utils
-import new_project
-import get
+import read
+import update
+from datetime import datetime
+import create
 
 
+# Function to show project details
 def show_project_details(project):
 
     _ = utils.translate()
@@ -11,9 +14,9 @@ def show_project_details(project):
     st.divider()
 
     st.write(_("Title:"), project['title'])
-
     st.write(_("Customer:"), project['client'])
-    clients = get.get_clients()
+
+    clients = read.clients()
     client = [d for d in clients if d["name"] == project['client']]
     client = client[0] if client else None
     if client:
@@ -25,15 +28,15 @@ def show_project_details(project):
 
     st.write("RFI:", project['rfi'])
     if project['rfi'] == _("empty"):
-        rfis = get.get_rfis()
+        rfis = read.rfis()
         rfistitle = [rfi["title"] for rfi in rfis]
         rfistitle.insert(0, _("empty"))
         rfi = st.selectbox(_("Chose one RFI:"), rfistitle)
-        rfis = get.get_rfis()
+        rfis = read.rfis()
         rfi_details = [d for d in rfis if d["title"] == project['rfi']]
         rfi_details = rfi_details[0] if rfi_details else None
     else:
-        rfis = get.get_rfis()
+        rfis = read.rfis()
         rfi_details = [d for d in rfis if d["title"] == project['rfi']]
         rfi_details = rfi_details[0] if rfi_details else None
         rfi = project['rfi']
@@ -48,15 +51,15 @@ def show_project_details(project):
 
     st.write("RFQ:", project['rfq'])
     if project['rfq'] == _("empty"):
-        rfqs = get.get_rfqs()
+        rfqs = read.rfqs()
         rfqstitle = [rfq["title"] for rfq in rfqs]
         rfqstitle.insert(0, _("empty"))
         rfq = st.selectbox(_("Chose one RFQ:"), rfqstitle)
-        rfqs = get.get_rfqs()
+        rfqs = read.rfqs()
         rfq_details = [d for d in rfqs if d["title"] == project['rfq']]
         rfq_details = rfq_details[0] if rfq_details else None
     else:
-        rfqs = get.get_rfqs()
+        rfqs = read.rfqs()
         rfq_details = [d for d in rfqs if d["title"] == project['rfq']]
         rfq_details = rfq_details[0] if rfq_details else None
         rfq = project['rfq']
@@ -70,12 +73,11 @@ def show_project_details(project):
     st.divider()
 
     try:
-        suppliers = []
-        suppliers = project['suppliers']
-        supplier = st.selectbox(_("Final Supplier:"), project['suppliers'])
+        suppliers = project.get('suppliers', [])
+        supplier = st.selectbox(_("Final Supplier:"), suppliers)
         st.write(_("Final Supplier:"), supplier)
     except:
-        print("error suppliers project management" )
+        st.error(_("Error in supplier project management"))
 
     submit = st.button(_("Save"))
 
@@ -84,7 +86,7 @@ def show_project_details(project):
             "title": project['title'],
             "client": project['client'],
             "suppliers": suppliers,
-            "supplier_final": supplier,  
+            "supplier_final": supplier,
             "rfi": rfi,
             "rfq": rfq,
             "kpis": {
@@ -95,13 +97,10 @@ def show_project_details(project):
                 "late_deliveries": 0
             }
         }
+        update.project(project_data)
+        
 
-        # Update the project in Firestore
-        utils.update_project(project['doc_id'], project_data)
-        utils.log_event("Mettre à jour projet", project['title'])
-        st.cache_data.clear()
-        st.success(_("Project Successfully Updated"))
-
+# Function to manage projects
 def manage_projects():
 
     _ = utils.translate()
@@ -113,7 +112,7 @@ def manage_projects():
         st.header(_("Projects Management"))
         
         st.header(_("Existing Project"))
-        projects = get.get_projects()
+        projects = read.projects()
         
         if projects:
             project_names = [project['title'] for project in projects]
@@ -125,5 +124,56 @@ def manage_projects():
             st.write(_("No Project Created"))
             
     elif doc_type == _("New Project"):
-        new_project.new_projects()
+        new_projects()
 
+def new_projects():
+    
+    _ = utils.translate()
+    
+    st.header(_("Create New Project"))
+
+    with st.spinner(_("Loading Form...")):
+    
+        with st.form(key='create_project_form', clear_on_submit=True):
+            
+            clients = read.clients()
+            clientsname = [client["name"] for client in clients]
+            rfis = read.rfis()
+            rfistitle = [rfi["title"] for rfi in rfis]
+            rfqs = read.rfqs()
+            rfqstitle = [rfq["title"] for rfq in rfqs]
+            suppliers = read.suppliers(None, None)
+            suppliersCompany = [supplier["company"] for supplier in suppliers]
+            rfistitle.insert(0, _("empty"))
+            rfqstitle.insert(0, _("empty"))
+            
+            title = st.text_input(_("Project Title"))
+            client = st.selectbox(_("Select Customer:"), clientsname)
+            rfi = st.selectbox(_("Select RFI"), rfistitle)
+            rfq = st.selectbox(_("Select RFQ:"), rfqstitle)
+            suppliersProject = st.multiselect(_("Choose Suppliers"), suppliersCompany)
+            suppliersProject.insert(0, _("empty"))
+            
+            submit_button = st.form_submit_button(label=_('Create Project'))
+        
+            if submit_button:
+
+                project_id = f"project_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+
+                project_data = {
+                    "title": title,
+                    "client": client,
+                    "suppliers": suppliersProject,
+                    "rfi": rfi,
+                    "rfq": rfq,
+                    "kpis": {
+                        "response_time": 0,
+                        "cost": 0,
+                        "performance": 0,
+                        "on_time_deliveries": 0,
+                        "late_deliveries": 0
+                    }
+                }
+                create.project(project_id, project_data)
+
+                

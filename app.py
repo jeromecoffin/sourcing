@@ -1,33 +1,31 @@
 import streamlit as st
-from firebase_admin import firestore
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 import onboarding
 import agent_account
 import supplier_management
-import rfi_rfq_management
+import create_rfi
 import kpi_dashboard
 import project_management
-from utils import initialize_firebase
 import utils
-import get
+import read
+import create
+import manage_rfi
+import update_rfi
 
 # install gettext
 #msgfmt locales/en/LC_MESSAGES/messages.po -o locales/en/LC_MESSAGES/messages.mo
 #msgfmt locales/fr/LC_MESSAGES/messages.po -o locales/fr/LC_MESSAGES/messages.mo
 #msgfmt locales/vi/LC_MESSAGES/messages.po -o locales/vi/LC_MESSAGES/messages.mo
 
-# Initialize Firebase
-initialize_firebase()
-
 st.set_page_config(layout="wide")
-hide_menu_style = """
+'''hide_menu_style = """
         <style>
         div[data-testid="stToolbar"] {display: none;}
         </style>
         """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
+st.markdown(hide_menu_style, unsafe_allow_html=True)'''
 
 # Load config.yaml for authentication
 with open('cred.yaml') as file:
@@ -52,73 +50,17 @@ if authentication_status:
     st.sidebar.write(_("Welcome") + " " + user)
 
     def main():
-        firstLogin = get.get_isFirstLogin()
+        firstLogin = read.isFirstLogin()
 
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
-            menu = [_("Account"), _("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ")]
+            menu = [_("Account"), _("Create RFI"), _("Edit RFI"), _("Share RFI")]
         else:
-            menu = [_("Dashboard"), _("Onboarding"), _("Project Management"), _("Suppliers Management"), _("RFI/RFQ"), _("Account")]
+            menu = [_("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Account")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
-        if choice == _("Dashboard"):
-            kpi_dashboard.show_dashboard()
-            st.divider()
-            with st.form("kpi_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder=_("More KPI, other details..."))
-                submit = st.form_submit_button(_("Submit"))
-                if submit:
-                    user_feedback = {
-                        "module": choice,
-                        "feedback": feedback,
-                    }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
-                    st.success(_("Thanks for feedback!"))
-        elif choice == _("Onboarding"):
-            onboarding.show_onboarding()
-            st.divider()
-            with st.form("onboarding_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder=_("More customer data..."))
-                submit = st.form_submit_button(_("Submit"))
-                if submit:
-                    user_feedback = {
-                        "module": choice,
-                        "feedback": feedback,
-                    }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
-                    st.success(_("Thanks for feedback!"))
-        elif choice == _("Project Management"):
-            project_management.manage_projects()
-            st.divider()
-            with st.form("projets_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder=_("Add field xxx ; More RFIs..."))
-                submit = st.form_submit_button(_("Submit"))
-                if submit:
-                    user_feedback = {
-                        "module": choice,
-                        "feedback": feedback,
-                    }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
-                    st.success(_("Thanks for feedback!"))
-        elif choice == _("Suppliers Management"):
-            supplier_management.manage_suppliers()
-            st.divider()
-            with st.form("suppliers_feedback_form", clear_on_submit=True):
-                feedback = st.text_area("feedback", placeholder=_("More/less fields if the new client form ; display other details in the list..."))
-                submit = st.form_submit_button(_("Submit"))
-                if submit:
-                    user_feedback = {
-                        "module": choice,
-                        "feedback": feedback,
-                    }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
-                    st.success(_("Thanks for feedback!"))
-        elif choice == "RFI/RFQ":
-            rfi_rfq_management.manage_rfi_rfq()
+        if choice == "Create RFI":
+            create_rfi.create_rfi_rfq()
             st.divider()
             with st.form("documents_feedback_form", clear_on_submit=True):
                 feedback = st.text_area("feedback", placeholder=_("Modify fields for RFI/RFQ..."))
@@ -128,9 +70,24 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
-                    st.success(_("Thanks for feedback!"))
+                    create.feedback(user_feedback)
+        
+        elif choice == _("Edit RFI"):
+            update_rfi.update_rfi_rfq()
+            with st.form("documents_feedback_form", clear_on_submit=True):
+                feedback = st.text_area("feedback", placeholder=_("Modify fields for RFI/RFQ..."))
+                submit = st.form_submit_button(_("Submit"))
+                if submit:
+                    user_feedback = {
+                        "module": choice,
+                        "feedback": feedback,
+                    }
+                    create.feedback(user_feedback)
+
+        elif choice == _("Share RFI"):
+            manage_rfi.show_dashboard()
+            manage_rfi.manage()
+
         elif choice == _("Account"):
             agent_account.show_profile()
             if st.session_state["authentication_status"]:
@@ -150,10 +107,7 @@ if authentication_status:
                         "module": choice,
                         "feedback": feedback,
                     }
-                    db = firestore.client()
-                    db.collection("feedbacks").add(user_feedback)
-                    st.success(_("Thanks for feedback!"))
-
+                    create.feedback(user_feedback)
 
 
     if __name__ == "__main__":
