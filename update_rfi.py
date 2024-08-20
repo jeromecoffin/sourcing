@@ -23,7 +23,6 @@ def update_rfi():
 
         title = st.text_input(_("RFI Title"), value=rfi_details["title"])
         reference = st.text_input(_("Reference"), value=rfi_details["reference"])
-        location = st.text_input(_("Location"), value=rfi_details["location"])
 
         st.divider()
 
@@ -57,7 +56,6 @@ def update_rfi():
             rfi_data = {
                 "title": title,
                 "reference": reference,
-                "location": location,
                 "requestDate": requestDate,
                 "requestDueDate": requestDueDate,
                 "productName": productName,
@@ -73,3 +71,29 @@ def update_rfi():
                 "comment": comment
             }
             update.rfi(rfi_data)
+    rfi_data = {
+                "title": title,
+                "reference": reference,
+                "requestDate": requestDate,
+                "requestDueDate": requestDueDate,
+                "productName": productName,
+                "quantity": quantity,
+                "material": material,
+                "size": size,
+                "color": color,
+                "accessory": accessory,
+                "packaging": packaging,
+                "cartonSize": cartonSize,
+                "additional_fields": additional_fields,
+                "information": information,
+                "comment": comment
+            }     
+    if st.button("Generate XLSX"):
+        xlsx_data = generateXlsx.generate_xlsx_rfi(rfi_data)
+        
+        st.download_button(
+            label="Download XLSX",
+            data=xlsx_data,
+            file_name="/Users/jeromecoffin/git_repo/sourcing/document.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )

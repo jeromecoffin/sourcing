@@ -2,7 +2,7 @@ import xlsxwriter
 from io import BytesIO
 import read
 
-def generate_xlsx(doc_type, doc_data):
+def generate_xlsx_rfi(rfi):
     # Create a BytesIO buffer for the workbook
     output = BytesIO()
     
@@ -11,39 +11,39 @@ def generate_xlsx(doc_type, doc_data):
     worksheet = workbook.add_worksheet()
 
     # Define formats for styling
-    bold_format = workbook.add_format({'bold': True, 'bg_color': '#D3D3D3', 'border': 1})
+    bold_format = workbook.add_format({'bold': True, 'bg_color': '#D3D3D3', 'border': 1, 'text_wrap': True})
     normal_format = workbook.add_format({'border': 1})
     title_format = workbook.add_format({'bold': True, 'font_size': 16})
     title_format.set_align('center')
     section_title_format = workbook.add_format({'bold': True, 'font_size': 14})
     section_title_format.set_align('center')
+
+    # Add a text wrap format.
+    text_wrap_format = workbook.add_format({'text_wrap': True})
     
     # Define column widths
     worksheet.set_column('A:A', 30)
     worksheet.set_column('B:B', 50)
 
     # Write the title
-    worksheet.merge_range('A1:B1', f"{doc_type} Document", title_format)
+    worksheet.merge_range('A1:B1', f"RFI Document", title_format)
 
     # Write subheader
     worksheet.merge_range('A3:B3', "Generated with Avanta Sourcing", normal_format)
 
     # Write header data
     worksheet.write('A5', 'Title', bold_format)
-    worksheet.write('B5', doc_data['title'], normal_format)
+    worksheet.write('B5', rfi['title'], normal_format)
 
     worksheet.write('A6', 'Reference', bold_format)
-    worksheet.write('B6', doc_data['reference'], normal_format)
-
-    worksheet.write('A7', 'Location', bold_format)
-    worksheet.write('B7', doc_data['location'], normal_format)
+    worksheet.write('B6', rfi['reference'], normal_format)
 
     # Write timeline data
     worksheet.write('A9', 'Request Date', bold_format)
-    worksheet.write('B9', doc_data['requestDate'], normal_format)
+    worksheet.write('B9', rfi['requestDate'], normal_format)
 
     worksheet.write('A10', 'Request Due Date', bold_format)
-    worksheet.write('B10', doc_data['requestDueDate'], normal_format)
+    worksheet.write('B10', rfi['requestDueDate'], normal_format)
 
     # Write Requesting Party Information
     worksheet.merge_range('A12:B12', "REQUESTING PARTY INFORMATION", section_title_format)
@@ -104,52 +104,18 @@ def generate_xlsx(doc_type, doc_data):
     worksheet.write('A41', '% of turnover exported to UE, USA, Others', bold_format)
     worksheet.write('B41', '', normal_format)
 
-    # Write Product Information
-    worksheet.merge_range('A43:B43', "PRODUCT INFORMATION", section_title_format)
-    worksheet.write('A44', 'Product Name', bold_format)
-    worksheet.write('B44', doc_data["productName"], normal_format)
-    worksheet.write('A45', 'Quantity', bold_format)
-    worksheet.write('B45', doc_data["quantity"], normal_format)
-    worksheet.write('A46', 'Material', bold_format)
-    worksheet.write('B46', doc_data["material"], normal_format)
-    worksheet.write('A47', 'Size', bold_format)
-    worksheet.write('B47', doc_data["size"], normal_format)
-    worksheet.write('A48', 'Color', bold_format)
-    worksheet.write('B48', doc_data["color"], normal_format)
-    worksheet.write('A49', 'Accessory', bold_format)
-    worksheet.write('B49', doc_data["accessory"], normal_format)
-    worksheet.write('A50', 'Packaging', bold_format)
-    worksheet.write('B50', doc_data["packaging"], normal_format)
-    worksheet.write('A51', 'Carton Size (LxWxH)', bold_format)
-    worksheet.write('B51', doc_data["size"], normal_format)
-
-    # Write Logistics Information
-    worksheet.merge_range('A53:B53', "LOGISTICS INFORMATION", section_title_format)
-    worksheet.write('A54', 'Product Name', bold_format)
-    worksheet.write('B54', '', normal_format)
-    worksheet.write('A55', 'Quantity', bold_format)
-    worksheet.write('B55', '', normal_format)
-    worksheet.write('A56', 'Weight per Carton', bold_format)
-    worksheet.write('B56', '', normal_format)
-    worksheet.write('A57', 'FOB port', bold_format)
-    worksheet.write('B57', '', normal_format)
-    worksheet.write('A58', 'Delivery Time', bold_format)
-    worksheet.write('B58', '', normal_format)
-    worksheet.write('A59', 'Payment Term', bold_format)
-    worksheet.write('B59', '', normal_format)
-    worksheet.write('A60', 'Other', bold_format)
-    worksheet.write('B60', '', normal_format)
+    cell = 43
+    for idx, x in enumerate(rfi["additional_fields"]):
+        cell += idx
+        worksheet.write('A{}'.format(cell), x, bold_format)
 
     # Write additional information or comments based on doc_type
-    if doc_type == "RFI":
-        worksheet.write('A62', 'Information', bold_format)
-        worksheet.write('B62', doc_data['information'], normal_format)
-    elif doc_type == "RFQ":
-        worksheet.write('A62', 'Quotation', bold_format)
-        worksheet.write('B62', doc_data['quotationContent'], normal_format)
-
-    worksheet.write('A64', 'Comment', bold_format)
-    worksheet.write('B64', doc_data['comment'], normal_format)
+    cell += 2
+    worksheet.write('A{}'.format(cell), 'Information', bold_format)
+    worksheet.write('B{}'.format(cell), rfi['information'], normal_format)
+    cell += 2
+    worksheet.write('A{}'.format(cell), 'Comment', bold_format)
+    worksheet.write('B{}'.format(cell), rfi['comment'], normal_format)
 
     # Close the workbook and return the BytesIO buffer
     workbook.close()

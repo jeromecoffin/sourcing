@@ -23,7 +23,6 @@ def create_rfi():
 
         title = st.text_input(_("RFI Title"))
         reference = st.text_input(_("Reference"))
-        location = st.text_input(_("Location"))
 
         st.divider()
 
@@ -40,6 +39,7 @@ def create_rfi():
 
         # Dynamic input fields section
         st.subheader("Additional Information")
+        st.caption("Select Add Another Field button to add specific request to RFI.")
         
         # Display current dynamic input fields
         for idx, value in enumerate(st.session_state.additional_fields):
@@ -53,7 +53,6 @@ def create_rfi():
             rfi_data = {
                 "title": title,
                 "reference": reference,
-                "location": location,
                 "requestDate": requestDate,
                 "requestDueDate": requestDueDate,
                 "additional_fields": st.session_state.additional_fields,
