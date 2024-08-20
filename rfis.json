@@ -1,0 +1,104 @@
+[
+{
+    "_id": "8B9Q1tf0XyGqA",
+    "title": "Sample RFI for Furniture",
+    "reference": "RFI2024-001",
+    "requestDate": "2024-08-20",
+    "requestDueDate": "2024-08-30",
+    "additional_fields": [
+        "What is the lead time for production?",
+        "Can you provide custom packaging options?",
+        "What are the material specifications?",
+        "Do you offer any discounts for bulk orders?",
+        "What is your MOQ (Minimum Order Quantity)?"
+    ],
+    "information": "Looking for a supplier for custom-made office furniture. Must comply with ISO quality standards.",
+    "comment": "Please prioritize suppliers with experience in exporting to Europe.",
+    "suppliers": []
+},
+{
+    "_id": "oH2d059lzzCo5",
+    "title": "RFI for PCB Manufacturing",
+    "reference": "RFI2024-002",
+    "requestDate": "2024-08-21",
+    "requestDueDate": "2024-09-05",
+    "additional_fields": [
+      "What is your PCB layer count capability?",
+      "Can you meet RoHS compliance?",
+      "Do you provide engineering support during production?",
+      "What is the standard testing procedure for PCBs?",
+      "Can you provide references from previous clients?"
+    ],
+    "information": "Seeking a reliable manufacturer for multi-layer PCBs used in industrial control systems.",
+    "comment": "Looking for a long-term partnership with high-quality and fast turnaround.",
+    "suppliers": []
+},
+{
+    "_id": "2i33R1JhdrTzL",
+    "title": "RFI for Organic Cotton T-Shirt Production",
+    "reference": "RFI2024-003",
+    "requestDate": "2024-08-22",
+    "requestDueDate": "2024-09-10",
+    "additional_fields": [
+      "Do you source GOTS-certified organic cotton?",
+      "Can you handle custom dyeing and labeling?",
+      "What are the available fabric weights?",
+      "What is your standard packaging?",
+      "Can you provide sustainable packaging solutions?"
+    ],
+    "information": "Looking for a supplier to produce organic cotton T-shirts for a new eco-friendly fashion line.",
+    "comment": "Prefer suppliers with experience working with European fashion brands.",
+    "suppliers": []
+},
+{
+    "_id": "s0n0hiMNz3ZB6",
+    "title": "RFI for Automotive Brake Pad Suppliers",
+    "reference": "RFI2024-004",
+    "requestDate": "2024-08-23",
+    "requestDueDate": "2024-09-15",
+    "additional_fields": [
+      "What materials are used in your brake pads?",
+      "What are your quality assurance processes?",
+      "Can you meet ISO/TS 16949 certification?",
+      "Do you offer custom branding on the brake pads?",
+      "What are your warranty policies?"
+    ],
+    "information": "We are looking for brake pad suppliers for aftermarket automotive applications, focusing on quality and durability.",
+    "comment": "Preference given to suppliers with previous experience in the North American market.",
+    "suppliers": []
+},
+{
+    "_id": "H30CX1hxgiLjG",
+    "title": "RFI for Custom Eco-Friendly Packaging",
+    "reference": "RFI2024-005",
+    "requestDate": "2024-08-24",
+    "requestDueDate": "2024-09-12",
+    "additional_fields": [
+      "Do you offer biodegradable packaging materials?",
+      "Can you customize packaging sizes and shapes?",
+      "What is your production lead time?",
+      "Can you provide design support for the packaging?",
+      "Are your materials recyclable or compostable?"
+    ],
+    "information": "Seeking eco-friendly packaging solutions for a new line of organic skincare products.",
+    "comment": "Looking for innovative and sustainable packaging options to reduce carbon footprint.",
+    "suppliers": []
+},
+{
+    "_id": "YQLRxcO69TdNF",
+    "title": "RFI for Sustainable Building Materials",
+    "reference": "RFI2024-006",
+    "requestDate": "2024-08-25",
+    "requestDueDate": "2024-09-20",
+    "additional_fields": [
+      "Do you offer recycled materials for construction?",
+      "What certifications do your materials hold (LEED, BREEAM, etc.)?",
+      "What are your environmental impact reduction initiatives?",
+      "What is your standard lead time for large orders?",
+      "Do you provide samples for testing?"
+    ],
+    "information": "We are looking for suppliers of sustainable building materials for a green construction project.",
+    "comment": "Priority given to suppliers with proven environmental certifications and compliance.",
+    "suppliers": []
+}
+]

@@ -12,7 +12,7 @@ def generate_xlsx_rfi(rfi):
 
     # Define formats for styling
     bold_format = workbook.add_format({'bold': True, 'bg_color': '#D3D3D3', 'border': 1, 'text_wrap': True})
-    normal_format = workbook.add_format({'border': 1})
+    normal_format = workbook.add_format({'border': 1, 'text_wrap': True})
     title_format = workbook.add_format({'bold': True, 'font_size': 16})
     title_format.set_align('center')
     section_title_format = workbook.add_format({'bold': True, 'font_size': 14})
@@ -60,53 +60,36 @@ def generate_xlsx_rfi(rfi):
     worksheet.write('B17', agent['phone'], normal_format)
 
     # Write General Information
-    worksheet.merge_range('A19:B19', "GENERAL INFORMATION", section_title_format)
-    worksheet.write('A20', 'SUPPLIER NAME', bold_format)
+    worksheet.merge_range('A19:B19', "SUPPLIER GENERAL INFORMATION", section_title_format)
+    worksheet.write('A20', 'Supplier Name', bold_format)
     worksheet.write('B20', '', normal_format)
-
-    # Write Contact Details Information
-    worksheet.write('A22', 'CONTACT DETAILS INFORMATION', bold_format)
-    worksheet.write('A23', 'Address', bold_format)
+    worksheet.write('A21', 'Address', bold_format)
+    worksheet.write('B21', '', normal_format)
+    worksheet.write('A22', 'City', bold_format)
+    worksheet.write('B22', '', normal_format)
+    worksheet.write('A23', 'Province', bold_format)
     worksheet.write('B23', '', normal_format)
-    worksheet.write('A24', 'City', bold_format)
+    worksheet.write('A24', 'ZIP Code', bold_format)
     worksheet.write('B24', '', normal_format)
-    worksheet.write('A25', 'Province', bold_format)
+    worksheet.write('A25', 'Contact Person', bold_format)
     worksheet.write('B25', '', normal_format)
-    worksheet.write('A26', 'ZIP Code', bold_format)
+    worksheet.write('A26', 'Job Title', bold_format)
     worksheet.write('B26', '', normal_format)
-    worksheet.write('A27', 'Contact Person', bold_format)
+    worksheet.write('A27', 'Email', bold_format)
     worksheet.write('B27', '', normal_format)
-    worksheet.write('A28', 'Job Title', bold_format)
+    worksheet.write('A28', 'Phone Number', bold_format)
     worksheet.write('B28', '', normal_format)
-    worksheet.write('A29', 'Email', bold_format)
+    worksheet.write('A29', 'Fax Number', bold_format)
     worksheet.write('B29', '', normal_format)
-    worksheet.write('A30', 'Phone Number', bold_format)
+    worksheet.write('A30', 'Website', bold_format)
     worksheet.write('B30', '', normal_format)
-    worksheet.write('A31', 'Fax Number', bold_format)
-    worksheet.write('B31', '', normal_format)
-    worksheet.write('A32', 'Website', bold_format)
-    worksheet.write('B32', '', normal_format)
 
     # Write Business Information
-    worksheet.merge_range('A34:B34', "BUSINESS INFORMATION", section_title_format)
-    worksheet.write('A35', 'Which year your company was founded?', bold_format)
-    worksheet.write('B35', '', normal_format)
-    worksheet.write('A36', 'Ownership', bold_format)
-    worksheet.write('B36', '', normal_format)
-    worksheet.write('A37', 'Capital in million VND', bold_format)
-    worksheet.write('B37', '', normal_format)
-    worksheet.write('A38', 'What is the workfloor size?', bold_format)
-    worksheet.write('B38', '', normal_format)
-    worksheet.write('A39', 'How many employees do you have?', bold_format)
-    worksheet.write('B39', '', normal_format)
-    worksheet.write('A40', 'Do you have export license?', bold_format)
-    worksheet.write('B40', '', normal_format)
-    worksheet.write('A41', '% of turnover exported to UE, USA, Others', bold_format)
-    worksheet.write('B41', '', normal_format)
+    worksheet.merge_range('A32:B32', "BUSINESS INFORMATION", section_title_format)
 
-    cell = 43
+    cell = 32
     for idx, x in enumerate(rfi["additional_fields"]):
-        cell += idx
+        cell += 1
         worksheet.write('A{}'.format(cell), x, bold_format)
 
     # Write additional information or comments based on doc_type

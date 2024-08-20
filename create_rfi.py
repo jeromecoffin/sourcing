@@ -43,7 +43,7 @@ def create_rfi():
         
         # Display current dynamic input fields
         for idx, value in enumerate(st.session_state.additional_fields):
-            st.session_state.additional_fields[idx] = st.text_input(f"Additional Field {idx+1}", value=value, key=f"input_{idx}")
+            st.session_state.additional_fields[idx] = st.text_input(f"Additional Request {idx+1}", value=value, key=f"input_{idx}")
 
         suppliers = []
 
@@ -63,5 +63,5 @@ def create_rfi():
             create.rfi(rfi_data)
     col1, col2, col3 = st.columns(3)
     # Add and Remove buttons to manage dynamic inputs (outside the form)
-    col1.button("Add Another Field", on_click=add_text_input_field)
-    col2.button("Remove Last Field", on_click=remove_text_input_field)
+    col1.button("Add Request Field", on_click=add_text_input_field)
+    col2.button("Remove Last Request Field", on_click=remove_text_input_field)
