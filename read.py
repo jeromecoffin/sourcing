@@ -1,58 +1,39 @@
 import streamlit as st
 import utils
+from bson.objectid import ObjectId
+
+# Define a custom hash function for ObjectId
+def hash_objectid(obj):
+    return str(obj)
 
 @st.cache_data(ttl=3600)
-def agent():
+def agent(username):
     db = utils.initialize_mongodb()
-    collection = db.agents
-    agent = collection.find_one({"_id": "user"})
+    collection = db.users
+    agent = collection.find_one({"username": username})
     return agent
 
-@st.cache_data(ttl=3600)
-def projects():
+@st.cache_data(ttl=3600, hash_funcs={ObjectId: hash_objectid})
+def agent_id(user_id):
     db = utils.initialize_mongodb()
-    projects = list(db.projects.find())
-    for project in projects:
-        project['doc_id'] = str(project['_id'])  # Add the document ID
-        del project['_id']
-    return projects
+    collection = db.users
+    agent = collection.find_one({"_id": user_id})
+    return agent
 
-@st.cache_data(ttl=3600)
-def rfis():
+@st.cache_data(ttl=3600, hash_funcs={ObjectId: hash_objectid})
+def rfis(user_id):
+    # Get the list of RFI ObjectIds associated with the user
+    list_rfis = list(agent_id(user_id)["rfi_ids"])
     db = utils.initialize_mongodb()
-    rfis = list(db.rfis.find({}, {'_id': 0}))
+    # Find RFIs that have an _id in the list_rfis
+    rfis = list(db.rfis.find({"_id": {"$in": list_rfis}}, {'_id': 0}))
     return rfis
-
-@st.cache_data(ttl=3600)
-def rfqs():
-    db = utils.initialize_mongodb()
-    rfqs = list(db.rfqs.find({}, {'_id': 0}))
-    return rfqs
-
-@st.cache_data(ttl=3600)
-def clients():
-    db = utils.initialize_mongodb()
-    clients = list(db.clients.find({}, {'_id': 0}))
-    return clients
-
-@st.cache_data(ttl=3600)
-def suppliers(selected_categories, selected_fields):
-    query = {}
-    if selected_categories:
-        query['categories'] = {'$in': selected_categories}
-    if selected_fields:
-        query['fields'] = {'$in': selected_fields}
-    query['remove'] = False
-    #print(f"Query: {query}")
-    db = utils.initialize_mongodb()
-    suppliers = list(db.suppliers.find(query, {'_id': 0}))
-    return suppliers
 
 @st.cache_data(ttl=3600)
 def language():
     try:
         db = utils.initialize_mongodb()
-        agent = db.agents.find_one({'_id': 'user'}, {'_id': 0, 'language': 1})
+        agent = db.users.find_one({'_id': 'user'}, {'_id': 0, 'language': 1})
         if agent and 'language' in agent:
             return agent['language']
         else:
@@ -63,12 +44,6 @@ def language():
 
 def isFirstLogin():
     db = utils.initialize_mongodb()
-    agent = db.agents.find_one({'_id': 'user'}, {'_id': 0, 'isFirstLogin': 1})
+    agent = db.users.find_one({'_id': 'user'}, {'_id': 0, 'isFirstLogin': 1})
     return agent['isFirstLogin'] if agent else None
 
-# Retrieves distinct values for a specific field from the MongoDB 'suppliers' collection.
-@st.cache_data(ttl=3600)
-def distinct_values_management(field_name):
-    db = utils.initialize_mongodb()
-    values = db.suppliers.distinct(field_name)
-    return values

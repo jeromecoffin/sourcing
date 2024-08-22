@@ -22,14 +22,9 @@ def initialize_mongodb():
 
 # Calculates various KPIs from MongoDB collections.
 # Output dict (e.g kpis["total_projects"])
-@st.cache_data(ttl=3600)
-def calculate_kpis():
+def calculate_kpis(user_id):
 
-    total_projects = read.projects()
-    total_suppliers = read.suppliers(None, None)
-    total_clients = read.clients()
-    total_rfis = read.rfis()
-    total_rfqs = read.rfqs()
+    total_rfis = read.rfis(user_id)
 
     total_sent_rfis = 0
     suppliersContacted = []
@@ -38,40 +33,9 @@ def calculate_kpis():
         suppliersContacted = rfi["suppliers"]
         total_sent_rfis += len(suppliersContacted)
 
-    now = datetime.now(timezone.utc)
-
-    def date_safe(doc, field):
-        date_str = doc.get(field)
-        if isinstance(date_str, str):
-            return datetime.fromisoformat(date_str).replace(tzinfo=timezone.utc)
-        elif isinstance(date_str, datetime):
-            return date_str
-        return now
-
-    average_response_time_rfis = sum([(now - date_safe(rfi, "due_date")).days for rfi in total_rfis]) / len(total_rfis) if total_rfis else 0
-    average_response_time_rfqs = sum([(now - date_safe(rfq, "due_date")).days for rfq in total_rfqs]) / len(total_rfqs) if total_rfqs else 0
-
-    total_project_costs = sum([rfq.get("budget", 0) for rfq in total_rfqs])
-    average_supplier_performance = sum([supplier.get("rating", 0) for supplier in total_suppliers]) / len(total_suppliers) if total_suppliers else 0
-
-    on_time_deliveries = len([rfq for rfq in total_rfqs if date_safe(rfq, "delivery_date") <= date_safe(rfq, "due_date")])
-    late_deliveries = len(total_rfqs) - on_time_deliveries
-
-    samples_required = len([rfi for rfi in total_rfis if rfi.get("samples_required", False)])
 
     return {
-        "total_projects": len(total_projects),
-        "total_suppliers": len(total_suppliers),
-        "total_clients": len(total_clients),
         "total_rfis": len(total_rfis),
-        "total_rfqs": len(total_rfqs),
-        "average_response_time_rfis": average_response_time_rfis,
-        "average_response_time_rfqs": average_response_time_rfqs,
-        "total_project_costs": total_project_costs,
-        "average_supplier_performance": average_supplier_performance,
-        "on_time_deliveries": on_time_deliveries,
-        "late_deliveries": late_deliveries,
-        "samples_required": samples_required,
         "total_sent_rfis": total_sent_rfis
     }
 

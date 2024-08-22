@@ -3,23 +3,23 @@ import pandas as pd
 import read
 import utils
 
-def show_dashboard():
+def show_dashboard(user_id):
     
     _ = utils.translate()
 
     st.header(_("Dashboard"))
-    kpis = utils.calculate_kpis()
+    kpis = utils.calculate_kpis(user_id)
     col1, col2, col3 = st.columns(3)
     col1.metric(label=_("Total Number of RFIs"), value=kpis["total_rfis"])
     col2.metric(label=_("RFIs Sent"), value=kpis["total_sent_rfis"])
     col3.metric(label=_("RFIs Received"), value=kpis["total_sent_rfis"])
 
-def list_rfis():
+def list_rfis(user_id):
     _ = utils.translate()
     st.subheader(_("RFIs List"))
 
     with st.spinner(_("Loading RFIs...")):
-        rfis = read.rfis()
+        rfis = read.rfis(user_id)
 
     # Ensure RFIs are ordered by date (requestDueDate)
     rfis_sorted = sorted(rfis, key=lambda x: x.get('requestDueDate', ''), reverse=False)
@@ -63,12 +63,12 @@ import streamlit as st
 import utils
 import read
 
-def list_suppliers():
+def list_suppliers(user_id):
     _ = utils.translate()
     st.subheader(_("Suppliers List"))
 
     with st.spinner(_("Loading RFIs...")):
-        rfis = read.rfis()
+        rfis = read.rfis(user_id)
 
     # Ensure RFIs are ordered by date (requestDueDate)
     rfis_sorted = sorted(rfis, key=lambda x: x.get('requestDueDate', ''), reverse=False)

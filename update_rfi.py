@@ -1,16 +1,15 @@
 import streamlit as st
 import utils
 import read
-import create
 import update
 import generateXlsx
 
-def update_rfi():
+def update_rfi(user_id):
 
     _ = utils.translate()
 
     st.write("RFI:")
-    rfis = read.rfis()
+    rfis = read.rfis(user_id)
     rfistitle = [rfi["title"] for rfi in rfis]
     rfi = st.selectbox(_("Chose one RFI:"), rfistitle)
 

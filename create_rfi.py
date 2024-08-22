@@ -1,6 +1,5 @@
 import streamlit as st
 import utils
-import read
 import create
 
 def add_text_input_field():
@@ -13,7 +12,7 @@ def remove_text_input_field():
         st.session_state.additional_fields.pop()
 
 
-def create_rfi():
+def create_rfi(user_id):
 
     _ = utils.translate()
 
@@ -31,7 +30,7 @@ def create_rfi():
 
         st.divider()
 
-        information = st.text_area(_("Information"))
+        information = st.text_area(_("Project Information"))
 
         comment =  st.text_area(_("Comment"))
 
@@ -60,7 +59,8 @@ def create_rfi():
                 "comment": comment,
                 "suppliers": suppliers
             }
-            create.rfi(rfi_data)
+            create.rfi(user_id, rfi_data)
+
     col1, col2, col3 = st.columns(3)
     # Add and Remove buttons to manage dynamic inputs (outside the form)
     col1.button("Add Request Field", on_click=add_text_input_field)

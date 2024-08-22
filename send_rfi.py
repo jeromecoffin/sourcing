@@ -6,10 +6,10 @@ import webbrowser
 import urllib.parse
 import update
 
-def send_rfi():
+def send_rfi(user_id):
     _ = utils.translate()
 
-    rfis = read.rfis()
+    rfis = read.rfis(user_id)
     listrfi = []
     for rfi in rfis:
         rfititle = rfi["title"]
@@ -19,15 +19,16 @@ def send_rfi():
 
     select = st.selectbox(_("Send RFI:"), listrfi)
 
-    select_title = select.split(' ')[0]
+    select_title = select.split(' -')[0]
 
     rfi_details = [d for d in rfis if d["title"] == select_title]
     rfi_details = rfi_details[0] if rfi_details else None
 
-    if "suppliers" not in rfi_details:
+    # Check if 'suppliers' key exists in rfi_details, if not, initialize it as a list
+    if "suppliers" not in rfi_details or rfi_details["suppliers"] is None:
         rfi_details["suppliers"] = []
 
-    agent = read.agent()
+    agent = read.agent_id(user_id)
 
     supplierName = st.text_input(_("To supplier name:"))
 
@@ -42,7 +43,18 @@ def send_rfi():
         # Email components
         recipient = supplierMail
         subject = "RFI"
-        body = f'Please find the link to RFI to fill. \n\n http://www.avanta-sourcing.com \n\n Regards, \n {agent["lastname"]} {agent["name"]} \n {agent["email"]} \n {agent["phone"]}'
+        body = (f'Dear {supplierName},\n'
+                'I hope this message finds you well.\n'
+                'We are currently evaluating potential suppliers and would appreciate your assistance in completing a RFI.'
+                'To streamline the process, we have prepared an online Excel sheet where you can provide the necessary details regarding your offerings.\n\n'
+                'Please use the link below to access and fill out the RFI:\n\n'
+                'http://www.avanta-sourcing.com\n\n'
+                'Thank you for your time and cooperation. We look forward to receiving your response.\n'
+                'Regards,\n'
+                f'{agent["lastname"]} {agent["name"]}\n'
+                f'{agent["email"]}\n'
+                f'{agent["phone"]}'
+            )
         
         # Encode the subject and body to be URL-safe
         subject = urllib.parse.quote(subject)

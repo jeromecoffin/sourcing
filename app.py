@@ -41,6 +41,8 @@ _ = utils.translate()
 
 if authentication_status:
 
+    user_id = read.agent(username)["_id"]
+
     authenticator.logout(_('Logout'), 'sidebar')
     st.sidebar.title("AVANTA SOURCING")
     st.sidebar.write(_("Welcome") + " " + user)
@@ -50,30 +52,30 @@ if authentication_status:
 
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
-            menu = [_("Settings"), _("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI")]
+            menu = [_("Settings"), _("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Support")]
         else:
-            menu = [_("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Settings")]
+            menu = [_("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Settings"), _("Support")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
         if choice == "Create RFI":
             # Initialize session state for dynamic input fields
             if "additional_fields" not in st.session_state:
                 st.session_state.additional_fields = []
-            create_rfi.create_rfi()
+            create_rfi.create_rfi(user_id)
         
         elif choice == _("Edit RFI"):
-            update_rfi.update_rfi()
+            update_rfi.update_rfi(user_id)
 
         elif choice == _("Share RFI"):
-            send_rfi.send_rfi()
+            send_rfi.send_rfi(user_id)
 
         elif choice == _("Dashboard"):
-            manage_rfi.show_dashboard()
-            manage_rfi.list_rfis()
-            manage_rfi.list_suppliers()
+            manage_rfi.show_dashboard(user_id)
+            manage_rfi.list_rfis(user_id)
+            manage_rfi.list_suppliers(user_id)
 
-        elif choice == _("Account"):
-            agent_account.show_profile()
+        elif choice == _("Settings"):
+            agent_account.show_profile(user_id)
             if st.session_state["authentication_status"]:
                 try:
                     if authenticator.reset_password(st.session_state["username"]):

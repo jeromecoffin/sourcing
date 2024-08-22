@@ -3,13 +3,13 @@ import utils
 import read
 import update
 
-def show_profile():
+def show_profile(user_id):
 
     _ = utils.translate()
 
     st.header(_("Your Profile"))
 
-    agent = read.agent()
+    agent = read.agent_id(user_id)
 
     if agent is None:
         st.error(_("User not found"))
@@ -47,4 +47,4 @@ def show_profile():
                 "language": language,
                 "isFirstLogin": "1"
             }           
-            update.agent(agent_data)
+            update.agent(user_id, agent_data)

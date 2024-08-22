@@ -1,29 +1,27 @@
 import streamlit as st
 import utils
+from bson import ObjectId
 
-def agent(agent_data):
+def agent(user_id, agent_data):
     _ = utils.translate()
     db = utils.initialize_mongodb()
-    db.agents.update_one({"_id": "user"}, {"$set": agent_data})            
+    db.users.update_one({"_id": user_id}, {"$set": agent_data})            
     st.success(_("Data successfully modified!"))
     st.cache_data.clear() # clear cache for language
     st.rerun()
 
-def project(project_data):
+def user_rfis(user_id, rfi_id):
     _ = utils.translate()
     db = utils.initialize_mongodb()
-    db.projects.update_one({'_id': project['_id']}, {'$set': project_data})
-    utils.log_event("Mettre à jour projet", project['title'])
-    st.cache_data.clear()
-    st.success(_("Project Successfully Updated"))
-
-def categories(supplier, updated_categories):
-    db = utils.initialize_mongodb()
-    db.suppliers.update_one({'_id': supplier['_id']}, {'$set': {'categories': updated_categories}})
-
-def fields(supplier, updated_fields):
-    db = utils.initialize_mongodb()
-    db.suppliers.update_one({'_id': supplier['_id']}, {'$set': {'fields': updated_fields}})
+    if isinstance(user_id, str):
+        user_id = ObjectId(user_id)
+    if isinstance(rfi_id, str):
+        rfi_id = ObjectId(rfi_id)
+    # Update the user's document to add the RFI ObjectId to rfi_ids array
+    db.users.update_one(
+        {"_id": user_id},
+        {"$addToSet": {"rfi_ids": rfi_id}}  # $addToSet prevents duplicates
+    )
 
 def rfi(rfi_data):
     _ = utils.translate()

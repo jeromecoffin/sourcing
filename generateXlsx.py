@@ -94,11 +94,19 @@ def generate_xlsx_rfi(rfi):
 
     # Write additional information or comments based on doc_type
     cell += 2
-    worksheet.write('A{}'.format(cell), 'Information', bold_format)
+    worksheet.write('A{}'.format(cell), 'Project Information', bold_format)
     worksheet.write('B{}'.format(cell), rfi['information'], normal_format)
     cell += 2
     worksheet.write('A{}'.format(cell), 'Comment', bold_format)
     worksheet.write('B{}'.format(cell), rfi['comment'], normal_format)
+
+    cell += 2
+
+    worksheet.merge_range('A{}:B{}'.format(cell, cell), "SUPPLIER RESPONSE", section_title_format)
+
+    cell += 1
+
+    worksheet.merge_range('A{}:B{}'.format(cell, cell+4), '')
 
     # Close the workbook and return the BytesIO buffer
     workbook.close()
