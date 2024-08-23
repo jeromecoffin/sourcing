@@ -6,7 +6,7 @@ import generateXlsx
 
 def update_rfi(user_id):
 
-    _ = utils.translate()
+    _ = utils.translate(user_id)
 
     st.write("RFI:")
     rfis = read.rfis(user_id)

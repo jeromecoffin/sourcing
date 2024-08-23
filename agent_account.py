@@ -5,7 +5,7 @@ import update
 
 def show_profile(user_id):
 
-    _ = utils.translate()
+    _ = utils.translate(user_id)
 
     st.header(_("Your Profile"))
 

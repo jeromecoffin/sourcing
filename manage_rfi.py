@@ -2,10 +2,11 @@ import streamlit as st
 import pandas as pd
 import read
 import utils
+from functools import partial
 
 def show_dashboard(user_id):
     
-    _ = utils.translate()
+    _ = utils.translate(user_id)
 
     st.header(_("Dashboard"))
     kpis = utils.calculate_kpis(user_id)
@@ -15,7 +16,7 @@ def show_dashboard(user_id):
     col3.metric(label=_("RFIs Received"), value=kpis["total_sent_rfis"])
 
 def list_rfis(user_id):
-    _ = utils.translate()
+    _ = utils.translate(user_id)
     st.subheader(_("RFIs List"))
 
     with st.spinner(_("Loading RFIs...")):
@@ -30,7 +31,6 @@ def list_rfis(user_id):
         "Reference": [],
         "Due Date": [],
         "Suppliers Contacted": [],
-        "PDF Link": []
     }
 
     # Populate the data for the table
@@ -40,15 +40,11 @@ def list_rfis(user_id):
         suppliersContacted = rfi.get('suppliers')
         request_date = rfi.get('requestDueDate', 'No Due Date')
         
-        # Create a link to the PDF file for each RFI (this is a placeholder link)
-        pdf_url = f"https://your-pdf-hosting.com/RFI_{reference}.pdf"  # Adjust this to the actual location
-        
         # Append the data to the list
         data["Title"].append(title)
         data["Reference"].append(reference)
         data["Due Date"].append(request_date)
         data["Suppliers Contacted"].append(len(suppliersContacted))
-        data["PDF Link"].append(pdf_url)
 
     # Convert data to a pandas DataFrame
     df = pd.DataFrame(data)
@@ -64,7 +60,7 @@ import utils
 import read
 
 def list_suppliers(user_id):
-    _ = utils.translate()
+    _ = utils.translate(user_id)
     st.subheader(_("Suppliers List"))
 
     with st.spinner(_("Loading RFIs...")):

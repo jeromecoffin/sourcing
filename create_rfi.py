@@ -14,7 +14,7 @@ def remove_text_input_field():
 
 def create_rfi(user_id):
 
-    _ = utils.translate()
+    _ = utils.translate(user_id)
 
     st.sidebar.title(_("RFI Management"))
 

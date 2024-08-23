@@ -14,6 +14,11 @@ import pandas as pd
 import read
 import update
 import create
+from bson.objectid import ObjectId
+
+# Define a custom hash function for ObjectId
+def hash_objectid(obj):
+    return str(obj)
 
 # Initializes MongoDB using configuration from Streamlit secrets.
 def initialize_mongodb():
@@ -90,9 +95,9 @@ def log_event(event_type, details=None):
     create.log(event_data)
 
 # Configures gettext for translations based on the user's language preference.
-def translate():
+def translate(user_id):
 
-    language = read.language()
+    language = read.language(user_id)
 
     # Configurer le chemin des fichiers de traduction
     locales_dir = os.path.join(os.path.dirname(__file__), 'locales')

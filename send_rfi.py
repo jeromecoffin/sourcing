@@ -7,7 +7,7 @@ import urllib.parse
 import update
 
 def send_rfi(user_id):
-    _ = utils.translate()
+    _ = utils.translate(user_id)
 
     rfis = read.rfis(user_id)
     listrfi = []

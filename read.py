@@ -29,11 +29,11 @@ def rfis(user_id):
     rfis = list(db.rfis.find({"_id": {"$in": list_rfis}}, {'_id': 0}))
     return rfis
 
-@st.cache_data(ttl=3600)
-def language():
+@st.cache_data(ttl=3600, hash_funcs={ObjectId: hash_objectid})
+def language(user_id):
     try:
         db = utils.initialize_mongodb()
-        agent = db.users.find_one({'_id': 'user'}, {'_id': 0, 'language': 1})
+        agent = db.users.find_one({'_id': user_id}, {'_id': 0, 'language': 1})
         if agent and 'language' in agent:
             return agent['language']
         else:
@@ -42,8 +42,8 @@ def language():
         print(f"Error: {e}")
         return "en"
 
-def isFirstLogin():
+def isFirstLogin(user_id):
     db = utils.initialize_mongodb()
-    agent = db.users.find_one({'_id': 'user'}, {'_id': 0, 'isFirstLogin': 1})
+    agent = db.users.find_one({'_id': user_id}, {'_id': 0, 'isFirstLogin': 1})
     return agent['isFirstLogin'] if agent else None
 

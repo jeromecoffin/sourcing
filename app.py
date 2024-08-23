@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit_authenticator as stauth
+from streamlit_authenticator.utilities.hasher import Hasher
 import yaml
 from yaml.loader import SafeLoader
 import agent_account
@@ -9,6 +10,8 @@ import read
 import manage_rfi
 import update_rfi
 import send_rfi
+import create
+import new_user
 
 # install gettext
 #msgfmt locales/en/LC_MESSAGES/messages.po -o locales/en/LC_MESSAGES/messages.mo
@@ -35,21 +38,24 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
-user, authentication_status, username = authenticator.login('main', fields = {'Form name': 'login'})
+user, authentication_status, username = authenticator.login('main', fields={'Form name': 'login'})
 
-_ = utils.translate()
+#new = st.button("New?")
+
+#if new:
+#    user, username, authentication_status = new_user.newUser(authenticator, config)
 
 if authentication_status:
-
+    # Main content for logged-in users
     user_id = read.agent(username)["_id"]
+    _ = utils.translate(user_id)
 
     authenticator.logout(_('Logout'), 'sidebar')
     st.sidebar.title("AVANTA SOURCING")
     st.sidebar.write(_("Welcome") + " " + user)
 
     def main():
-        firstLogin = read.isFirstLogin()
-
+        firstLogin = read.isFirstLogin(user_id)
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
             menu = [_("Settings"), _("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Support")]
@@ -89,6 +95,4 @@ if authentication_status:
         main()
 
 elif authentication_status == False:
-    st.error(_('Username/password is incorrect'))
-elif authentication_status == None:
-    st.warning(_('Please enter your username and password'))
+    st.error('Username/password is incorrect')
