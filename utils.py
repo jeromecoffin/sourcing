@@ -120,12 +120,12 @@ def export_suppliers_to_csv_management(suppliers):
 
 
 # Generates a PDF document (RFI or RFQ) based on provided data.
-def generate_pdf(doc_type, doc_data):
+def generate_pdf(user_id, doc_type, doc_data):
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
     elements = []
 
-    agent = read.agent()
+    agent = read.agent_id(user_id)
 
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name='Justify', alignment=2))

@@ -5,6 +5,8 @@ import utils
 import webbrowser
 import urllib.parse
 import update
+import generateXlsx
+
 
 def send_rfi(user_id):
     _ = utils.translate(user_id)
@@ -37,8 +39,12 @@ def send_rfi(user_id):
     send = st.button(_("Send RFI"))
 
     if send:
-        
-        rfi_details["suppliers"].append(supplierMail)
+
+        file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
+        rfi_link = supplierMail + "=" + file_name
+        rfi_details["suppliers"].append(rfi_link)
+
+        file_link = file_name
 
         # Email components
         recipient = supplierMail
@@ -48,7 +54,7 @@ def send_rfi(user_id):
                 'We are currently evaluating potential suppliers and would appreciate your assistance in completing a RFI.'
                 'To streamline the process, we have prepared an online Excel sheet where you can provide the necessary details regarding your offerings.\n\n'
                 'Please use the link below to access and fill out the RFI:\n\n'
-                'http://www.avanta-sourcing.com\n\n'
+                f'{file_link}\n\n'
                 'Thank you for your time and cooperation. We look forward to receiving your response.\n'
                 'Regards,\n'
                 f'{agent["lastname"]} {agent["name"]}\n'
@@ -67,3 +73,10 @@ def send_rfi(user_id):
         webbrowser.open(mailto_link)
 
         update.rfi(rfi_details) #a mettre à la fin à cause du rerun
+
+def storexlsx(user_id, username, rfi_data, supplierName):
+
+    file_name = "/Users/jeromecoffin/" + username + rfi_data["reference"] + supplierName + ".xlsx"
+    generateXlsx.generate_xlsx_rfi(user_id, rfi_data, file_name)
+    return file_name
+

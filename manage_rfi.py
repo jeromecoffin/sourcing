@@ -83,10 +83,10 @@ def list_suppliers(user_id):
             title = rfi.get('title', 'Untitled RFI')
             reference = rfi.get('reference', 'No Reference')
             request_date = rfi.get('requestDueDate', 'No Due Date')
-            supplier = s
+            supplier = str(s).partition("=")[0]
             
             # Create a link to the XLSX file for each RFI
-            sheet_url = f"https://your-sheet-hosting.com/RFI_{reference}.xlsx"  # Adjust this to the actual location
+            sheet_url = str(s).partition("=")[2]
             
             # Append the data to the list
             supplier_data["Title"].append(title)

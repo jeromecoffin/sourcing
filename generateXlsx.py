@@ -2,12 +2,12 @@ import xlsxwriter
 from io import BytesIO
 import read
 
-def generate_xlsx_rfi(rfi):
+def generate_xlsx_rfi(user_id, rfi, file_name):
     # Create a BytesIO buffer for the workbook
     output = BytesIO()
     
     # Create an Excel workbook and add a worksheet
-    workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+    workbook = xlsxwriter.Workbook(file_name)
     worksheet = workbook.add_worksheet()
 
     # Define formats for styling
@@ -47,7 +47,7 @@ def generate_xlsx_rfi(rfi):
 
     # Write Requesting Party Information
     worksheet.merge_range('A12:B12', "REQUESTING PARTY INFORMATION", section_title_format)
-    agent = read.agent()
+    agent = read.agent_id(user_id)
     worksheet.write('A13', 'Requesting Party Name', bold_format)
     worksheet.write('B13', agent['name'], normal_format)
     worksheet.write('A14', 'Requesting Party Lastname', bold_format)

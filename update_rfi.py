@@ -52,22 +52,4 @@ def update_rfi(user_id):
                 "information": information,
                 "comment": comment
             }
-            update.rfi(rfi_data)
-    rfi_data = {
-                "title": title,
-                "reference": reference,
-                "requestDate": requestDate,
-                "requestDueDate": requestDueDate,
-                "additional_fields": additional_fields,
-                "information": information,
-                "comment": comment
-            }     
-    if st.button("Generate XLSX"):
-        xlsx_data = generateXlsx.generate_xlsx_rfi(rfi_data)
-        
-        st.download_button(
-            label="Download XLSX",
-            data=xlsx_data,
-            file_name="/Users/jeromecoffin/git_repo/sourcing/document.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+            update.rfi(rfi_data) 
