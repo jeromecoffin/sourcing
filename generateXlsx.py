@@ -7,7 +7,8 @@ def generate_xlsx_rfi(user_id, rfi, file_name):
     output = BytesIO()
     
     # Create an Excel workbook and add a worksheet
-    workbook = xlsxwriter.Workbook(file_name)
+    #workbook = xlsxwriter.Workbook(file_name)
+    workbook = xlsxwriter.Workbook(output, {'in_memory': True})
     worksheet = workbook.add_worksheet()
 
     # Define formats for styling

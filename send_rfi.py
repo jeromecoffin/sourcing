@@ -6,6 +6,7 @@ import webbrowser
 import urllib.parse
 import update
 import generateXlsx
+import nextcloud
 
 
 def send_rfi(user_id):
@@ -76,7 +77,8 @@ def send_rfi(user_id):
 
 def storexlsx(user_id, username, rfi_data, supplierName):
 
-    file_name = "/Users/jeromecoffin/" + username + rfi_data["reference"] + supplierName + ".xlsx"
-    generateXlsx.generate_xlsx_rfi(user_id, rfi_data, file_name)
+    file_name = username + rfi_data["reference"] + supplierName + ".xlsx"
+    xlsx_data = generateXlsx.generate_xlsx_rfi(user_id, rfi_data, file_name)
+    nextcloud.create_file(xlsx_data, file_name)
     return file_name
 
