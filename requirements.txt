@@ -1,7 +1,10 @@
 streamlit==1.36.0
-firebase-admin==6.5.0
 reportlab==4.2.2
 streamlit-authenticator==0.3.2
 python-gettext==5.0
 google-cloud-firestore==2.16.0
-xlsxwriter
+xlsxwriter==3.2.0
+pymongo==4.8.0
+pyyaml==6.0.1
+pandas==1.5.3
+nc_py_api==0.6.0

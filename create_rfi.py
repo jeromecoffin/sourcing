@@ -11,7 +11,6 @@ def remove_text_input_field():
     if st.session_state.additional_fields:
         st.session_state.additional_fields.pop()
 
-
 def create_rfi(user_id):
 
     _ = utils.translate(user_id)

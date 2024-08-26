@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import read
 import utils
-from functools import partial
 
 def show_dashboard(user_id):
     

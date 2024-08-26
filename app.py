@@ -3,7 +3,7 @@ import streamlit_authenticator as stauth
 from streamlit_authenticator.utilities.hasher import Hasher
 import yaml
 from yaml.loader import SafeLoader
-import agent_account
+import settings
 import create_rfi
 import utils
 import read
@@ -81,7 +81,7 @@ if authentication_status:
             send_rfi.send_rfi(user_id)
 
         elif choice == _("Settings"):
-            agent_account.show_profile(user_id)
+            settings.show_profile(user_id)
             if st.session_state["authentication_status"]:
                 try:
                     if authenticator.reset_password(st.session_state["username"]):
