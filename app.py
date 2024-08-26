@@ -58,27 +58,27 @@ if authentication_status:
         firstLogin = read.isFirstLogin(user_id)
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
-            menu = [_("Settings"), _("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Support")]
+            menu = [_("Settings"), _("Dashboard"), _("Create RFI"), _("Share RFI"), _("Support")]
         else:
-            menu = [_("Dashboard"), _("Create RFI"), _("Edit RFI"), _("Share RFI"), _("Settings"), _("Support")]
+            menu = [_("Dashboard"), _("Create RFI"), _("Share RFI"), _("Settings"), _("Support")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
-        if choice == "Create RFI":
+        if choice == _("Dashboard"):
+            manage_rfi.show_dashboard(user_id)
+            manage_rfi.list_rfis(user_id)
+            manage_rfi.list_suppliers(user_id)
+
+        elif choice == "Create RFI":
             # Initialize session state for dynamic input fields
             if "additional_fields" not in st.session_state:
                 st.session_state.additional_fields = []
             create_rfi.create_rfi(user_id)
         
-        elif choice == _("Edit RFI"):
-            update_rfi.update_rfi(user_id)
+        #elif choice == _("Edit RFI"):
+        #    update_rfi.update_rfi(user_id)
 
         elif choice == _("Share RFI"):
             send_rfi.send_rfi(user_id)
-
-        elif choice == _("Dashboard"):
-            manage_rfi.show_dashboard(user_id)
-            manage_rfi.list_rfis(user_id)
-            manage_rfi.list_suppliers(user_id)
 
         elif choice == _("Settings"):
             agent_account.show_profile(user_id)

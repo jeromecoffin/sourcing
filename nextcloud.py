@@ -1,5 +1,6 @@
 import nc_py_api
 from json import dumps
+import os
 
 def connect():
     # create Nextcloud client instance class
@@ -28,7 +29,9 @@ def create_file(xlsx_data, filename):
     nc = connect()
     nc_files = nc.files
 
-    xlsx_data.seek(0)  # Ensure we're at the start of the BytesIO stream
+    directory_path = os.path.dirname(filename) + '/'
+
+    nc_files.makedirs(directory_path, exist_ok=True)
 
     byte_content = xlsx_data.read()  # Read the entire content as a byte string
 
@@ -42,7 +45,10 @@ def sharelink(file_name):
         share_type=3,      # Public link
         permissions=31     # Full permissions (edit rights)
     )
-
     # Step 5: Get the share link URL
     share_link_url = share.url
-    return share_link_url
+
+    # Open direclty onlyoffice
+    onlyoffice_link = share_link_url.replace("/s/", "/apps/onlyoffice/s/")
+    
+    return onlyoffice_link

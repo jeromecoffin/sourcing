@@ -7,6 +7,7 @@ import urllib.parse
 import update
 import generateXlsx
 import nextcloud
+from datetime import datetime
 
 
 def send_rfi(user_id):
@@ -75,8 +76,9 @@ def send_rfi(user_id):
         update.rfi(rfi_details) #a mettre à la fin à cause du rerun
 
 def storexlsx(user_id, username, rfi_data, supplierName):
-
-    file_name = username + rfi_data["reference"] + supplierName + ".xlsx"
+    now = datetime.now()
+    date = now.strftime("%Y%m%d%H%M")
+    file_name = str(user_id) + "/" + rfi_data["reference"] + "/" + supplierName + date + ".xlsx"
     xlsx_data = generateXlsx.generate_xlsx_rfi(user_id, rfi_data, file_name)
     nextcloud.create_file(xlsx_data, file_name)
     return file_name
