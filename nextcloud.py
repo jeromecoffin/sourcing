@@ -34,3 +34,15 @@ def create_file(xlsx_data, filename):
 
     nc_files.upload(filename, byte_content)
 
+def sharelink(file_name):
+    nc = connect()
+    nc_sharing = nc.files.sharing # Access the sharing functionality
+    share = nc_sharing.create(
+        path=file_name,  # The file you want to share
+        share_type=3,      # Public link
+        permissions=31     # Full permissions (edit rights)
+    )
+
+    # Step 5: Get the share link URL
+    share_link_url = share.url
+    return share_link_url

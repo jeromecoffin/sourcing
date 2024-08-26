@@ -42,10 +42,9 @@ def send_rfi(user_id):
     if send:
 
         file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
-        rfi_link = supplierMail + "=" + file_name
+        file_link = nextcloud.sharelink(file_name)
+        rfi_link = supplierMail + "=" + file_link
         rfi_details["suppliers"].append(rfi_link)
-
-        file_link = file_name
 
         # Email components
         recipient = supplierMail
