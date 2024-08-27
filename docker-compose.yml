@@ -9,7 +9,8 @@ services:
     depends_on:
       - mongo
     volumes:
-      - .:/app  # Mount the project directory to the container
+      - .:/app  # Mount project directory to container
+      #- streamlit-cred:/app/cred.yaml  # Mount volume for cred.yml file
     networks:
       - app-network
 
@@ -20,13 +21,54 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db  # Persist MongoDB data
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro  # Initialize data
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     networks:
       - app-network
+  
+  nextcloud:
+    container_name: nextcloud
+    image: nextcloud:fpm
+    restart: always
+    expose:
+      - '80'
+      - '9000'
+    volumes:
+      - nextcloud_data:/var/www/html
+
+  onlyoffice-document-server:
+    container_name: onlyoffice-document-server
+    image: onlyoffice/documentserver:latest
+    restart: always
+    environment:
+      - JWT_SECRET=secret
+    expose:
+      - '80'
+      - '443'
+    volumes:
+      - document_data:/var/www/onlyoffice/Data
+      - document_log:/var/log/onlyoffice
+
+  nginx:
+    container_name: nginx-server
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - nextcloud_data:/var/www/html
 
 networks:
   app-network:
     driver: bridge
 
 volumes:
-  mongo-data:  # Define the named volume
+  mongo-data:  # Named volume for MongoDB data
+ #streamlit-cred:  # Named volume for cred.yml
+  document_data:
+  document_log:
+  nextcloud_data:
+  mysql_data:
+
+  
