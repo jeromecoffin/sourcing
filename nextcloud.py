@@ -7,7 +7,7 @@ def connect():
     nc = nc_py_api.Nextcloud(
         nc_auth_user="Jerome",
         nc_auth_pass="GNGGujZ7FiAJH",
-        nextcloud_url="http://localhost"
+        nextcloud_url="http://nginx-server:80"
     )
     return nc
 
