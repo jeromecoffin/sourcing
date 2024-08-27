@@ -1,0 +1,32 @@
+services:
+  streamlit-app:
+    build: .
+    container_name: streamlit_app
+    ports:
+      - "8501:8501"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app  # Mount the project directory to the container
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:4.4
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db  # Persist MongoDB data
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro  # Initialize data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:  # Define the named volume

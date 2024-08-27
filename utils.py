@@ -22,7 +22,8 @@ def hash_objectid(obj):
 
 # Initializes MongoDB using configuration from Streamlit secrets.
 def initialize_mongodb():
-    client = MongoClient("mongodb://avanta:88888888@localhost:27017/sourcingmain")
+    mongo_uri = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
+    client = MongoClient(mongo_uri)
     return client.sourcingmain
 
 # Calculates various KPIs from MongoDB collections.
