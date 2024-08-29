@@ -10,7 +10,7 @@ services:
       - mongo
     volumes:
       - .:/app  # Mount project directory to container
-      #- streamlit-cred:/app/cred.yaml  # Mount volume for cred.yml file
+      - streamlit-cred:/app/auth  # Mount volume for cred.yml file
     networks:
       - app-network
 
@@ -71,7 +71,7 @@ networks:
 
 volumes:
   mongo-data:  # Named volume for MongoDB data
- #streamlit-cred:  # Named volume for cred.yml
+  streamlit-cred:  # Named volume for cred.yml
   document_data:
   document_log:
   nextcloud_data:

@@ -1,12 +1,14 @@
 import nc_py_api
 from json import dumps
 import os
+import streamlit as st
+
 
 def connect():
     # create Nextcloud client instance class
     nc = nc_py_api.Nextcloud(
-        nc_auth_user="Jerome",
-        nc_auth_pass="GNGGujZ7FiAJH",
+        nc_auth_user="jcoffin",
+        nc_auth_pass="abc",
         nextcloud_url="http://nginx-server:80"
     )
     return nc

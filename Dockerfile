@@ -38,7 +38,8 @@ COPY nextcloud.py .
 COPY utils.py .
 
 # Copier le fichier de conf streamlit-auth
-COPY cred.yaml .
+RUN mkdir -p /app/auth/
+COPY auth/cred.yaml auth/cred.yaml 
 
 # Expose the Streamlit default port
 EXPOSE 8501

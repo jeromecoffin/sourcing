@@ -26,7 +26,7 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 # Load config.yaml for authentication
-with open('cred.yaml') as file:
+with open('/app/auth/cred.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 authenticator = stauth.Authenticate(
@@ -57,9 +57,9 @@ if authentication_status:
         firstLogin = read.isFirstLogin(user_id)
         if firstLogin == "0":
             st.warning(_('Please update your settings on first login'))
-            menu = [_("Settings"), _("Dashboard"), _("Create RFI"), _("Share RFI"), _("Support")]
+            menu = [_("Settings"), _("Dashboard"), _("Create RFI"), _("Send RFI"), _("Support")]
         else:
-            menu = [_("Dashboard"), _("Create RFI"), _("Share RFI"), _("Settings"), _("Support")]
+            menu = [_("Dashboard"), _("Create RFI"), _("Send RFI"), _("Settings"), _("Support")]
         choice = st.sidebar.selectbox(_("Select an option"), menu)
 
         if choice == _("Dashboard"):
@@ -76,7 +76,7 @@ if authentication_status:
         #elif choice == _("Edit RFI"):
         #    update_rfi.update_rfi(user_id)
 
-        elif choice == _("Share RFI"):
+        elif choice == _("Send RFI"):
             send_rfi.send_rfi(user_id)
 
         elif choice == _("Settings"):
@@ -87,7 +87,7 @@ if authentication_status:
                         st.success(_('Password modified successfully'))
                 except Exception as e:
                     st.error(e)
-            with open('cred.yaml', 'w') as file:
+            with open('/app/auth/cred.yaml', 'w') as file:
                 yaml.dump(config, file, default_flow_style=False)
 
     if __name__ == "__main__":

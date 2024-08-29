@@ -32,4 +32,4 @@ def rfi(rfi_data):
     db.rfis.update_one({"title": rfi_data["title"]}, {"$set": rfi_data})            
     st.success("Data successfully modified!")
     st.cache_data.clear()
-    st.rerun()
+    #st.rerun()

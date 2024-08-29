@@ -8,6 +8,7 @@ import update
 import generateXlsx
 import nextcloud
 from datetime import datetime
+import time
 
 
 def send_rfi(user_id):
@@ -43,10 +44,12 @@ def send_rfi(user_id):
 
         if send:
 
-            file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
-            file_link = nextcloud.sharelink(file_name)
-            rfi_link = supplierMail + "=" + file_link
-            rfi_details["suppliers"].append(rfi_link)
+            with st.spinner('Wait for it...'):
+
+                file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
+                file_link = nextcloud.sharelink(file_name)
+                rfi_link = supplierMail + "=" + file_link
+                rfi_details["suppliers"].append(rfi_link)
 
             # Email components
             recipient = supplierMail
@@ -63,13 +66,15 @@ def send_rfi(user_id):
                     f'{agent["email"]}\n'
                     f'{agent["phone"]}'
                 )
-            
+
             # Encode the subject and body to be URL-safe
             subject = urllib.parse.quote(subject)
-            body = urllib.parse.quote(body)
+            encode_body = urllib.parse.quote(body)
+            
+            st.text(body)
             
             # Construct the mailto link
-            mailto_link = f"mailto:{recipient}?subject={subject}&body={body}"
+            mailto_link = f"mailto:{recipient}?subject={subject}&body={encode_body}"
             
             # Open the default mail client with the mailto link
             webbrowser.open(mailto_link)

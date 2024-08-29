@@ -17,7 +17,7 @@ def newUser(authenticator, config):
         }
 
         # Save the new credentials back to the YAML file
-        with open('cred.yaml', 'w') as file:
+        with open('/app/auth/cred.yaml', 'w') as file:
             yaml.dump(config, file, default_flow_style=False)
         
         create.new_user(email_of_registered_user, username_of_registered_user, name_of_registered_user)

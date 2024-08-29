@@ -31,7 +31,7 @@ def show_profile(user_id):
             language = 'en'
         address = st.text_input(_("Address"), value=agent["address"])
         sourcing = st.text_area(_("Sourcing preferences"), value=agent["sourcing"])
-        experience = st.number_input(_("Years of Experiences"), step=1, value=agent["experience"])
+        experience = st.number_input(_("Years of Experiences"), step=1, value=int(agent["experience"]))
         submit = st.form_submit_button(_("Submit changes"))
 
         if submit:
