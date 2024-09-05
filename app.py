@@ -39,10 +39,16 @@ authenticator = stauth.Authenticate(
 
 user, authentication_status, username = authenticator.login('main', fields={'Form name': 'login'})
 
-#new = st.button("New?")
-
-#if new:
-#    user, username, authentication_status = new_user.newUser(authenticator, config)
+if not st.session_state["authentication_status"]:
+    try:
+        email, username, user = authenticator.register_user(pre_authorization=False)
+        if email:
+            create.new_user(email, username, user)
+            st.success('User registered successfully')
+    except Exception as e:
+        st.error(e)
+    with open('/app/auth/cred.yaml', 'w') as file:
+        yaml.dump(config, file, default_flow_style=False)
 
 if authentication_status:
     # Main content for logged-in users
