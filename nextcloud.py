@@ -7,8 +7,8 @@ import streamlit as st
 def connect():
     # create Nextcloud client instance class
     nc = nc_py_api.Nextcloud(
-        nc_auth_user="jcoffin",
-        nc_auth_pass="abc",
+        nc_auth_user="admin",
+        nc_auth_pass="jcoffinabc",
         nextcloud_url="http://nginx-server:81"
     )
     return nc

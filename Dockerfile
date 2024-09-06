@@ -41,6 +41,8 @@ COPY utils.py .
 RUN mkdir -p /app/auth/
 COPY auth/cred.yaml auth/cred.yaml 
 
+## COPY set configuration
+
 # Expose the Streamlit default port
 EXPOSE 8501
 

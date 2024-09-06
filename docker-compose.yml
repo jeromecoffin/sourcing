@@ -2,8 +2,8 @@ services:
   streamlit-app:
     build: .
     container_name: streamlit-app
-    ports:
-      - "8501:8501"
+    expose:
+      - '8501'
     environment:
       - MONGO_URI=mongodb://mongo:27017
     depends_on:
@@ -17,8 +17,8 @@ services:
   mongo:
     image: mongo:4.4
     container_name: mongo
-    ports:
-      - "27017:27017"
+    expose:
+      - '27017'
     volumes:
       - mongo-data:/data/db  # Persist MongoDB data
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro

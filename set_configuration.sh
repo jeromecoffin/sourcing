@@ -6,7 +6,7 @@ docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:ge
 
 if ! grep -q "nginx-server" trusted_domain.tmp; then
     TRUSTED_INDEX=$(cat trusted_domain.tmp | wc -l);
-    docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set trusted_domains $TRUSTED_INDEX --value="nginx-server"
+    docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set trusted_domains $TRUSTED_INDEX --value="nginx-server:81"
 fi
 
 rm trusted_domain.tmp
@@ -15,5 +15,5 @@ docker exec -u www-data storage-nextcloud php occ --no-warnings app:install only
 
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice DocumentServerUrl --value="/ds-vpath/"
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice DocumentServerInternalUrl --value="http://onlyoffice-document-server/"
-docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice StorageUrl --value="http://nginx-server/"
+docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice StorageUrl --value="http://nginx-server:81/"
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice jwt_secret --value="secret"
