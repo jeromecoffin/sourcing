@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     libatlas-base-dev
 
 # Copier les traductions
-COPY locales .
+COPY locales/ locales/
 
 # Copier le main
 COPY app.py .
@@ -41,14 +41,12 @@ COPY utils.py .
 RUN mkdir -p /app/auth/
 COPY auth/cred.yaml auth/cred.yaml 
 
-## COPY set configuration
-
 # Expose the Streamlit default port
 EXPOSE 8501
 
 # Set environment variables for Streamlit
 ENV STREAMLIT_PORT=8501
-ENV PYTHONPATH=.:$PYTHONPATH
+#ENV PYTHONPATH=.:$PYTHONPATH
 
 # Run the Streamlit app
-CMD ["streamlit", "run", "app.py"]
+ENTRYPOINT ["streamlit", "run", "app.py"]
