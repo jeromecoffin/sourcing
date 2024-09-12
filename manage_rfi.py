@@ -9,10 +9,9 @@ def show_dashboard(user_id):
 
     st.header(_("Dashboard"))
     kpis = utils.calculate_kpis(user_id)
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(3)
     col1.metric(label=_("Total Number of RFIs"), value=kpis["total_rfis"])
     col2.metric(label=_("RFIs Sent"), value=kpis["total_sent_rfis"])
-    col3.metric(label=_("RFIs Received"), value=kpis["total_sent_rfis"])
 
 def list_rfis(user_id):
     _ = utils.translate(user_id)

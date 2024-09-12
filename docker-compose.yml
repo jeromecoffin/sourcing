@@ -12,15 +12,6 @@ services:
       - streamlit-cred:/app/auth  # Mount volume for cred.yml file
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'  # Limit to 50% of 1 vCPU
-          memory: 400M  # Limit to 400MB of RAM
-        reservations:
-          cpus: '0.25'  # Reserve 25% of 1 vCPU
-          memory: 200M  # Reserve 200MB of RAM
-
 
   mongo:
     image: mongo:4.4
@@ -32,14 +23,6 @@ services:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          cpus: '0.25'  # Limit to 25% of 1 vCPU
-          memory: 200M  # Limit to 200MB of RAM
-        reservations:
-          cpus: '0.1'  # Reserve 10% of 1 vCPU
-          memory: 100M  # Reserve 100MB of RAM
   
   storage-nextcloud:
     container_name: storage-nextcloud
@@ -52,14 +35,6 @@ services:
       - nextcloud_data:/var/www/html
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          cpus: '0.25'  # Limit to 25% of 1 vCPU
-          memory: 200M  # Limit to 200MB of RAM
-        reservations:
-          cpus: '0.1'  # Reserve 10% of 1 vCPU
-          memory: 100M  # Reserve 100MB of RAM
 
   onlyoffice-document-server:
     container_name: onlyoffice-document-server
@@ -75,15 +50,6 @@ services:
       - document_log:/var/log/onlyoffice
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          cpus: '0.25'  # Limit to 25% of 1 vCPU
-          memory: 300M  # Limit to 300MB of RAM
-        reservations:
-          cpus: '0.15'  # Reserve 15% of 1 vCPU
-          memory: 150M  # Reserve 150MB of RAM
-
 
   nginx:
     container_name: nginx-server
@@ -102,14 +68,6 @@ services:
       - ./data/certbot/www:/var/www/certbot
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'  # Limit to 10% of 1 vCPU
-          memory: 100M  # Limit to 100MB of RAM
-        reservations:
-          cpus: '0.05'  # Reserve 5% of 1 vCPU
-          memory: 50M  # Reserve 50MB of RAM
   
   certbot:
     image: certbot/certbot
@@ -117,6 +75,9 @@ services:
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
+    networks:
+      - app-network
+
 
 networks:
   app-network:

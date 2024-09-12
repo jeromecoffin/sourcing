@@ -7,9 +7,7 @@ import streamlit as st
 def connect():
     # create Nextcloud client instance class
     nc = nc_py_api.Nextcloud(
-        nc_auth_user="admin",
-        nc_auth_pass="jcoffinabc",
-        nextcloud_url="http://nginx-server:81"
+
     )
     return nc
 
@@ -54,3 +52,4 @@ def sharelink(file_name):
     onlyoffice_link = share_link_url.replace("/s/", "/apps/onlyoffice/s/")
     
     return onlyoffice_link
+
