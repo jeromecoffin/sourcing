@@ -17,16 +17,31 @@ import create
 #msgfmt locales/fr/LC_MESSAGES/messages.po -o locales/fr/LC_MESSAGES/messages.mo
 #msgfmt locales/vi/LC_MESSAGES/messages.po -o locales/vi/LC_MESSAGES/messages.mo
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Avanta RFI", page_icon="🧑‍💻")
+
 hide_menu_style = """
-        <style>
-        div[data-testid="stToolbar"] {display: none;}
-        </style>
-        """
+    <style>
+    div[data-testid="stToolbar"] {display: none;}
+    </style>
+"""
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
+if not st.session_state.get("authentication_status"):
+    logo = """
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-layers-half" viewbox="0 0 16 16">
+        <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z"/>
+    </svg>
+    <span class="ms-1 fw-bolder">Avanta Sourcing</span>
+    """
+    st.markdown(logo, unsafe_allow_html=True)
+    st.title("Welcome to Avanta-Sourcing RFI Generator!")
+    st.subheader("Please login or create a new account.")
+    st.divider()
+
+col1, col2 = st.columns(2)
+
 # Load config.yaml for authentication
-with open('/app/auth/cred.yaml') as file:
+with open('auth/cred.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 authenticator = stauth.Authenticate(
@@ -37,17 +52,24 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
-user, authentication_status, username = authenticator.login('main', fields={'Form name': 'login'})
+with col2:
+    st.container(height=90, border=False)
+    user, authentication_status, username = authenticator.login('main', fields={'Form name': 'login'})
 
-if not st.session_state["authentication_status"]:
+if not st.session_state.get("authentication_status"):
     try:
-        email, username, user = authenticator.register_user(pre_authorization=False)
-        if email:
-            create.new_user(email, username, user)
-            st.success('User registered successfully')
+        with col1:
+            email, username, user = authenticator.register_user(pre_authorization=False)
+            if email:
+                # Redirect to Stripe payment link after registration
+                st.success('User registered successfully. Please complete payment to activate your account.')
+                payment_link = "https://buy.stripe.com/test_3cs14o3Xq7WhepWdQQ"
+                st.link_button("Complete Payment", payment_link)
+                create.new_user(email, username, user)
     except Exception as e:
         st.error(e)
-    with open('/app/auth/cred.yaml', 'w') as file:
+
+    with open('auth/cred.yaml', 'w') as file:
         yaml.dump(config, file, default_flow_style=False)
 
 if authentication_status:
@@ -56,7 +78,7 @@ if authentication_status:
     _ = utils.translate(user_id)
 
     authenticator.logout(_('Logout'), 'sidebar')
-    st.sidebar.title("AVANTA SOURCING")
+    st.sidebar.title("AVANTA SOURCING RFI")
     st.sidebar.write(_("Welcome") + " " + user)
 
     def main():
@@ -73,14 +95,10 @@ if authentication_status:
             manage_rfi.list_rfis(user_id)
             manage_rfi.list_suppliers(user_id)
 
-        elif choice == "Create RFI":
-            # Initialize session state for dynamic input fields
+        elif choice == _("Create RFI"):
             if "additional_fields" not in st.session_state:
                 st.session_state.additional_fields = []
             create_rfi.create_rfi(user_id)
-        
-        #elif choice == _("Edit RFI"):
-        #    update_rfi.update_rfi(user_id)
 
         elif choice == _("Send RFI"):
             send_rfi.send_rfi(user_id)
@@ -93,11 +111,20 @@ if authentication_status:
                         st.success(_('Password modified successfully'))
                 except Exception as e:
                     st.error(e)
-            with open('/app/auth/cred.yaml', 'w') as file:
+            with open('auth/cred.yaml', 'w') as file:
                 yaml.dump(config, file, default_flow_style=False)
+        
+        elif choice == _("Support"):
+            url = "jerome.avanta-sourcing.com"
+            st.title(_("Thank you for using Avanta Sourcing RFI Generator"))
+            st.write(_("If you need any assistance, please contact : hello@avanta-sourcing.com"))
+            st.subheader(_("Created by Jerome Coffin : https://www.jerome.avanta-sourcing.com"))
 
     if __name__ == "__main__":
         main()
 
 elif authentication_status == False:
     st.error('Username/password is incorrect')
+
+st.divider()
+st.write("Any Questions? hello@avanta-sourcing.com")

@@ -30,7 +30,7 @@ def generate_xlsx_rfi(user_id, rfi, file_name):
     worksheet.merge_range('A1:B1', f"RFI Document", title_format)
 
     # Write subheader
-    worksheet.merge_range('A3:B3', "Generated with Avanta Sourcing", normal_format)
+    worksheet.merge_range('A3:B3', "Generated with www.rfi.avanta-sourcing.com", normal_format)
 
     # Write header data
     worksheet.write('A5', 'Title', bold_format)

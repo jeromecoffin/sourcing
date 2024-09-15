@@ -15,8 +15,6 @@ def create_rfi(user_id):
 
     _ = utils.translate(user_id)
 
-    st.sidebar.title(_("RFI Management"))
-
     with st.form("add_rfi_form", clear_on_submit=True):
 
         title = st.text_input(_("RFI Title"))
@@ -36,8 +34,8 @@ def create_rfi(user_id):
         st.divider()
 
         # Dynamic input fields section
-        st.subheader("Additional Information")
-        st.caption("Select Add Another Field button to add specific request to RFI.")
+        st.subheader(_("Additional Information"))
+        st.caption(_("Select Add Another Field button to add specific question to the supplier."))
         
         # Display current dynamic input fields
         for idx, value in enumerate(st.session_state.additional_fields):
@@ -62,5 +60,5 @@ def create_rfi(user_id):
 
     col1, col2, col3 = st.columns(3)
     # Add and Remove buttons to manage dynamic inputs (outside the form)
-    col1.button("Add Request Field", on_click=add_text_input_field)
-    col2.button("Remove Last Request Field", on_click=remove_text_input_field)
+    col1.button(_("Add Request Field"), on_click=add_text_input_field)
+    col2.button(_("Remove Last Request Field"), on_click=remove_text_input_field)

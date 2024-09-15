@@ -9,7 +9,7 @@ def show_dashboard(user_id):
 
     st.header(_("Dashboard"))
     kpis = utils.calculate_kpis(user_id)
-    col1, col2 = st.columns(3)
+    col1, col2 = st.columns(2)
     col1.metric(label=_("Total Number of RFIs"), value=kpis["total_rfis"])
     col2.metric(label=_("RFIs Sent"), value=kpis["total_sent_rfis"])
 
@@ -85,7 +85,8 @@ def list_suppliers(user_id):
             
             # Create a link to the XLSX file for each RFI
             sheet_url = str(s).partition("=")[2]
-            
+            sheet_url = sheet_url.replace("http://nginx-server:8443", "https://www.rfi.avanta-sourcing.com:8443")
+
             # Append the data to the list
             supplier_data["Title"].append(title)
             supplier_data["Reference"].append(reference)

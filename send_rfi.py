@@ -44,7 +44,7 @@ def send_rfi(user_id):
 
         if send:
 
-            with st.spinner('Wait for it...'):
+            with st.spinner(_('Generating link...')):
 
                 file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
                 file_link = nextcloud.sharelink(file_name)
@@ -54,18 +54,7 @@ def send_rfi(user_id):
             # Email components
             recipient = supplierMail
             subject = "RFI"
-            body = (f'Dear {supplierName},\n'
-                    'I hope this message finds you well.\n'
-                    'We are currently evaluating potential suppliers and would appreciate your assistance in completing a RFI.'
-                    'To streamline the process, we have prepared an online Excel sheet where you can provide the necessary details regarding your offerings.\n\n'
-                    'Please use the link below to access and fill out the RFI:\n\n'
-                    f'{file_link}\n\n'
-                    'Thank you for your time and cooperation. We look forward to receiving your response.\n'
-                    'Regards,\n'
-                    f'{agent["lastname"]} {agent["name"]}\n'
-                    f'{agent["email"]}\n'
-                    f'{agent["phone"]}'
-                )
+            body = (f'{file_link}')
 
             # Encode the subject and body to be URL-safe
             subject = urllib.parse.quote(subject)
@@ -74,10 +63,10 @@ def send_rfi(user_id):
             st.text(body)
             
             # Construct the mailto link
-            mailto_link = f"mailto:{recipient}?subject={subject}&body={encode_body}"
+            #mailto_link = f"mailto:{recipient}?subject={subject}&body={encode_body}"
             
             # Open the default mail client with the mailto link
-            webbrowser.open(mailto_link)
+            #webbrowser.open(mailto_link)
 
             update.rfi(rfi_details) #a mettre à la fin à cause du rerun
     else:
