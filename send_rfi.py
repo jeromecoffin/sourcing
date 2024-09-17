@@ -43,32 +43,36 @@ def send_rfi(user_id):
         send = st.button(_("Send RFI"))
 
         if send:
+            try:
+                with st.spinner(_('Generating link...')):
 
-            with st.spinner(_('Generating link...')):
+                    file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
+                    file_link = nextcloud.sharelink(file_name)
+                    file_link = file_link.replace("http://nginx-server:8443", "https://www.rfi.avanta-sourcing.com:8443")
+                    rfi_link = supplierMail + "=" + file_link
+                    rfi_details["suppliers"].append(rfi_link)
 
-                file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
-                file_link = nextcloud.sharelink(file_name)
-                rfi_link = supplierMail + "=" + file_link
-                rfi_details["suppliers"].append(rfi_link)
+                # Email components
+                recipient = supplierMail
+                subject = "RFI"
+                body = (f'{file_link}')
 
-            # Email components
-            recipient = supplierMail
-            subject = "RFI"
-            body = (f'{file_link}')
+                # Encode the subject and body to be URL-safe
+                subject = urllib.parse.quote(subject)
+                encode_body = urllib.parse.quote(body)
+                
+                st.text(body)
+                
+                # Construct the mailto link
+                mailto_link = f"mailto:{recipient}?subject={subject}&body={encode_body}"
+                
+                # Open the default mail client with the mailto link
+                webbrowser.open(mailto_link)
 
-            # Encode the subject and body to be URL-safe
-            subject = urllib.parse.quote(subject)
-            encode_body = urllib.parse.quote(body)
-            
-            st.text(body)
-            
-            # Construct the mailto link
-            #mailto_link = f"mailto:{recipient}?subject={subject}&body={encode_body}"
-            
-            # Open the default mail client with the mailto link
-            #webbrowser.open(mailto_link)
+                update.rfi(user_id, rfi_details) #a mettre à la fin à cause du rerun
 
-            update.rfi(rfi_details) #a mettre à la fin à cause du rerun
+            except Exception as e:
+                st.error(e)
     else:
         st.write(_("Create your first RFI to send it."))
 

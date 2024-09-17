@@ -20,7 +20,7 @@ def agent_id(user_id):
     agent = collection.find_one({"_id": user_id})
     return agent
 
-@st.cache_data(ttl=3600, hash_funcs={ObjectId: hash_objectid})
+#@st.cache_data(ttl=3600, hash_funcs={ObjectId: hash_objectid})
 def rfis(user_id):
     # Get the list of RFI ObjectIds associated with the user
     list_rfis = list(agent_id(user_id)["rfi_ids"])

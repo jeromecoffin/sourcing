@@ -51,4 +51,4 @@ def update_rfi(user_id):
                 "information": information,
                 "comment": comment
             }
-            update.rfi(rfi_data) 
+            update.rfi(user_id, rfi_data) 

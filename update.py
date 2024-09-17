@@ -27,9 +27,8 @@ def user_rfis(user_id, rfi_id):
         {"$addToSet": {"rfi_ids": rfi_id}}  # $addToSet prevents duplicates
     )
 
-def rfi(rfi_data):
+def rfi(user_id, rfi_data):
+    _ = utils.translate(user_id)
     db = utils.initialize_mongodb()
     db.rfis.update_one({"title": rfi_data["title"]}, {"$set": rfi_data})            
-    st.success("Data successfully modified!")
-    st.cache_data.clear()
-    #st.rerun()
+    st.success(_("Your mailbox did not respond. Copy/Past the link and share your it to the supplier!"))

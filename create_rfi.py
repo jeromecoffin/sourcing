@@ -57,6 +57,8 @@ def create_rfi(user_id):
                 "suppliers": suppliers
             }
             create.rfi(user_id, rfi_data)
+            st.session_state.additional_fields = []
+            st.rerun()
 
     col1, col2, col3 = st.columns(3)
     # Add and Remove buttons to manage dynamic inputs (outside the form)
