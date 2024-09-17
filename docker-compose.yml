@@ -6,6 +6,9 @@ services:
       - '8501'
     environment:
       - MONGO_URI=mongodb://mongo:27017
+      - NC_USER=""
+      - NC_PASS=""
+      - NC_URL=""
     depends_on:
       - mongo
     volumes:
