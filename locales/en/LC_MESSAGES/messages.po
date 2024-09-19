@@ -9,56 +9,146 @@ msgstr "Logout"
 msgid "Welcome"
 msgstr "Welcome"
 
+msgid "Please update your settings on first login"
+msgstr "Please update your settings on first login"
+
+msgid "Settings"
+msgstr "Settings"
+
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Onboarding"
-msgstr "Onboarding"
+msgid "Create RFI"
+msgstr "Create RFI"
 
-msgid "Project Management"
-msgstr "Project Management"
+msgid "Send RFI"
+msgstr "Send RFI"
 
-msgid "Suppliers Management"
-msgstr "Suppliers Management"
-
-msgid "RFI/RFQ"
-msgstr "RFI/RFQ"
-
-msgid "Account"
-msgstr "Account"
+msgid "Support"
+msgstr "Support"
 
 msgid "Select an option"
 msgstr "Select an option"
 
-msgid "More KPI, other details..."
-msgstr "More KPI, other details..."
-
-msgid "Submit"
-msgstr "Submit"
-
-msgid "Thanks for feedback!"
-msgstr "Thanks for feedback!"
-
-msgid "More customer data..."
-msgstr "More customer data..."
-
-msgid "Add field xxx ; More RFIs..."
-msgstr "Add field xxx ; More RFIs..."
-
-msgid "More/less fields if the new client form ; display other details in the list..."
-msgstr "More/less fields if the new client form ; display other details in the list..."
-
-msgid "Modify fields for RFI/RFQ..."
-msgstr "Modify fields for RFI/RFQ..."
-
 msgid "Password modified successfully"
 msgstr "Password modified successfully"
 
-msgid "Data to generate invoices..."
-msgstr "Data to generate invoices..."
+msgid "Thank you for using Avanta Sourcing RFI Generator"
+msgstr "Thank you for using Avanta Sourcing RFI Generator"
 
-msgid "Username/password is incorrect"
-msgstr "Username/password is incorrect"
+msgid "If you need any assistance, please contact : hello@avanta-sourcing.com"
+msgstr "If you need any assistance, please contact : hello@avanta-sourcing.com"
 
-msgid "Please enter your username and password"
-msgstr "Please enter your username and password"
+msgid "Created by Jerome Coffin : https://www.jerome.avanta-sourcing.com"
+msgstr "Created by Jerome Coffin : https://www.jerome.avanta-sourcing.com"
+
+msgid "RFI Title"
+msgstr "RFI Title"
+
+msgid "Reference"
+msgstr "Reference"
+
+msgid "Requesting Date"
+msgstr "Requesting Date"
+
+msgid "Deadline"
+msgstr "Deadline"
+
+msgid "Project Information"
+msgstr "Project Information"
+
+msgid "Comment"
+msgstr "Comment"
+
+msgid "Additional Information"
+msgstr "Additional Information"
+
+msgid "Select Add Another Field button to add specific question to the supplier."
+msgstr "Select Add Another Field button to add specific question to the supplier."
+
+msgid "Submit RFI"
+msgstr "Submit RFI"
+
+msgid "Add Request Field"
+msgstr "Add Request Field"
+
+msgid "Remove Last Request Field"
+msgstr "Remove Last Request Field"
+
+msgid "Added New RFI"
+msgstr "Added New RFI"
+
+msgid "RFI Templates"
+msgstr "RFI Templates"
+
+msgid "RFIs Sent"
+msgstr "RFIs Sent"
+
+msgid "RFIs List"
+msgstr "RFIs List"
+
+msgid "Loading RFIs..."
+msgstr "Loading RFIs..."
+
+msgid "Suppliers List"
+msgstr "Suppliers List"
+
+msgid "Send RFI:"
+msgstr "Send RFI:"
+
+msgid "To supplier name:"
+msgstr "To supplier name:"
+
+msgid "at supplier mail address:"
+msgstr "at supplier mail address:"
+
+msgid "Generating link..."
+msgstr "Generating link..."
+
+msgid "Create your first RFI to send it."
+msgstr "Create your first RFI to send it."
+
+msgid "Your Profile"
+msgstr "Your Profile"
+
+msgid "User not found"
+msgstr "User not found"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Lastname"
+msgstr "Lastname"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Company"
+msgstr "Company"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Sourcing preferences"
+msgstr "Sourcing preferences"
+
+msgid "Years of Experiences"
+msgstr "Years of Experiences"
+
+msgid "Submit changes"
+msgstr "Submit changes"
+
+msgid "Chose one RFI:"
+msgstr "Chose one RFI:"
+
+msgid "Information"
+msgstr "Information"
+
+msgid "Data successfully modified!"
+msgstr "Data successfully modified!"

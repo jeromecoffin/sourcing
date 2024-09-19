@@ -11,7 +11,7 @@ def update_rfi(user_id):
     _ = utils.translate(user_id)
 
     st.write("RFI:")
-    
+
     rfis = read.rfis(user_id)
     rfistitle = [rfi["title"] for rfi in rfis]
     rfi = st.selectbox(_("Chose one RFI:"), rfistitle)
@@ -34,7 +34,7 @@ def update_rfi(user_id):
         st.divider()
         
         for idx, x in enumerate(rfi_details["additional_fields"]):
-            field = st.text_input(_("field{}".format(idx)), value=x)
+            field = st.text_input("field{}".format(idx), value=x)
             additional_fields.append(field)
 
         st.divider()
