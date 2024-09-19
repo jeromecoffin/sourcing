@@ -31,7 +31,7 @@ services:
   
   storage-nextcloud:
     container_name: storage-nextcloud
-    image: nextcloud:fpm # TODO: Find version
+    image: jeromecoffin/nextcloud:fpm
     restart: always
     expose:
       - '80'
@@ -41,12 +41,12 @@ services:
     networks:
       - app-network
 
-  onlyoffice-document-server: # TODO: set script for default.conf
+  onlyoffice-document-server: 
     container_name: onlyoffice-document-server
-    image: onlyoffice/documentserver:latest # TODO: Find version
+    image: jeromecoffin/onlyoffice:8.1.1
     restart: always
     environment:
-      - JWT_SECRET=secret # TODO: Set secret 
+      - JWT_SECRET=${JWT_SECRET}
     expose:
       - '80'
       - '443'
