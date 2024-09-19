@@ -9,11 +9,11 @@ import generateXlsx
 import nextcloud
 from datetime import datetime
 import time
+import pyshorteners
 
 
 def send_rfi(user_id):
     _ = utils.translate(user_id)
-
     rfis = read.rfis(user_id)
     if rfis:
         listrfi = []
@@ -49,25 +49,27 @@ def send_rfi(user_id):
                     file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
                     file_link = nextcloud.sharelink(file_name)
                     file_link = file_link.replace("http://nginx-server:8443", "https://www.rfi.avanta-sourcing.com:8443")
-                    rfi_link = supplierMail + "=" + file_link
+                    short_url = pyshorteners.Shortener().tinyurl.short(file_link)
+                    rfi_link = supplierMail + "=" + short_url
                     rfi_details["suppliers"].append(rfi_link)
 
                 # Email components
-                recipient = supplierMail
-                subject = "RFI"
-                body = (f'{file_link}')
+                #recipient = supplierMail
+                #subject = "RFI"
+                body = (f'{short_url}')
 
                 # Encode the subject and body to be URL-safe
-                subject = urllib.parse.quote(subject)
-                encode_body = urllib.parse.quote(body)
+                #subject = urllib.parse.quote(subject)
+                #encode_body = urllib.parse.quote(body)
                 
                 st.text(body)
+                st.warning("Each generated link is unique and can only be shared with one supplier. To share your RFI template with a different supplier, generate a new link.")
                 
                 # Construct the mailto link
-                mailto_link = f"mailto:{recipient}?subject={subject}&body={encode_body}"
+                #mailto_link = f"mailto:{recipient}?subject={subject}&body={encode_body}"
                 
                 # Open the default mail client with the mailto link
-                webbrowser.open(mailto_link)
+                #webbrowser.open(mailto_link)
 
                 update.rfi(user_id, rfi_details) #a mettre à la fin à cause du rerun
 

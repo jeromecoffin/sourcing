@@ -57,23 +57,27 @@ def list_rfis(user_id):
 
     # Optionally log event
     # utils.log_event("RFI Dataframe Viewed")
-    pagination = st.container()
+    try:
+        pagination = st.container()
 
-    bottom_menu = st.columns((4, 1, 1))
-    with bottom_menu[2]:
-        batch_size = st.selectbox("Page Size", options=[5, 10, 15], key="rfis")
-    with bottom_menu[1]:
-        total_pages = (
-            int(len(df) / batch_size) if int(len(df) / batch_size) > 0 else 1
-        )
-        current_page = st.number_input(
-            "Page", min_value=1, max_value=total_pages, step=1, key="numberrfis"
-        )
-    with bottom_menu[0]:
-        st.markdown(f"Page **{current_page}** of **{total_pages}** ")
+        bottom_menu = st.columns((4, 1, 1))
+        with bottom_menu[2]:
+            batch_size = st.selectbox("Page Size", options=[5, 10, 15], key="rfis")
+        with bottom_menu[1]:
+            total_pages = (
+                int((len(df) / batch_size)+1) if int((len(df) / batch_size)+1) > 0 else 1
+            )
+            current_page = st.number_input(
+                "Page", min_value=1, max_value=total_pages, step=1, key="numberrfis"
+            )
+        with bottom_menu[0]:
+            st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
-    pages = split_frame(df, batch_size)
-    pagination.dataframe(data=pages[current_page - 1], use_container_width=True)
+        pages = split_frame(df, batch_size)
+        pagination.dataframe(data=pages[current_page - 1], use_container_width=True, hide_index=True)
+    except Exception as e:
+        st.error("No RFI to display.")
+
 
 
 def list_suppliers(user_id):
@@ -104,7 +108,6 @@ def list_suppliers(user_id):
             
             # Create a link to the XLSX file for each RFI
             sheet_url = str(s).partition("=")[2]
-            sheet_url = sheet_url.replace("http://nginx-server:8443", "https://www.rfi.avanta-sourcing.com:8443")
 
             # Append the data to the list
             supplier_data["Title"].append(title)
@@ -115,26 +118,27 @@ def list_suppliers(user_id):
     
     # Convert to DataFrame
     df = pd.DataFrame(supplier_data)
+    try:
+        pagination = st.container()
 
-    pagination = st.container()
+        bottom_menu = st.columns((4, 1, 1))
+        with bottom_menu[2]:
+            batch_size = st.selectbox("Page Size", options=[5, 10, 15], key="suppliers")
+        with bottom_menu[1]:
+            total_pages = (
+                int((len(df) / batch_size)+1) if int((len(df) / batch_size)+1) > 0 else 1
+            )
+            current_page = st.number_input(
+                "Page", min_value=1, max_value=total_pages, step=1, key="numbersuppliers"
+            )
+        with bottom_menu[0]:
+            st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
-    bottom_menu = st.columns((4, 1, 1))
-    with bottom_menu[2]:
-        batch_size = st.selectbox("Page Size", options=[5, 10, 15], key="suppliers")
-    with bottom_menu[1]:
-        total_pages = (
-            int(len(df) / batch_size) if int(len(df) / batch_size) > 0 else 1
-        )
-        current_page = st.number_input(
-            "Page", min_value=1, max_value=total_pages, step=1, key="numbersuppliers"
-        )
-    with bottom_menu[0]:
-        st.markdown(f"Page **{current_page}** of **{total_pages}** ")
+        pages = split_frame(df, batch_size)
+        pagination.dataframe(data=pages[current_page - 1], use_container_width=True, hide_index=True)
 
-    pages = split_frame(df, batch_size)
-    pagination.dataframe(data=pages[current_page - 1], use_container_width=True)
-
-    # Display the DataFrame in Streamlit
-    #st.dataframe(df, use_container_width=True, hide_index=True)
-
+        # Display the DataFrame in Streamlit
+        #st.dataframe(df, use_container_width=True, hide_index=True)
+    except Exception as e:
+        st.error("No RFI to display.")
 

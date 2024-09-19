@@ -91,6 +91,8 @@ authenticator = stauth.Authenticate(
 
 col1, col2 = st.columns(2)
 with col2:
+    if st.session_state["authentication_status"] == None or st.session_state["authentication_status"] == False :
+        st.container(height=200, border=False)
     user, authentication_status, username = authenticator.login('main', fields={'Form name': 'login'})
 
 if authentication_status == None or authentication_status == False :
@@ -109,7 +111,7 @@ if authentication_status == None or authentication_status == False :
             if email:
                 # Redirect to Stripe payment link after registration
                 st.success('User registered successfully. Please complete payment to activate your account.')
-                payment_link = "https://buy.stripe.com/test_3cs14o3Xq7WhepWdQQ"
+                payment_link = "https://buy.stripe.com/test_00g28sfG8a4p81y6op?locale=en-GB"
                 st.link_button("Complete Payment", payment_link)
                 create.new_user(email, username, user)
                 with open('auth/cred.yaml', 'w') as file:

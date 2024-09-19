@@ -9,3 +9,4 @@ pandas==1.5.3
 # numpy version to any before the 2.0.0 for Pandas compatibility 
 numpy==1.26.4
 nc_py_api==0.6.0
+pyshorteners==1.0.1
