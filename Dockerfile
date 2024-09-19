@@ -11,6 +11,12 @@ RUN apt-get update && apt-get install -y \
     libatlas-base-dev
 
 # Copier les traductions
+
+# install gettext
+#msgfmt locales/en/LC_MESSAGES/messages.po -o locales/en/LC_MESSAGES/messages.mo
+#msgfmt locales/fr/LC_MESSAGES/messages.po -o locales/fr/LC_MESSAGES/messages.mo
+#msgfmt locales/vi/LC_MESSAGES/messages.po -o locales/vi/LC_MESSAGES/messages.mo
+
 COPY locales/ locales/
 
 # Copier le main

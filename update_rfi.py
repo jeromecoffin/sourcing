@@ -3,11 +3,15 @@ import utils
 import read
 import update
 
+# NOT USED ANYMORE
+# Might be useful later
+
 def update_rfi(user_id):
 
     _ = utils.translate(user_id)
 
     st.write("RFI:")
+    
     rfis = read.rfis(user_id)
     rfistitle = [rfi["title"] for rfi in rfis]
     rfi = st.selectbox(_("Chose one RFI:"), rfistitle)

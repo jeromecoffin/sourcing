@@ -8,6 +8,7 @@ def show_dashboard(user_id):
     _ = utils.translate(user_id)
 
     st.header(_("Dashboard"))
+
     kpis = utils.calculate_kpis(user_id)
     col1, col2 = st.columns(2)
     col1.metric(label=_("RFI Templates"), value=kpis["total_rfis"])
@@ -15,10 +16,12 @@ def show_dashboard(user_id):
 
 @st.cache_data(show_spinner=False)
 def split_frame(input_df, rows):
+
     df = [input_df.loc[i : i + rows - 1, :] for i in range(0, len(input_df), rows)]
     return df
 
 def list_rfis(user_id):
+
     _ = utils.translate(user_id)
     st.subheader(_("RFIs List"))
 
@@ -28,7 +31,6 @@ def list_rfis(user_id):
     # Ensure RFIs are ordered by date (requestDueDate)
     rfis_sorted = sorted(rfis, key=lambda x: x.get('requestDueDate', ''), reverse=False)
 
-    # Prepare data for the dataframe
     data = {
         "Title": [],
         "Reference": [],
@@ -38,6 +40,7 @@ def list_rfis(user_id):
 
     # Populate the data for the table
     for rfi in rfis_sorted:
+
         title = rfi.get('title', 'Untitled RFI')
         reference = rfi.get('reference', 'No Reference')
         suppliersContacted = rfi.get('suppliers')
@@ -49,18 +52,14 @@ def list_rfis(user_id):
         data["Due Date"].append(request_date)
         data["Suppliers Contacted"].append(len(suppliersContacted))
 
-    # Convert data to a pandas DataFrame
     df = pd.DataFrame(data)
 
-    # Display the DataFrame in Streamlit
-    #st.dataframe(df, use_container_width=True, hide_index=True)
-
-    # Optionally log event
-    # utils.log_event("RFI Dataframe Viewed")
     try:
+
         pagination = st.container()
 
         bottom_menu = st.columns((4, 1, 1))
+
         with bottom_menu[2]:
             batch_size = st.selectbox("Page Size", options=[5, 10, 15], key="rfis")
         with bottom_menu[1]:
@@ -75,13 +74,16 @@ def list_rfis(user_id):
 
         pages = split_frame(df, batch_size)
         pagination.dataframe(data=pages[current_page - 1], use_container_width=True, hide_index=True)
+
     except Exception as e:
         st.error("No RFI to display.")
 
 
 
 def list_suppliers(user_id):
+
     _ = utils.translate(user_id)
+    
     st.subheader(_("Suppliers List"))
 
     with st.spinner(_("Loading RFIs...")):
@@ -90,7 +92,6 @@ def list_suppliers(user_id):
     # Ensure RFIs are ordered by date (requestDueDate)
     rfis_sorted = sorted(rfis, key=lambda x: x.get('requestDueDate', ''), reverse=False)
 
-    # Prepare data for the dataframe
     supplier_data = {
         "Supplier Name": [],
         "Title": [],
@@ -100,7 +101,9 @@ def list_suppliers(user_id):
     }
 
     for rfi in rfis_sorted:
+
         for s in rfi.get("suppliers", []):
+
             title = rfi.get('title', 'Untitled RFI')
             reference = rfi.get('reference', 'No Reference')
             request_date = rfi.get('requestDueDate', 'No Due Date')
@@ -116,12 +119,14 @@ def list_suppliers(user_id):
             supplier_data["Supplier Name"].append(supplier)
             supplier_data["Sheet Link"].append(sheet_url)
     
-    # Convert to DataFrame
     df = pd.DataFrame(supplier_data)
+
     try:
+
         pagination = st.container()
 
         bottom_menu = st.columns((4, 1, 1))
+
         with bottom_menu[2]:
             batch_size = st.selectbox("Page Size", options=[5, 10, 15], key="suppliers")
         with bottom_menu[1]:
@@ -137,8 +142,6 @@ def list_suppliers(user_id):
         pages = split_frame(df, batch_size)
         pagination.dataframe(data=pages[current_page - 1], use_container_width=True, hide_index=True)
 
-        # Display the DataFrame in Streamlit
-        #st.dataframe(df, use_container_width=True, hide_index=True)
     except Exception as e:
         st.error("No RFI to display.")
 

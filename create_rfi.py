@@ -46,6 +46,7 @@ def create_rfi(user_id):
         submit = st.form_submit_button(_("Submit RFI"))
 
         if submit:
+
             rfi_data = {
                 "title": title,
                 "reference": reference,
@@ -56,11 +57,15 @@ def create_rfi(user_id):
                 "comment": comment,
                 "suppliers": suppliers
             }
+
             create.rfi(user_id, rfi_data)
+
+            # Empty additional fields
             st.session_state.additional_fields = []
             st.rerun()
 
     col1, col2, col3 = st.columns(3)
+
     # Add and Remove buttons to manage dynamic inputs (outside the form)
     col1.button(_("Add Request Field"), on_click=add_text_input_field)
     col2.button(_("Remove Last Request Field"), on_click=remove_text_input_field)

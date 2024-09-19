@@ -5,16 +5,18 @@ services:
     expose:
       - '8501'
     environment:
-      - MONGO_URI=mongodb://mongo:27017
-      - NC_USER=""
-      - NC_PASS=""
-      - NC_URL=""
+      - MONGO_URI=${MONGO_URI}
+      - NC_USER=${NC_USER}
+      - NC_PASS=${NC_PASS}
+      - NC_URL=${NC_URL}
     depends_on:
       - mongo
     volumes:
       - streamlit-cred:/app/auth  # Mount volume for cred.yml file
     networks:
       - app-network
+    env_file:
+      - .env
 
   mongo:
     image: mongo:4.4
@@ -22,14 +24,14 @@ services:
     expose:
       - '27017'
     volumes:
-      - mongo-data:/data/db  # Persist MongoDB data
+      - mongo-data:/data/db  
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     networks:
       - app-network
   
   storage-nextcloud:
     container_name: storage-nextcloud
-    image: nextcloud:fpm
+    image: nextcloud:fpm # TODO: Find version
     restart: always
     expose:
       - '80'
@@ -39,16 +41,16 @@ services:
     networks:
       - app-network
 
-  onlyoffice-document-server:
+  onlyoffice-document-server: # TODO: set script for default.conf
     container_name: onlyoffice-document-server
-    image: onlyoffice/documentserver:latest
+    image: onlyoffice/documentserver:latest # TODO: Find version
     restart: always
     environment:
-      - JWT_SECRET=secret
+      - JWT_SECRET=secret # TODO: Set secret 
     expose:
       - '80'
       - '443'
-    volumes:
+    volumes: 
       - document_data:/var/www/onlyoffice/Data
       - document_log:/var/log/onlyoffice
     networks:
@@ -87,8 +89,8 @@ networks:
     driver: bridge
 
 volumes:
-  mongo-data:  # Named volume for MongoDB data
-  streamlit-cred:  # Named volume for cred.yml
+  mongo-data:  
+  streamlit-cred:  
   document_data:
   document_log:
   nextcloud_data:

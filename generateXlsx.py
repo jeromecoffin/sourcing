@@ -89,17 +89,19 @@ def generate_xlsx_rfi(user_id, rfi, file_name):
     worksheet.merge_range('A32:B32', "BUSINESS INFORMATION", section_title_format)
 
     cell = 32
-    for idx, x in enumerate(rfi["additional_fields"]):
-        cell += 1
-        worksheet.write('A{}'.format(cell), x, bold_format)
 
     # Write additional information or comments based on doc_type
-    cell += 2
     worksheet.write('A{}'.format(cell), 'Project Information', bold_format)
     worksheet.write('B{}'.format(cell), rfi['information'], normal_format)
     cell += 2
     worksheet.write('A{}'.format(cell), 'Comment', bold_format)
     worksheet.write('B{}'.format(cell), rfi['comment'], normal_format)
+
+    cell += 2
+
+    for idx, x in enumerate(rfi["additional_fields"]):
+        cell += 1
+        worksheet.write('A{}'.format(cell), x, bold_format)
 
     cell += 2
 

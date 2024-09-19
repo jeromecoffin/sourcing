@@ -31,4 +31,7 @@ docker exec -u www-data storage-nextcloud php occ --no-warnings app:install only
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice DocumentServerUrl --value="/ds-vpath/"
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice DocumentServerInternalUrl --value="http://onlyoffice-document-server/"
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice StorageUrl --value="https://nginx-server:8443/" 
-docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice jwt_secret --value="secret"
+docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice jwt_secret --value="secret" # TODO: set secret. Voir docker-compose.yml
+# TODO: .services.CoAuthoring.requestDefaults.rejectUnauthorized = false
+# docker cp default.json onlyoffice-document-server:/etc/onlyoffice/documentserver/default.json
+# docker exec -it -d onlyoffice-document-server ./app/ds/run-document-server.sh

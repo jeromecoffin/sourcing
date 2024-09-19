@@ -1,23 +1,37 @@
 import streamlit as st
-import pandas as pd
 import read
 import utils
-import webbrowser
-import urllib.parse
 import update
 import generateXlsx
 import nextcloud
 from datetime import datetime
-import time
 import pyshorteners
 
+def storexlsx(user_id, username, rfi_data, supplierName):
+
+    now = datetime.now()
+    date = now.strftime("%Y%m%d%H%M")
+
+    file_name = str(user_id) + "/" + rfi_data["reference"] + "/" + supplierName + date + ".xlsx"
+
+    xlsx_data = generateXlsx.generate_xlsx_rfi(user_id, rfi_data, file_name)
+
+    nextcloud.create_file(xlsx_data, file_name)
+
+    return file_name
 
 def send_rfi(user_id):
+
     _ = utils.translate(user_id)
+
     rfis = read.rfis(user_id)
+
     if rfis:
+
         listrfi = []
+
         for rfi in rfis:
+
             rfititle = rfi["title"]
             rfiref = rfi["reference"]
             textbox = rfititle + " - " + rfiref
@@ -43,13 +57,20 @@ def send_rfi(user_id):
         send = st.button(_("Send RFI"))
 
         if send:
+
             try:
+
                 with st.spinner(_('Generating link...')):
 
+                    # Generate file and store in NextCloud
                     file_name = storexlsx(user_id, agent["username"], rfi_details, supplierName)
+
+                    # Create a short share link
                     file_link = nextcloud.sharelink(file_name)
                     file_link = file_link.replace("http://nginx-server:8443", "https://www.rfi.avanta-sourcing.com:8443")
                     short_url = pyshorteners.Shortener().tinyurl.short(file_link)
+
+                    # Store supplier email and url in mongo
                     rfi_link = supplierMail + "=" + short_url
                     rfi_details["suppliers"].append(rfi_link)
 
@@ -71,18 +92,11 @@ def send_rfi(user_id):
                 # Open the default mail client with the mailto link
                 #webbrowser.open(mailto_link)
 
-                update.rfi(user_id, rfi_details) #a mettre à la fin à cause du rerun
+                # Pas possible de clear cache et rerun, sinon le lien disparairait tout de suite
+                # Desactiver cache de read rfi
+                update.rfi(user_id, rfi_details)
 
             except Exception as e:
                 st.error(e)
     else:
         st.write(_("Create your first RFI to send it."))
-
-def storexlsx(user_id, username, rfi_data, supplierName):
-    now = datetime.now()
-    date = now.strftime("%Y%m%d%H%M")
-    file_name = str(user_id) + "/" + rfi_data["reference"] + "/" + supplierName + date + ".xlsx"
-    xlsx_data = generateXlsx.generate_xlsx_rfi(user_id, rfi_data, file_name)
-    nextcloud.create_file(xlsx_data, file_name)
-    return file_name
-
