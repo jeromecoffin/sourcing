@@ -1,18 +1,32 @@
 from datetime import datetime, timezone, timedelta
-from pymongo import MongoClient
+from pymongo import MongoClient, errors
 import gettext
 import os
 import read
 import create
 
-# Initializes MongoDB using configuration from Streamlit secrets.
 def initialize_mongodb():
+    try:
+        # Get the MongoDB URI from environment variables
+        mongo_uri = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
 
-    # ENV in docker-compose.yml
-    mongo_uri = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
+        # Establish a connection to MongoDB
+        client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)  # Timeout after 5 seconds
 
-    client = MongoClient(mongo_uri)
-    return client.sourcingmain
+        # Check the connection by attempting to fetch server information
+        client.admin.command('ping')
+
+        # Return the sourcingmain database object
+        return client.sourcingmain
+
+    except errors.ServerSelectionTimeoutError as err:
+        log_event("Mongodb Timeout", details=err)
+        raise SystemExit("MongoDB connection failed. Exiting.")
+
+    except Exception as e:
+        log_event("Mongodb Exception", details=e)
+        raise
+
 
 # Calculates various KPIs from MongoDB collections.
 # Output dict (e.g kpis["total_projects"])
