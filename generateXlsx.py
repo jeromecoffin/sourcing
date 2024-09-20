@@ -88,7 +88,7 @@ def generate_xlsx_rfi(user_id, rfi, file_name):
     # Write Business Information
     worksheet.merge_range('A32:B32', "BUSINESS INFORMATION", section_title_format)
 
-    cell = 32
+    cell = 33
 
     # Write additional information or comments based on doc_type
     worksheet.write('A{}'.format(cell), 'Project Information', bold_format)
