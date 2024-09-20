@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source .env 
+
 set -x
 
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:get trusted_domains >> trusted_domain.tmp
@@ -30,8 +32,8 @@ docker exec -u www-data storage-nextcloud php occ --no-warnings app:install only
 
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice DocumentServerUrl --value="/ds-vpath/"
 docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice DocumentServerInternalUrl --value="http://onlyoffice-document-server/"
-docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice StorageUrl --value="https://nginx-server:8443/" 
-docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice jwt_secret --value=$JWT_SECRET # TODO: set secret. Voir docker-compose.yml
+docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice StorageUrl --value=$STORAGE_URL
+docker exec -u www-data storage-nextcloud php occ --no-warnings config:system:set onlyoffice jwt_secret --value=$JWT_SECRET
 
 # Set .services.CoAuthoring.requestDefaults.rejectUnauthorized = false
 docker cp default.json onlyoffice-document-server:/etc/onlyoffice/documentserver/default.json

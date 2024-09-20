@@ -55,6 +55,8 @@ services:
       - document_log:/var/log/onlyoffice
     networks:
       - app-network
+    env_file:
+      - .env
 
   nginx:
     container_name: nginx-server
