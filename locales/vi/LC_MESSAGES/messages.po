@@ -21,8 +21,8 @@ msgstr "Bảng điều khiển"
 msgid "Create RFI"
 msgstr "Tạo RFI"
 
-msgid "Send RFI"
-msgstr "Gửi RFI"
+msgid "Link RFI"
+msgstr "Link RFI"
 
 msgid "Support"
 msgstr "Hỗ trợ"
@@ -84,17 +84,14 @@ msgstr "Mẫu RFI"
 msgid "RFIs Sent"
 msgstr "RFIs đã gửi"
 
-msgid "RFIs List"
-msgstr "Danh sách RFI"
-
 msgid "Loading RFIs..."
 msgstr "Đang tải RFI..."
 
 msgid "Suppliers List"
 msgstr "Danh sách nhà cung cấp"
 
-msgid "Send RFI:"
-msgstr "Gửi RFI:"
+msgid "Link RFI:"
+msgstr "Link RFI:"
 
 msgid "To supplier name:"
 msgstr "Tên nhà cung cấp:"
@@ -155,3 +152,9 @@ msgstr "Thông tin"
 
 msgid "Data successfully modified!"
 msgstr "Dữ liệu đã được thay đổi thành công!"
+
+msgid "Send RFI"
+msgstr "gửi RFI
+
+msgid "Each generated link is unique and can only be shared with one supplier. To share your RFI template with a different supplier, generate a new link."
+msgstr "Mỗi liên kết được tạo là duy nhất và chỉ có thể chia sẻ với một nhà cung cấp. Để chia sẻ mẫu RFI của bạn với một nhà cung cấp khác, hãy tạo một liên kết mới."

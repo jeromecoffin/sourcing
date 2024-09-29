@@ -54,7 +54,7 @@ def send_rfi(user_id):
 
         supplierMail = st.text_input(_("at supplier mail address:"))
 
-        send = st.button(_("Send RFI"))
+        send = st.button(_("Link RFI"))
 
         if send:
 
@@ -84,7 +84,7 @@ def send_rfi(user_id):
                 #encode_body = urllib.parse.quote(body)
                 
                 st.text(body)
-                st.warning("Each generated link is unique and can only be shared with one supplier. To share your RFI template with a different supplier, generate a new link.")
+                st.warning(_("Each generated link is unique and can only be shared with one supplier. To share your RFI template with a different supplier, generate a new link."))
                 
                 # Construct the mailto link
                 #mailto_link = f"mailto:{recipient}?subject={subject}&body={encode_body}"

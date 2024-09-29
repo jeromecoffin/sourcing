@@ -21,8 +21,8 @@ msgstr "Dashboard"
 msgid "Create RFI"
 msgstr "Create RFI"
 
-msgid "Send RFI"
-msgstr "Send RFI"
+msgid "Link RFI"
+msgstr "Link RFI"
 
 msgid "Support"
 msgstr "Support"
@@ -84,17 +84,14 @@ msgstr "RFI Templates"
 msgid "RFIs Sent"
 msgstr "RFIs Sent"
 
-msgid "RFIs List"
-msgstr "RFIs List"
-
 msgid "Loading RFIs..."
 msgstr "Loading RFIs..."
 
 msgid "Suppliers List"
 msgstr "Suppliers List"
 
-msgid "Send RFI:"
-msgstr "Send RFI:"
+msgid "Link RFI:"
+msgstr "Link RFI:"
 
 msgid "To supplier name:"
 msgstr "To supplier name:"
@@ -152,3 +149,9 @@ msgstr "Information"
 
 msgid "Data successfully modified!"
 msgstr "Data successfully modified!"
+
+msgid "Send RFI"
+msgstr "Send RFI"
+
+msgid "Each generated link is unique and can only be shared with one supplier. To share your RFI template with a different supplier, generate a new link."
+msgstr "Each generated link is unique and can only be shared with one supplier. To share your RFI template with a different supplier, generate a new link."

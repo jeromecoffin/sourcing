@@ -21,8 +21,8 @@ msgstr "Tableau de bord"
 msgid "Create RFI"
 msgstr "Créer un RFI"
 
-msgid "Send RFI"
-msgstr "Envoyer un RFI"
+msgid "Link RFI"
+msgstr "Lien RFI"
 
 msgid "Support"
 msgstr "Support"
@@ -70,10 +70,10 @@ msgid "Submit RFI"
 msgstr "Soumettre le RFI"
 
 msgid "Add Request Field"
-msgstr "Ajouter un champ de demande"
+msgstr "Ajouter un champ"
 
 msgid "Remove Last Request Field"
-msgstr "Supprimer le dernier champ de demande"
+msgstr "Supprimer le dernier champ"
 
 msgid "Added New RFI"
 msgstr "Nouveau RFI ajouté"
@@ -82,10 +82,7 @@ msgid "RFI Templates"
 msgstr "Modèles de RFI"
 
 msgid "RFIs Sent"
-msgstr "RFIs envoyés"
-
-msgid "RFIs List"
-msgstr "Liste des RFIs"
+msgstr "RFIs envoyées"
 
 msgid "Loading RFIs..."
 msgstr "Chargement des RFIs..."
@@ -93,8 +90,8 @@ msgstr "Chargement des RFIs..."
 msgid "Suppliers List"
 msgstr "Liste des fournisseurs"
 
-msgid "Send RFI:"
-msgstr "Envoyer un RFI :"
+msgid "Link RFI:"
+msgstr "Lien RFI :"
 
 msgid "To supplier name:"
 msgstr "Nom du fournisseur :"
@@ -152,3 +149,9 @@ msgstr "Informations"
 
 msgid "Data successfully modified!"
 msgstr "Données modifiées avec succès !"
+
+msgid "Send RFI"
+msgstr "Envoyer RFI"
+
+msgid "Each generated link is unique and can only be shared with one supplier. To share your RFI template with a different supplier, generate a new link."
+msgstr "Chaque lien généré est unique et ne peut être partagé qu'avec un seul fournisseur. Pour partager votre modèle de demande d'informations avec un autre fournisseur, générez un nouveau lien."

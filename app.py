@@ -57,7 +57,7 @@ def main():
         url = "jerome.avanta-sourcing.com"
         st.title(_("Thank you for using Avanta Sourcing RFI Generator"))
         st.write(_("If you need any assistance, please contact : hello@avanta-sourcing.com"))
-        st.subheader(_("Created by Jerome Coffin : https://www.jerome.avanta-sourcing.com"))
+        st.write(_("Created by Jerome Coffin : https://www.jerome.avanta-sourcing.com"))
 
 ####################################################################################################
 ############################################ LOGIN PAGE ############################################
@@ -114,7 +114,7 @@ if authentication_status == None or authentication_status == False :
                 # Redirect to Stripe payment link after registration
                 st.success('User registered successfully. Please complete payment to activate your account.')
 
-                payment_link = "https://buy.stripe.com/test_00g28sfG8a4p81y6op?locale=en-GB"
+                payment_link = "https://buy.stripe.com/4gw3dj8JPbICeQw145?locale=en-GB"
                 st.link_button("Complete Payment", payment_link)
 
                 create.new_user(email, username, user)

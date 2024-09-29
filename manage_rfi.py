@@ -23,7 +23,7 @@ def split_frame(input_df, rows):
 def list_rfis(user_id):
 
     _ = utils.translate(user_id)
-    st.subheader(_("RFIs List"))
+    st.subheader(_("RFI Templates"))
 
     with st.spinner(_("Loading RFIs...")):
         rfis = read.rfis(user_id)
@@ -61,7 +61,7 @@ def list_rfis(user_id):
         bottom_menu = st.columns((4, 1, 1))
 
         with bottom_menu[2]:
-            batch_size = st.selectbox("Page Size", options=[5, 10, 15], key="rfis")
+            batch_size = st.selectbox("Page Size", options=[10, 20, 50], key="rfis")
         with bottom_menu[1]:
             total_pages = (
                 int((len(df) / batch_size)+1) if int((len(df) / batch_size)+1) > 0 else 1
@@ -84,7 +84,7 @@ def list_suppliers(user_id):
 
     _ = utils.translate(user_id)
     
-    st.subheader(_("Suppliers List"))
+    st.subheader(_("RFIs Sent"))
 
     with st.spinner(_("Loading RFIs...")):
         rfis = read.rfis(user_id)
@@ -128,7 +128,7 @@ def list_suppliers(user_id):
         bottom_menu = st.columns((4, 1, 1))
 
         with bottom_menu[2]:
-            batch_size = st.selectbox("Page Size", options=[5, 10, 15], key="suppliers")
+            batch_size = st.selectbox("Page Size", options=[10, 20, 50], key="suppliers")
         with bottom_menu[1]:
             total_pages = (
                 int((len(df) / batch_size)+1) if int((len(df) / batch_size)+1) > 0 else 1
